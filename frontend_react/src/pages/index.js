@@ -1,0 +1,10 @@
+// export { default as Navbar } from './Navbar';
+export { default as Sidebar } from '../components/Sidebar';
+export { default as Feed } from './Feed';
+export { default as SocialMedia } from './SocialMedia';
+export { default as SearchFeed } from './SearchFeed';
+export { default as ScrapersFeed } from './ScrapersFeed';
+export { default as Login } from './Login';
+export { default as History } from './History';
+export { default as Team } from './Team';
+export { default as Profil } from './Profil';
