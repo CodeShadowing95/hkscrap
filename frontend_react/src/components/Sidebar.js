@@ -44,7 +44,6 @@ const isValidURL = (url) => {
 
 
 const Sidebar = ({ user }) => {
-  const [display, setDisplay] = useState(false);
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
@@ -107,27 +106,10 @@ const Sidebar = ({ user }) => {
     navigate(`/search/?q=${encodeURIComponent(formData.linkurl)}&task=${encodeURIComponent(formData.taskname)}`);
   }
 
-  const handleProfil = () => {
-    navigate("/profil");
-  }
-
-
-
-
   let username = user[0]?.nom + " " + user[0]?.prenom;
   const len_username = username.length;
   if (len_username > 13) {
     username = username.substr(0, len_username - 2) + ".";
-  }
-
-  const showPanel = () => {
-    setDisplay((displayPanel) => !displayPanel);
-  }
-
-  const logout = () => {
-    localStorage.removeItem('user');
-    navigate("/auth");
-    localStorage.clear();
   }
 
   let elements = [
@@ -155,6 +137,7 @@ const Sidebar = ({ user }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        overflow: "hidden",
       }}
     >
       {/* General Stack Top */}
@@ -176,9 +159,7 @@ const Sidebar = ({ user }) => {
         </Stack>
 
         {/* Utilisateur */}
-        <Stack
-          direction="row"
-          alignSelf="center"
+        <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -187,7 +168,7 @@ const Sidebar = ({ user }) => {
             backgroundColor: "#F3F7FD",
             borderRadius: "50px",
             width: "13.5rem",
-            position: "relative",
+            alignSelf: "center"
           }}
         >
           <Box
@@ -236,56 +217,7 @@ const Sidebar = ({ user }) => {
               </Typography>
             </Box>
           </Box>
-
-          <KeyboardArrowDown
-            onClick={showPanel}
-            sx={{
-              padding: "5px",
-              borderRadius: "50px",
-              color: "#93B0C8",
-              cursor: "pointer",
-              transition: "0.2s",
-              "&:hover": { backgroundColor: "#DFE9F7" },
-            }}
-          />
-
-          {display &&
-            <div style={{
-                position: "absolute",
-                top: "75px",
-                left: "10px",
-                // padding: "20px",
-                border: "1px solid #e1e1e1",
-                borderRadius: "5px",
-                backgroundColor: "#F3F7FD",
-                width: "13.5rem",
-                transition: "0.5s",
-                zIndex: 1000,
-              }}
-            >
-              <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }} onClick={handleProfil}>
-                  <PeopleIcon />
-                  <ListItemText primary="Profil" />
-                </ListItem>
-                <Divider />
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                  <SettingsIcon />
-                  <ListItemText primary="Paramètres" />
-                </ListItem>
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                  <HelpIcon />
-                  <ListItemText primary="Aide" />
-                </ListItem>
-                <Divider light />
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }} onClick={logout}>
-                  <LogoutIcon />
-                  <ListItemText primary="Déconnexion" />
-                </ListItem>
-              </List>
-            </div>
-          }
-        </Stack>
+        </Box>
 
         {/* Stack fonctionnalités essentielles */}
         <Stack
@@ -302,24 +234,8 @@ const Sidebar = ({ user }) => {
               onClick={() => handleMenuItemClick(index)}
             />
           ))}
-          {/* <MenuItem icon={SettingsIcon} text="Configurations" /> */}
-          {/* <MenuItem icon={PlayArrowIcon} text="Exécution" /> */}
-          
-          {/* <Stack spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0.75rem", border: "1px solid #e1e1e1", width: "200px", }}>
-            <Typography sx={{ fontWeight: 500, fontSize: "15px" }}>Fonctionnalité</Typography>
-            <Typography sx={{ fontWeight: 300, fontSize: "12px", }}>Lorem Ipsum dolor sit amit consectetur</Typography>
-            <Button variant="contained" color="success">
-              Success
-            </Button>
-          </Stack> */}
         </Stack>
 
-        {/* Stack sous-fonctionnalités */}
-        {/* <Stack direction="column" spacing={1} sx={{ width: "100%" }}>
-          <MenuItem icon={HelpIcon} text="Aide" />
-          <MenuItem icon={InfoIcon} text='À propos' />
-          <MenuItem icon={SettingsApplicationsIcon} text="Paramètres" />
-        </Stack> */}
         <Stack
           direction="column"
           spacing={1}

@@ -7,4 +7,4 @@ export { default as ScrapersFeed } from './ScrapersFeed';
 export { default as Login } from './Login';
 export { default as History } from './History';
 export { default as Team } from './Team';
-export { default as Profil } from './Profil';
+export { default as Profile } from './Profile';

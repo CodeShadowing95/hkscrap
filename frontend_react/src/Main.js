@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { Feed, Login, Profil, ScrapersFeed, SearchFeed, SocialMedia, Team } from './pages';
+import { Feed, Login, Profile, ScrapersFeed, SearchFeed, Sidebar, SocialMedia, Team } from './pages';
 import { useEffect, useState } from 'react';
 import { fetchUser } from './utils/fetchUser';
 import History from './pages/History';
@@ -34,8 +34,9 @@ const Main = () => {
 
   return (
     <Box sx={{
-      display: 'flex',
+      display: 'flex'
     }}>
+      {userProfile && <Sidebar user={userProfile} />}
       <Routes>
         <Route path="/auth" element={userProfile ? <Navigate to="/home" /> : <Login />} />
         <Route path="/home" exact element={userProfile ? <Feed /> : <Login />} />
@@ -44,7 +45,7 @@ const Main = () => {
         <Route path="/socialMedia/:id" element={<SocialMedia />} />
         <Route path="/history" element={<History />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/profil" element={<Profil />} />
+        <Route path="/profil" element={<Profile />} />
       </Routes>
     </Box>
   )

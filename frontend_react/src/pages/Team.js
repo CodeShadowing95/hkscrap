@@ -159,7 +159,6 @@ const Team = () => {
 
   return (
     <>
-    <Sidebar user={user} />
     <Stack direction="column" sx={{ top: 0, flex: 1 }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', padding: "2rem 4rem" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5em" }}>

@@ -29,6 +29,7 @@ import DeleteIcon from '@mui/icons-material/DeleteForever';
 import LockIcon from '@mui/icons-material/Lock';
 import PersonAddIcon from '@mui/icons-material/PersonAddAlt1';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import Linkedin from '../assets/linkedin.webp';
 import Amazon from '../assets/amazon.webp';
@@ -97,6 +98,7 @@ export const popular_sites = [
   PersonAddIcon,
   AutoFixHighIcon,
   AddTaskIcon,
+  AccountCircleIcon,
   UploadingLoop,
   BG_Login,
   NoData,

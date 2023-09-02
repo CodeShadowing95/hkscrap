@@ -122,11 +122,10 @@ app.post('/get-user-id', async (req, res) => {
 app.post('/new-user', async (req, res) => {
   const sql = "INSERT INTO user (nom, prenom, email, telephone, motdepasse, role, pays) VALUES (?, ?, ?, ?, ?, ?, ?)"
   const { lastname, firstname, email, telephone, country } = req.body;
-  const phoneNumber = parseInt(telephone, 10);
   const userData = req.body;
   const role = "Utilisateur";
   const motdepasse = hashPassword("qsd")
-  const values = [lastname, firstname, email, phoneNumber, motdepasse, role, country]
+  const values = [lastname, firstname, email, telephone, motdepasse, role, country]
   try {
     db.query(sql, values, (err, data) => {
       if (err) return res.json(err);

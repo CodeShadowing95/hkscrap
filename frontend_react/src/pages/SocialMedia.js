@@ -12,7 +12,6 @@ const SocialMedia = ({ userProfile }) => {
 
   return (
     <>
-    <Sidebar userProfile={userProfile} />
     <Stack direction="column" sx={{ flex: "1" }}>
       <Box sx={{ display: "flex", flexDirection: "column", padding: "2rem 4rem" }}>
         {/* Content header */}

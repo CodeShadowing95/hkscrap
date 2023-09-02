@@ -1,13 +1,29 @@
-import { Stack, Box, Typography, Breadcrumbs, Badge, Grid } from '@mui/material'
+import { Stack, Box, Typography, Breadcrumbs, Badge, Grid, List, ListItem, ListItemText, Divider } from '@mui/material'
 import { Searchbar, Template } from '../components'
-import Sidebar from '../components/Sidebar'
-import { FlashOnIcon, LightModeIcon, NotificationsNoneIcon, PeopleIcon, popular_sites } from '../utils/constants';
+import { AccountCircleIcon, FlashOnIcon, HelpIcon, LightModeIcon, LogoutIcon, NotificationsNoneIcon, PeopleIcon, PersonAddIcon, SettingsIcon, popular_sites } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import TableScrapeDatas from '../components/TableScrapeDatas';
+import { useNavigate } from 'react-router-dom';
 
 const Feed = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const [datas, setDatas] = useState([]);
+  const [display, setDisplay] = useState(false);
+  const navigate = useNavigate();
+
+  const showPanel = () => {
+    setDisplay((displayPanel) => !displayPanel);
+  }
+
+  const handleProfil = () => {
+    navigate("/profil");
+  }
+
+  const logout = () => {
+    localStorage.removeItem('user');
+    navigate("/auth");
+    localStorage.clear();
+  }
 
   useEffect(() => {
     try {
@@ -31,7 +47,6 @@ const Feed = () => {
 
   return (
     <>
-    <Sidebar user={user} />
     <Stack direction="column" sx={{ top: 0, flex: 1 }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', padding: "2rem 4rem" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5em" }}>
@@ -45,7 +60,7 @@ const Feed = () => {
           </Box>
 
           {/* Searchbar, Light/Dark mode, Notifications */}
-          <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", columnGap: "20px", width: "43%" }}>
+          <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", columnGap: "20px", width: "43%", position: "relative" }}>
             <Searchbar />
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", backgroundColor: "#FFF" }}>
               <LightModeIcon sx={{ fontSize: '25px', color: "#88a9c3" }} />
@@ -55,6 +70,44 @@ const Feed = () => {
                 <NotificationsNoneIcon sx={{ fontSize: '25px', color: "#88a9c3" }} />
               </Badge>
             </div>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", backgroundColor: "#FFF", cursor: "pointer" }} onClick={showPanel}>
+              <AccountCircleIcon sx={{ fontSize: '25px', color: "#88a9c3" }} />
+            </div>
+            {display &&
+            <div style={{
+                position: "absolute",
+                top: "55px",
+                // padding: "20px",
+                border: "1px solid #e1e1e1",
+                borderRadius: "5px",
+                backgroundColor: "#F3F7FD",
+                width: "13.5rem",
+                transition: "0.5s",
+                zIndex: 1000,
+              }}
+            >
+              <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
+                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }} onClick={handleProfil}>
+                  <PeopleIcon />
+                  <ListItemText primary="Profil" />
+                </ListItem>
+                <Divider />
+                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
+                  <SettingsIcon />
+                  <ListItemText primary="Paramètres" />
+                </ListItem>
+                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
+                  <HelpIcon />
+                  <ListItemText primary="Aide" />
+                </ListItem>
+                <Divider light />
+                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }} onClick={logout}>
+                  <LogoutIcon />
+                  <ListItemText primary="Déconnexion" />
+                </ListItem>
+              </List>
+            </div>
+          }
           </Box>
         </Box>
 
