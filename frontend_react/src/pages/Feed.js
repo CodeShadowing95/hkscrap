@@ -107,7 +107,7 @@ const Feed = () => {
                 </ListItem>
               </List>
             </div>
-          }
+            }
           </Box>
         </Box>
 

@@ -1,26 +1,9 @@
 import { useState } from "react";
-import { Avatar, Box, Button, Divider, List, ListItem, ListItemText, Modal, Slide, Stack, TextField, Typography } from "@mui/material";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Avatar, Box, Button, Modal, Stack, TextField, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 
 import MenuItem from "./MenuItem";
-import {
-  DashboardIcon,
-  ImportExportIcon,
-  EventNoteIcon,
-  HistoryIcon,
-  HelpIcon,
-  sub_logo,
-  profileImage,
-  KeyboardArrowDown,
-  StarIcon,
-  FlashOnIcon,
-  PeopleIcon,
-  LogoutIcon,
-  SettingsIcon,
-  PlayArrowIcon,
-  TaskAltIcon,
-  AddTaskIcon,
-} from "../utils/constants";
+import { DashboardIcon, EventNoteIcon, HistoryIcon, sub_logo, profileImage, StarIcon, FlashOnIcon, PeopleIcon, AddTaskIcon } from "../utils/constants";
 import ErrorMessage from "./ErrorMessage";
 
 
@@ -106,7 +89,7 @@ const Sidebar = ({ user }) => {
     navigate(`/search/?q=${encodeURIComponent(formData.linkurl)}&task=${encodeURIComponent(formData.taskname)}`);
   }
 
-  let username = user[0]?.nom + " " + user[0]?.prenom;
+  let username = user[0]?.prenom + " " + user[0]?.nom;
   const len_username = username.length;
   if (len_username > 13) {
     username = username.substr(0, len_username - 2) + ".";
@@ -125,7 +108,6 @@ const Sidebar = ({ user }) => {
     elements = [...elements, { id: 7, icon: PeopleIcon, text: "Utilisateurs" }];
 
   return (
-    <div style={{ position: "relative" }}>
     <Stack
       direction="column"
       sx={{
@@ -137,11 +119,11 @@ const Sidebar = ({ user }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        overflow: "hidden",
+        overflow: "auto",
       }}
     >
       {/* General Stack Top */}
-      <Stack direction="column" spacing={3} sx={{ width: "100%" }}>
+      <Stack direction="column" spacing={3} sx={{ width: "100%", paddingTop: "20px" }}>
         {/* Stack logo */}
         <Stack
           direction="row"
@@ -149,7 +131,6 @@ const Sidebar = ({ user }) => {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            marginTop: "20px",
             paddingLeft: "1.75rem",
           }}
         >
@@ -280,8 +261,6 @@ const Sidebar = ({ user }) => {
         </Stack>
       </Stack>
     </Stack>
-
-    </div>
   );
 };
 

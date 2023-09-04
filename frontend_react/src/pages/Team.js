@@ -35,7 +35,7 @@ const isValidEmail = (email) => {
 }
 
 const Team = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  // const user = JSON.parse(localStorage.getItem('user'));
   const [teams, setTeams] = useState([]);
 
   const [open, setOpen] = useState(false);

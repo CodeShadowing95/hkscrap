@@ -35,7 +35,7 @@ const port = process.env.PORT || 8000;
 
 // ************************************ API request authenticated user ********************************************** //
 app.post('/login', (req, res) => {
-  const sql = "SELECT nom, prenom, email, avatar, role, pays FROM user WHERE `email` = ? AND `motdepasse` = ?";
+  const sql = "SELECT nom, prenom, email, avatar, role, pays, telephone FROM user WHERE `email` = ? AND `motdepasse` = ?";
   const { password } = req.body;
   const hashedPassword = hashPassword(password);
   db.query(sql, [req.body.email_username, hashedPassword], (err, data) => {
@@ -134,7 +134,25 @@ app.post('/new-user', async (req, res) => {
       res.status(201).json(newUser);
     })
   } catch (error) {
-    console.log("Error with the query: " + error);
+    console.log("Error encountered: " + error);
+  }
+})
+
+app.put('/edit-profile/:id', async (req, res) => {
+  const userId = req.params.id;
+  const { lastname, firstname, email, phone, country } = req.body;
+  const values = [lastname, firstname, email, phone, country, userId];
+
+  const sql = "UPDATE user SET nom=?, prenom=?, email=?, telephone=?, pays=? WHERE user_id=?";
+  try {
+    db.query(sql, values, (err, result) => {
+      if (err) return res.json(err);
+  
+      const updatedProfile = req.body;
+      res.status(201).send(updatedProfile);
+    })
+  } catch (error) {
+    console.log("Error encountered: " + error);
   }
 })
 
