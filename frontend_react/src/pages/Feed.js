@@ -1,5 +1,5 @@
 import { Stack, Box, Typography, Breadcrumbs, Badge, Grid, List, ListItem, ListItemText, Divider } from '@mui/material'
-import { Searchbar, Template } from '../components'
+import { Chart1, Chart2, Searchbar, Template } from '../components'
 import { AccountCircleIcon, FlashOnIcon, HelpIcon, LightModeIcon, LogoutIcon, NotificationsNoneIcon, PeopleIcon, PersonAddIcon, SettingsIcon, popular_sites } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import TableScrapeDatas from '../components/TableScrapeDatas';
@@ -162,6 +162,35 @@ const Feed = () => {
                   </div>
                 </Stack>
               </Box>
+            </Grid>
+          </Grid>
+        </Box>
+
+        <Box sx={{ marginTop: "2rem" }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={12} md={12} lg={6}>
+              <Stack sx={{ transition: "0.2s", "&:hover": {boxShadow: "0px 5px 10px 1px #D5D5D5"} }}>
+                {/* Title */}
+                <Box sx={{ display: "flex", padding: "20px", borderBottom: "1px solid #e1e1e1", backgroundColor: "#F8F8F9" }}>
+                  <Typography sx={{ fontSize: "1.15rem", fontWeight: 500, color: "#152C5B" }}>Scrapings effectués par plateforme</Typography>
+                </Box>
+                {/* Content */}
+                <Box sx={{ backgroundColor: "#FFF", padding: "1.35rem" }}>
+                  <Chart1 />
+                </Box>
+              </Stack>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={6}>
+              <Stack sx={{ transition: "0.2s", "&:hover": {boxShadow: "0px 5px 10px 1px #D5D5D5"} }}>
+                {/* Title */}
+                <Box sx={{ display: "flex", padding: "20px", borderBottom: "1px solid #e1e1e1", backgroundColor: "#F8F8F9" }}>
+                  <Typography sx={{ fontSize: "1.15rem", fontWeight: 500, color: "#152C5B" }}>Taux de réussite par source</Typography>
+                </Box>
+                {/* Content */}
+                <Box sx={{ backgroundColor: "#FFF", padding: "1.35rem" }}>
+                  <Chart2 />
+                </Box>
+              </Stack>
             </Grid>
           </Grid>
         </Box>

@@ -7,3 +7,5 @@ export { default as RenderingData } from './RenderingData';
 export { default as DataTable } from './DataTable';
 export { default as SearchbarTerm } from './SearchbarTerm';
 export { default as ErrorMessage } from './ErrorMessage';
+export { default as Chart1 } from './Charts/Chart1';
+export { default as Chart2 } from './Charts/Chart2';
