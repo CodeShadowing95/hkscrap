@@ -30,6 +30,10 @@ import LockIcon from '@mui/icons-material/Lock';
 import PersonAddIcon from '@mui/icons-material/PersonAddAlt1';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LanguageIcon from '@mui/icons-material/Language';
+import HomeIcon from '@mui/icons-material/Home';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import Linkedin from '../assets/linkedin.webp';
 import Amazon from '../assets/amazon.webp';
@@ -99,6 +103,10 @@ export const popular_sites = [
   AutoFixHighIcon,
   AddTaskIcon,
   AccountCircleIcon,
+  PersonOutlineIcon,
+  LanguageIcon,
+  HomeIcon,
+  MenuIcon,
   UploadingLoop,
   BG_Login,
   NoData,
