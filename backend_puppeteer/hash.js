@@ -1,7 +1,9 @@
-import crypto from 'crypto';
+const bcrypt = require("bcrypt");
 
-export const hashPassword = (password) => {
-  const sha1 = crypto.createHash('sha1');
-  sha1.update(password);
-  return sha1.digest('hex');
-}
+export const hashPassword = async (password, salt) => {
+  return await bcrypt.hash(password, salt);
+};
+
+export const generateSalt = async () => {
+  return await bcrypt.genSalt();
+};
