@@ -1,29 +1,12 @@
-import { Stack, Box, Typography, Breadcrumbs, Badge, Grid, List, ListItem, ListItemText, Divider } from '@mui/material'
+import { Stack, Box, Typography, Breadcrumbs, Grid } from '@mui/material'
 import { Chart1, Chart2, Searchbar, Template } from '../components'
-import { AccountCircleIcon, FlashOnIcon, HelpIcon, LightModeIcon, LogoutIcon, NotificationsNoneIcon, PeopleIcon, PersonAddIcon, SettingsIcon, popular_sites } from '../utils/constants';
+import { FlashOnIcon, HomeIcon, PeopleIcon, popular_sites } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import TableScrapeDatas from '../components/TableScrapeDatas';
-import { useNavigate } from 'react-router-dom';
 
 const Feed = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const [datas, setDatas] = useState([]);
-  const [display, setDisplay] = useState(false);
-  const navigate = useNavigate();
-
-  const showPanel = () => {
-    setDisplay((displayPanel) => !displayPanel);
-  }
-
-  const handleProfil = () => {
-    navigate("/profil");
-  }
-
-  const logout = () => {
-    localStorage.removeItem('user');
-    navigate("/auth");
-    localStorage.clear();
-  }
 
   useEffect(() => {
     try {
@@ -46,80 +29,28 @@ const Feed = () => {
   }, [])
 
   return (
-    <>
-    <Stack direction="column" sx={{ top: 0, flex: 1 }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', padding: "2rem 4rem" }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5em" }}>
-          {/* Title & Breadcrumb */}
-          <Box sx={{ display: "flex", flexDirection: "column", rowGap: "15px" }}>
-            <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B" }}>Welcome back, {user[0]?.prenom}</Typography>
-            {/* Breadcrumb */}
-            <Breadcrumbs aria-label="breadcrumb">
-              <Typography color="#93B0C8">Tableau de bord</Typography>
-            </Breadcrumbs>
+    <Stack>
+      <Box sx={{ display: "flex", alignItems: "flex-start", marginBottom: "1.5em", padding: "2rem 2rem 8rem",  /*backgroundImage: "linear-gradient(to right bottom, #253c5c, #2c2b43, #271d2b, #1a1117, #000000)"*/backgroundImage: "linear-gradient(to right bottom, #dde6ee, #e7ecf3, #f0f2f7, #f8f8fb, #ffffff);" }}>
+        {/* Title & Breadcrumb */}
+        <Stack rowGap="15px" width="100%">
+          <Box sx={{ display: "flex", alignItems: "center", columnGap: 1 }}>
+            <HomeIcon sx={{ color: "#152C5B"/*color: "#FFF"*/, fontSize: "2em" }} />
+            <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B"/*color: "#FFF"*/ }}>Welcome back, {user[0]?.prenom}</Typography>
           </Box>
+          {/* Breadcrumb */}
+          <Typography /*color="#93B0C8"*/color="#737373" variant='h2' fontSize="20px" sx={{ marginBottom: "10px" }}>Besoin d'effectuer un scraping rapide? Renseignez juste l'URL du site</Typography>
+          {/* Barre de recherche */}
+          <Searchbar />
+        </Stack>
+      </Box>
 
-          {/* Searchbar, Light/Dark mode, Notifications */}
-          <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", columnGap: "20px", width: "43%", position: "relative" }}>
-            <Searchbar />
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", backgroundColor: "#FFF" }}>
-              <LightModeIcon sx={{ fontSize: '25px', color: "#88a9c3" }} />
-            </div>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", backgroundColor: "#FFF" }}>
-              <Badge color="error" variant="dot" overlap="circular">
-                <NotificationsNoneIcon sx={{ fontSize: '25px', color: "#88a9c3" }} />
-              </Badge>
-            </div>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", backgroundColor: "#FFF", cursor: "pointer" }} onClick={showPanel}>
-              <AccountCircleIcon sx={{ fontSize: '25px', color: "#88a9c3" }} />
-            </div>
-            {display &&
-            <div style={{
-                position: "absolute",
-                top: "55px",
-                // padding: "20px",
-                border: "1px solid #e1e1e1",
-                borderRadius: "5px",
-                backgroundColor: "#F3F7FD",
-                width: "13.5rem",
-                transition: "0.5s",
-                zIndex: 1000,
-              }}
-            >
-              <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }} onClick={handleProfil}>
-                  <PeopleIcon />
-                  <ListItemText primary="Profil" />
-                </ListItem>
-                <Divider />
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                  <SettingsIcon />
-                  <ListItemText primary="Paramètres" />
-                </ListItem>
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                  <HelpIcon />
-                  <ListItemText primary="Aide" />
-                </ListItem>
-                <Divider light />
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }} onClick={logout}>
-                  <LogoutIcon />
-                  <ListItemText primary="Déconnexion" />
-                </ListItem>
-              </List>
-            </div>
-            }
-          </Box>
-        </Box>
-
-        {/* Barre de recherche */}
-        {/* <Searchbar /> */}
-
-        {/* Vue générale */}
-        <Box sx={{ marginTop: "1rem" }}>
+      {/* Vue générale */}
+      <Box sx={{ padding: "0 2rem", marginTop: "-6rem" }}>
+        <Box>
           {/* <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", "& > *": { flex: 1}, }}> */}
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6} lg={4}>
-              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: "#FDFEFF", borderRadius: "20px", gap: 5 }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: "#FDFEFF", borderRadius: "5px", gap: 5 }}>
                 <Stack spacing={2.5}>
                   <Typography sx={{ fontSize: "20px", fontWeight: 500 }}>Opération effectuée</Typography>
                   <Typography variant='h4' sx={{ fontWeight: 700 }}>0</Typography>
@@ -135,7 +66,7 @@ const Feed = () => {
 
 
             <Grid item xs={12} sm={12} md={6} lg={4}>
-              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: "#FDFEFF", borderRadius: "20px", gap: 5 }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: "#FDFEFF", borderRadius: "5px", gap: 5 }}>
                 <Stack spacing={2.5}>
                   <Typography sx={{ fontSize: "20px", fontWeight: 500 }}>Opération effectuée</Typography>
                   <Typography variant='h4' sx={{ fontWeight: 700 }}>0</Typography>
@@ -150,7 +81,7 @@ const Feed = () => {
             </Grid>
             
             <Grid item xs={12} sm={12} md={6} lg={4}>
-              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: "#FDFEFF", borderRadius: "20px", gap: 5 }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: "#FDFEFF", borderRadius: "5px", gap: 5 }}>
                 <Stack spacing={2.5}>
                   <Typography sx={{ fontSize: "20px", fontWeight: 500 }}>Opération effectuée</Typography>
                   <Typography variant='h4' sx={{ fontWeight: 700 }}>0</Typography>
@@ -242,10 +173,8 @@ const Feed = () => {
             </Grid>
           </Grid>
         </Box>
-
       </Box>
     </Stack>
-    </>
   )
 }
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, InputAdornment, TextField, Typography } from '@mui/material'
+import { Box, InputAdornment, TextField } from '@mui/material'
 import { SearchIcon } from '../utils/constants'
 import { useNavigate } from 'react-router-dom';
 
@@ -24,15 +24,16 @@ const Searchbar = () => {
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ width: "100%" }}>
-      <TextField type='search' placeholder="Lien du site à scraper..."
+    <Box component="form" onSubmit={handleSubmit}>
+      <TextField type='search'
+        placeholder="Copier-coller l'URL du site à scraper ici..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         sx={{
           width: "100%",
           "& .MuiOutlinedInput-root": {
-            height: "3rem",
-            fontSize: "15px",
+            height: "4.5rem",
+            fontSize: "20px",
             // marginRight: "5px",
             backgroundColor: "#FFF",
             borderRadius: "15px",
@@ -42,24 +43,9 @@ const Searchbar = () => {
           },
         }}
         InputProps={{
-          startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>
+          endAdornment: <InputAdornment position="end"><SearchIcon /></InputAdornment>
         }}
       />
-      {/* <Box sx={{
-        padding: "10px 20px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#187bcd",
-        color: "#FFF",
-        borderRadius: "5px",
-        cursor: "pointer",
-        transition: "0.2s",
-      }}
-      onClick={handleSubmit}
-      >
-        <Typography sx={{ fontSize: "1em", fontWeight: "500" }}>Rechercher</Typography>
-      </Box> */}
     </Box>
   )
 }

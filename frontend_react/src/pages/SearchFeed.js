@@ -175,12 +175,11 @@ const SearchFeed = () => {
 
 
   return (
-    <>
-    <Stack direction="column" sx={{ flex: "1" }}>
-      <Box sx={{ display: "flex", flexDirection: "column", padding: "2rem 4rem 1rem 4rem" }}>
+    <Stack>
+      <Box sx={{ display: "flex", flexDirection: "column", padding: "1rem 2rem" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5em" }}>
           {/* Title & Breadcrumb */}
-          <Box sx={{ display: "flex", flexDirection: "column", rowGap: "15px" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", rowGap: "10px" }}>
             <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B" }}>Résultats de l'opération</Typography>
             {/* Breadcrumb */}
             <Breadcrumbs aria-label="breadcrumb">
@@ -222,51 +221,6 @@ const SearchFeed = () => {
             </Snackbar>
           </Box>
         }
-
-
-
-
-
-
-
-
-        {/* Select + Button */}
-        {/* <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", columnGap: 2, marginTop: "2rem" }}> */}
-          {/* Select */}
-          {/* <Options disabled={loading} /> */}
-          {/* Button */}
-          {/* {loading === false &&
-            <Box sx={{
-              padding: "10px 20px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#1357a6",
-              color: "#FFF",
-              borderRadius: "3px",
-              cursor: "pointer",
-              transition: "0.2s",
-              columnGap: 1,
-              "&:hover": {
-                backgroundColor: "#1870d5",
-                color: "#FFF",
-              }
-            }}
-            component={Button}
-            onClick={handleSearch({ vertical: 'top', horizontal: 'right' })}
-            >
-              <PlayArrowIcon fontSize="medium" />
-              <Typography sx={{ color: "#fff", fontSize: "15px", fontWeight: "500" }}>Démarrer</Typography>
-            </Box>
-          } */}
-          {/* Loading image for waiting until datas are  being fetched */}
-          {/* {loading &&
-            <Box style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px", backgroundColor: "#1357a6", borderRadius: "3px", columnGap: 1 }}>
-              <img src={SpinImage} alt="Spin" height={40} />
-              <Typography sx={{ color: "#fff", fontSize: "15px", fontWeight: "500" }}>Processus en cours</Typography>
-            </Box>
-          }
-        </Box> */}
       </Box>
 
       {/* Content body */}
@@ -310,7 +264,6 @@ const SearchFeed = () => {
         }
       </Box>
     </Stack>
-    </>
   )
 }
 

@@ -114,7 +114,8 @@ const Sidebar = ({ user }) => {
         top: 0,
         height: "100dvh",
         position: "sticky",
-        backgroundColor: "#FDFEFF",
+        // backgroundColor: "#1F2937",
+        backgroundColor: "#eff2f6",
         minWidth: "256px",
         display: "flex",
         justifyContent: "space-between",
@@ -222,11 +223,11 @@ const Sidebar = ({ user }) => {
           spacing={1}
           sx={{ padding: "1.25rem 0.75rem" }}
         >
-          <Stack justifyContent="center" width="200px" alignItems="center" spacing={2} sx={{ borderRadius: "5px", padding: "10px", backgroundColor: "#F3F7FD" }}>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", backgroundColor: "#F3F7FD", marginTop: "-30px" }}>
+          <Stack justifyContent="center" width="200px" alignItems="center" spacing={2} sx={{ borderRadius: "5px", padding: "10px", /*backgroundColor: "#2e3d52" */backgroundColor: "#FFF",}}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", /*backgroundColor: "#2e3d52",*/backgroundColor: "#FFF", marginTop: "-30px" }}>
               <FlashOnIcon sx={{ fontSize: "25px", color: "#ffa500" }} />
             </div>
-            <Typography align="center" sx={{ fontSize: "13px", fontWeight: 300 }}>Démarrez une <span style={{ fontWeight: "500" }}>nouvelle tâche</span>. Renseignez le nom de la tâche, l'URL du site et lancez l'opération</Typography>
+            <Typography align="center" sx={{ fontSize: "13px", fontWeight: 300, /*color: "#FFF"*/color: "#2e3d52" }}>Démarrez une <span style={{ fontWeight: "500" }}>nouvelle tâche</span>. Renseignez le nom de la tâche, l'URL du site et lancez l'opération</Typography>
             <Button variant="contained" color="secondary" startIcon={<AddTaskIcon />} size="large" onClick={handleOpen}>Nouvelle tâche</Button>
             <Modal
               open={open}
