@@ -9,6 +9,8 @@ RUN npm install -g nodemon
 
 COPY package*.json /usr/src/app/
 
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+
 RUN npm install --legacy-peer-deps
 
 COPY . /usr/src/app/

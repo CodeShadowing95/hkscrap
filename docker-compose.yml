@@ -24,23 +24,27 @@ services:
     build: ./frontend_react
     # image: "${WEB_IMAGE}"
     container_name: frontend
+    env_file: ./frontend_react/.env
     volumes:
       - ./frontend_react:/usr/src/web
       - ./frontend_react/node_modules:/usr/src/web/node_modules
       - ./frontend_react/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - 80:2026
+      - 2026:80
     depends_on:
       - backend
 
   mysql:
     image: mysql:5.7
+    container_name: mysql
     restart: always
+    env_file: ./.env
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: ${MYSQL_ALLOW_EMPTY_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
     ports:
       - '3306:3306'
     expose:
