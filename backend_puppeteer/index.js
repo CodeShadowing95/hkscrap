@@ -104,6 +104,44 @@ app.get('/get-users', async (req, res) => {
   }
 })
 
+app.get('/count-users', async (req, res) => {
+  const sql = `SELECT COUNT(*) AS countUsers FROM user WHERE user_id <> ${process.env.ADMIN_ID}`;
+  try {
+    db.query(sql, (err, data) => {
+      if(err){
+        console.error('Error fetching data: ', err);
+        res.status(500).json({ error: 'An error occurred while fetching data' });
+        return;
+      }
+
+      if(data) {
+        return res.status(200).json(data);
+      }
+    })
+  } catch (error) {
+    console.error("Query is not executed: ", error);
+  }
+})
+
+app.get('/count-scraped-datas', async (req, res) => {
+  const sql = 'SELECT SUM(LIGNES) AS totalDatas FROM dataoverview';
+  try {
+    db.query(sql, (err, data) => {
+      if(err){
+        console.error('Error fetching data: ', err);
+        res.status(500).json({ error: 'An error occurred while fetching data' });
+        return;
+      }
+
+      if(data) {
+        return res.status(200).json(data);
+      }
+    })
+  } catch (error) {
+    console.error("Query is not executed: ", error);
+  }
+})
+
 app.post('/get-user-id', async (req, res) => {
   const sql = 'SELECT user_id from user WHERE nom = ? AND prenom = ?'
   const { nom, prenom } = req.body;

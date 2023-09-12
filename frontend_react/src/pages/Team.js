@@ -149,7 +149,6 @@ const Team = () => {
         if(!response.ok) throw new Error('Some problems encountered while processing the server')
 
         const responseData = await response.json();
-        console.log(responseData.data);
         setTeams(responseData.data);
       })
     } catch (error) {

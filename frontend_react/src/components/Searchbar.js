@@ -32,8 +32,8 @@ const Searchbar = () => {
         sx={{
           width: "100%",
           "& .MuiOutlinedInput-root": {
-            height: "4.5rem",
-            fontSize: "20px",
+            height: "4rem",
+            fontSize: "1em",
             // marginRight: "5px",
             backgroundColor: "#FFF",
             borderRadius: "15px",

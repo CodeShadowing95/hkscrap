@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Avatar, Box, Button, Modal, Stack, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
-import MenuItem from "./MenuItem";
+import MenuElement from "./MenuElement";
 import { DashboardIcon, EventNoteIcon, HistoryIcon, sub_logo, profileImage, StarIcon, FlashOnIcon, PeopleIcon, AddTaskIcon } from "../utils/constants";
 import ErrorMessage from "./ErrorMessage";
 
@@ -208,7 +208,7 @@ const Sidebar = ({ user }) => {
           sx={{ padding: "1.25rem 0.75rem" }}
         >
           {elements.map((element, index) => (
-            <MenuItem
+            <MenuElement
               key={index}
               icon={element.icon}
               text={element.text}

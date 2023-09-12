@@ -1,6 +1,6 @@
 import { Link, Stack, Typography } from "@mui/material"
 
-const MenuItem = ({ icon, text, active, onClick }) => {
+const MenuElement = ({ icon, text, active, onClick }) => {
   const Tag = icon;
   const id = text.trim().toLowerCase();
 
@@ -52,4 +52,4 @@ const MenuItem = ({ icon, text, active, onClick }) => {
   )
 }
 
-export default MenuItem
+export default MenuElement

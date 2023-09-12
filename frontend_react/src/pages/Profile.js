@@ -270,7 +270,7 @@ const Profile = () => {
                             <TextField placeholder="Ex: 07 21 96 21 81" size="small" name="sms_number" fullWidth />
                           </Grid>
                         </Grid>
-                        <Button variant="contained" color="primary" size="large">Changer de profil</Button>
+                        <Button variant="contained" color="primary" size="large">Poursuivre</Button>
                       </Stack>
                     </Stack>
                   </Stack>
