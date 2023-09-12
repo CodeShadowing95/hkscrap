@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Badge, Box, InputAdornment, TextField } from "@mui/material"
 import { ChevronLeftIcon, ChevronRightIcon, DarkModeIcon, LanguageIcon, LightModeIcon, NotificationsNoneIcon, SearchIcon } from "../utils/constants"
 import { DropdownProfile } from ".";
-
+import { useTheme } from "./ThemeProvider";
 
 const Navbar = ({ onMenuOnclick }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentChevron, setCurrentChevron] = useState('left');
-  const [luminosity, setLuminosity] = useState('light');
+
+  const { theme, toggleDarkMode } = useTheme();
 
   const changeChevron = () => {
     setCurrentChevron(currentChevron === 'left' ? 'right' : 'left');
@@ -15,7 +16,7 @@ const Navbar = ({ onMenuOnclick }) => {
   }
 
   const changeContrast = () => {
-    setLuminosity(luminosity === 'light' ? 'dark' : 'light');
+    toggleDarkMode();
   }
 
   return (
@@ -58,7 +59,7 @@ const Navbar = ({ onMenuOnclick }) => {
         </Box>
 
         <Box sx={{ display: "flex", columnGap: 2 }}>
-          {luminosity === 'light' ?
+          {theme === 'light' ?
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer" }} onClick={changeContrast}>
               <LightModeIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
             </div>

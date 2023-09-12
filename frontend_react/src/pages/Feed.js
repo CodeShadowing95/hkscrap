@@ -3,12 +3,15 @@ import { Chart1, Chart2, Searchbar, Template } from '../components'
 import { FlashOnIcon, HomeIcon, Inventory2Icon, PeopleIcon, TrendingUpIcon, popular_sites } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import TableScrapeDatas from '../components/TableScrapeDatas';
+import { useTheme } from '../components/ThemeProvider';
 
 const Feed = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const [datas, setDatas] = useState([]);
   const [lengthUsers, setLengthUsers] = useState(0);
   const [lengthDatas, setLengthDatas] = useState(0);
+  const { theme } = useTheme();
+
 
   useEffect(() => {
     try {
@@ -65,7 +68,7 @@ const Feed = () => {
 
   return (
     <Stack>
-      <Box sx={{ display: "flex", alignItems: "flex-start", marginBottom: "1.5em", padding: "2rem 2rem 8rem",  /*backgroundImage: "linear-gradient(to right bottom, #253c5c, #2c2b43, #271d2b, #1a1117, #000000)"*/backgroundImage: "linear-gradient(to right bottom, #dde6ee, #e7ecf3, #f0f2f7, #f8f8fb, #ffffff);" }}>
+      <Box sx={{ display: "flex", alignItems: "flex-start", marginBottom: "1.5em", padding: "2rem 2rem 8rem", backgroundImage: theme === 'dark' ? "linear-gradient(to right bottom, #253c5c, #2c2b43, #271d2b, #1a1117, #000000)" : "linear-gradient(to right bottom, #dde6ee, #e7ecf3, #f0f2f7, #f8f8fb, #ffffff)" }}>
         {/* Title & Breadcrumb */}
         <Stack rowGap="15px" width="100%">
           <Box sx={{ display: "flex", alignItems: "center", columnGap: 1 }}>
