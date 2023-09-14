@@ -34,6 +34,10 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LanguageIcon from '@mui/icons-material/Language';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import Linkedin from '../assets/linkedin.webp';
 import Amazon from '../assets/amazon.webp';
@@ -107,6 +111,10 @@ export const popular_sites = [
   LanguageIcon,
   HomeIcon,
   MenuIcon,
+  Inventory2Icon,
+  TrendingUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
   UploadingLoop,
   BG_Login,
   NoData,

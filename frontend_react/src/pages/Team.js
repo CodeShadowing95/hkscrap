@@ -149,7 +149,6 @@ const Team = () => {
         if(!response.ok) throw new Error('Some problems encountered while processing the server')
 
         const responseData = await response.json();
-        console.log(responseData.data);
         setTeams(responseData.data);
       })
     } catch (error) {
@@ -159,9 +158,9 @@ const Team = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', padding: "1rem 2rem" }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5em" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "1em", width: "100%" }}>
         {/* Title & Breadcrumb */}
-        <Box sx={{ display: "flex", flexDirection: "column", rowGap: "10px" }}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
           <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B" }}>Utilisateurs</Typography>
           {/* Breadcrumb */}
           <Breadcrumbs aria-label="breadcrumb">

@@ -1,35 +1,36 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Badge, Box, Button, Divider, InputAdornment, List, ListItem, ListItemText, TextField } from "@mui/material"
-import { AccountCircleIcon, HelpIcon, LanguageIcon, LightModeIcon, LogoutIcon, MenuIcon, NotificationsNoneIcon, PersonOutlineIcon, SearchIcon, SettingsIcon } from "../utils/constants"
-
+import { Badge, Box, InputAdornment, TextField } from "@mui/material"
+import { ChevronLeftIcon, ChevronRightIcon, DarkModeIcon, LightModeIcon, NotificationsNoneIcon, SearchIcon } from "../utils/constants"
+import { DropdownProfile } from ".";
+import { useTheme } from "./ThemeProvider";
 
 const Navbar = ({ onMenuOnclick }) => {
-  const [display, setDisplay] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
+  const [currentChevron, setCurrentChevron] = useState('left');
 
-  const showPanel = () => {
-    setDisplay((displayPanel) => !displayPanel);
+  const { theme, toggleDarkMode } = useTheme();
+
+  const changeChevron = () => {
+    setCurrentChevron(currentChevron === 'left' ? 'right' : 'left');
+    onMenuOnclick();
   }
 
-  const handleProfile = () => {
-    navigate("/profil");
-  }
-
-  const logout = () => {
-    localStorage.removeItem('user');
-    navigate("/auth");
-    localStorage.clear();
+  const changeContrast = () => {
+    toggleDarkMode();
   }
 
   return (
-    <Box sx={{ padding: "15px 20px", backgroundColor: "#FFF", position: "sticky", top: 0 }}>
+    <Box sx={{ padding: "10px 20px 10px 5px", backgroundColor: "#F0F2F7", position: "sticky", top: 0 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         {/* Searchbar */}
-        <Box sx={{ display: "flex", alignItems: "center", width: "30%" }}>
-          <Box component={Button} onClick={onMenuOnclick}>
-            <MenuIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: "#2e3d52" }}  />
+        <Box sx={{ display: "flex", alignItems: "center", width: "40%", columnGap: 1 }}>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", cursor: "pointer", transition: "0.2s", "&:hover": {backgroundColor: "#e1e1e1"} }} onClick={changeChevron}>
+            {onMenuOnclick && (
+              currentChevron === 'left' ?
+              <ChevronLeftIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: "#2e3d52" }}  />
+              :
+              <ChevronRightIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: "#2e3d52" }}  />
+            )}
           </Box>
           <Box>
             <TextField
@@ -40,7 +41,7 @@ const Navbar = ({ onMenuOnclick }) => {
               sx={{
                 width: "100%",
                 "& .MuiOutlinedInput-root": {
-                  height: "3rem",
+                  height: "2.5rem",
                   fontSize: "15px",
                   // marginRight: "5px",
                   backgroundColor: "#FFF",
@@ -57,56 +58,25 @@ const Navbar = ({ onMenuOnclick }) => {
           </Box>
         </Box>
 
-        <Box sx={{ display: "flex", columnGap: "20px" }}>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", border: "1px solid #93B0C8" }}>
-            <LightModeIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
-          </div>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer", }} onClick={showPanel}>
+        <Box sx={{ display: "flex", columnGap: 2 }}>
+          {theme === 'light' ?
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer" }} onClick={changeContrast}>
+              <DarkModeIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
+            </div>
+            :
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer" }} onClick={changeContrast}>
+              <LightModeIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
+            </div>
+          }
+          {/* <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer", }}>
             <LanguageIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
-          </div>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", border: "1px solid #93B0C8" }}>
+          </div> */}
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8" }}>
             <Badge color="error" variant="dot" overlap="circular">
               <NotificationsNoneIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
             </Badge>
           </div>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer", }} onClick={showPanel}>
-            <AccountCircleIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
-          </div>
-          {display &&
-            <div style={{
-                position: "absolute",
-                top: "70px",
-                right: "20px",
-                border: "1px solid #e1e1e1",
-                borderRadius: "5px",
-                backgroundColor: "#FFF",
-                // backgroundColor: "#F3F7FD",
-                width: "13.5rem",
-                transition: "0.5s",
-                zIndex: 10000,
-              }}
-            >
-              <List sx={{ width: "100%", maxWidth: 360 }} component="nav">
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }} onClick={handleProfile}>
-                  <PersonOutlineIcon />
-                  <ListItemText primary="Profil" />
-                </ListItem>
-                <Divider />
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                  <SettingsIcon />
-                  <ListItemText primary="Paramètres" />
-                </ListItem>
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                  <HelpIcon />
-                  <ListItemText primary="Aide" />
-                </ListItem>
-                <Divider light />
-                <ListItem button sx={{ display: "flex", alignItems: "center", gap: "15px" }} onClick={logout}>
-                  <LogoutIcon />
-                  <ListItemText primary="Déconnexion" />
-                </ListItem>
-              </List>
-            </div>}
+          <DropdownProfile />
         </Box>
       </Box>
     </Box>
