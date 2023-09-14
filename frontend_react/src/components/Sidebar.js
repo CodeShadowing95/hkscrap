@@ -31,6 +31,7 @@ const Sidebar = ({ user }) => {
   const [activeItem, setActiveItem] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [disable, setDisable] = useState(false);
+  const [dataSize, setDataSize] = useState(0);
 
   const initialState = { taskname: '', linkurl: '' }
   const [formData, setFormData] = useState(initialState);
@@ -75,6 +76,14 @@ const Sidebar = ({ user }) => {
         setErrorMessage("L'URL du site web à scraper est invalide");
         setDisable(true);
         return
+      }
+    }
+
+    if(e.target.name === 'maxDatas'){
+      const value = e.target.value;
+      // Check if the input is not empty and is a valid positive number
+      if (value === '' || (parseFloat(value) >= 0 && !isNaN(value)) || parseFloat(value) < 0) {
+        setDataSize(value);
       }
     }
     setDisable(false);
@@ -250,6 +259,10 @@ const Sidebar = ({ user }) => {
                     {/* <TextField size="small" name="linkurl" required value={searchURL} onChange={(e) => setSearchURL(e.target.value)} fullWidth /> */}
                     <TextField size="small" name="linkurl" required onChange={handleChange} fullWidth />
                     {errorMessage && <ErrorMessage message={errorMessage} />}
+                  </Stack>
+                  <Stack spacing={1}>
+                    <Typography sx={{ fontWeight: 500 }}>Quantité maximum de données</Typography>
+                    <TextField type="number" size="small" name="maxDatas" value={dataSize} onChange={handleChange} fullWidth />
                   </Stack>
                 </Stack>
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", gap: 3 }}>

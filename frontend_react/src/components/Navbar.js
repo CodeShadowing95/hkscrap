@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Badge, Box, InputAdornment, TextField } from "@mui/material"
-import { ChevronLeftIcon, ChevronRightIcon, DarkModeIcon, LanguageIcon, LightModeIcon, NotificationsNoneIcon, SearchIcon } from "../utils/constants"
+import { ChevronLeftIcon, ChevronRightIcon, DarkModeIcon, LightModeIcon, NotificationsNoneIcon, SearchIcon } from "../utils/constants"
 import { DropdownProfile } from ".";
 import { useTheme } from "./ThemeProvider";
 
@@ -20,7 +20,7 @@ const Navbar = ({ onMenuOnclick }) => {
   }
 
   return (
-    <Box sx={{ padding: "10px 20px 10px 5px", backgroundColor: "#FFF", position: "sticky", top: 0 }}>
+    <Box sx={{ padding: "10px 20px 10px 5px", backgroundColor: "#F0F2F7", position: "sticky", top: 0 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         {/* Searchbar */}
         <Box sx={{ display: "flex", alignItems: "center", width: "40%", columnGap: 1 }}>
@@ -61,16 +61,16 @@ const Navbar = ({ onMenuOnclick }) => {
         <Box sx={{ display: "flex", columnGap: 2 }}>
           {theme === 'light' ?
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer" }} onClick={changeContrast}>
-              <LightModeIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
+              <DarkModeIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
             </div>
             :
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer" }} onClick={changeContrast}>
-              <DarkModeIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
+              <LightModeIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
             </div>
           }
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer", }}>
+          {/* <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", cursor: "pointer", }}>
             <LanguageIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
-          </div>
+          </div> */}
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8" }}>
             <Badge color="error" variant="dot" overlap="circular">
               <NotificationsNoneIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
