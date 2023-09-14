@@ -64,10 +64,6 @@ const Main = () => {
         {userProfile && <Navbar onMenuOnclick={toggleSidebar} />}
         <Routes>
           <Route
-            path="/"
-            element={userProfile ? <Navigate to="/home" /> : <Login />}
-          />
-          <Route
             path="/auth"
             element={userProfile ? <Navigate to="/home" /> : <Login />}
           />
