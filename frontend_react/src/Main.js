@@ -37,9 +37,7 @@ const Main = () => {
         const userProfileData = await fetchUser();
         setUserProfile(userProfileData);
         // setUser(userProfileData);
-        if (location.pathname === "/" && userProfileData !== null) {
-          navigate("/home");
-        } else if (location.pathname === "/" && !userProfileData) {
+        if (location.pathname === "/" && !userProfileData) {
           navigate("/auth");
         }
 
@@ -65,6 +63,10 @@ const Main = () => {
         {/* Barre de navigation */}
         {userProfile && <Navbar onMenuOnclick={toggleSidebar} />}
         <Routes>
+          <Route
+            path="/"
+            element={userProfile ? <Navigate to="/home" /> : <Login />}
+          />
           <Route
             path="/auth"
             element={userProfile ? <Navigate to="/home" /> : <Login />}
