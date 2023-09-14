@@ -28,6 +28,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Copiez votre fichier de configuration personnalisé dans le conteneur
 COPY nginx.conf /etc/nginx/conf.d/
 
-COPY nginx.conf /etc/nginx/nginx.conf
+# Exposez le port 80 et 2026
+EXPOSE 80 2026
 
 CMD nginx -g 'daemon off;'
