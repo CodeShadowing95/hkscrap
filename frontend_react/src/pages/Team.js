@@ -65,7 +65,7 @@ const Team = () => {
 
   const addMember = (newState) => async () => {
     try {
-      const response = await fetch('http://localhost:8000/new-user', {
+      const response = await fetch(`${process.env.REACT_APP_BASE_HOME_URL}/new-user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const Team = () => {
 
   useEffect(() => {
     try {
-      fetch('http://localhost:8000/get-users', {
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/get-users`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

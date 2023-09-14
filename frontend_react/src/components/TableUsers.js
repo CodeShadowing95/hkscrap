@@ -51,7 +51,7 @@ const TableUsers = ({ datas, onDelete }) => {
 
   const handleDeleteButtonClick = async (member) => {
     try {
-      fetch(`http://localhost:8000/delete/${member}`, {
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/${member}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
