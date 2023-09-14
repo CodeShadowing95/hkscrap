@@ -30,7 +30,7 @@ services:
     volumes:
       - ./frontend_react:/usr/src/web
       - ./frontend_react/node_modules:/usr/src/web/node_modules
-      - ./frontend_react/nginx.conf:/etc/nginx/conf.d/
+      - ./frontend_react/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "2026:80"
     depends_on:
