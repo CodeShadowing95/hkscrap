@@ -32,9 +32,7 @@ services:
       - ./frontend_react/node_modules:/usr/src/web/node_modules
       - ./frontend_react/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "2026:80"
-    expose:
-      - 80
+      - "2026:2026"
     depends_on:
       - backend
 
