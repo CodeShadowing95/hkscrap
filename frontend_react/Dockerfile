@@ -26,7 +26,7 @@ COPY --from=build-stage /usr/src/web/build/ /var/www
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copiez votre fichier de configuration personnalisé dans le conteneur
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
