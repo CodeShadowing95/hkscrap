@@ -10,7 +10,7 @@ const Feed = () => {
 
   useEffect(() => {
     try {
-      fetch('http://localhost:8000/recentDatas', {
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/recentDatas`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

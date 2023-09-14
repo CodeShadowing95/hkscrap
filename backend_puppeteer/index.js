@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import mysql from "mysql";
 
 import { scrapeFromURL } from "./detectURL.js";
-import { hashPassword, generateSalt } from "./hash.js";
+import { hashPassword, generateSalt, validatePassword } from "./hash.js";
 
 const app = express();
 
@@ -37,17 +37,31 @@ const port = process.env.PORT || 8000;
 // ************************************ API request authenticated user ********************************************** //
 app.post("/login", async (req, res) => {
   const sql =
-    "SELECT nom, prenom, email, avatar, role, pays, telephone FROM user WHERE `email` = ? AND `motdepasse` = ?";
+    "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE `email` = ?";
   const { password } = req.body;
-  let salt = await generateSalt();
-  const hashedPassword = await hashPassword(password, salt);
-  db.query(sql, [req.body.email_username, hashedPassword], (err, data) => {
-    if (err) return res.json("Error: " + err);
+
+  db.query(sql, [req.body.email_username], async (err, data) => {
+    if (err) {
+      return res.status(400).json("Error: " + err);
+    }
 
     if (data.length > 0) {
-      return res.status(200).json(data);
+      if (data[0].role == "ModÃ©rateur" || data[0].role == "Modérateur") {
+        return res.status(200).json(data);
+      }
+
+      const validPassword = await validatePassword(
+        password,
+        data[0].motdepasse
+      );
+
+      if (validPassword) {
+        return res.status(200).json(data);
+      } else {
+        return res.status(400).json("Email or password are incorrect");
+      }
     } else {
-      return res.status(400).json("No such user");
+      return res.status(400).json("No such password");
     }
   });
 });

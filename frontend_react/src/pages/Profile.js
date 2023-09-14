@@ -46,7 +46,7 @@ const Profile = () => {
             try {
               const profile = result[0]?.user_id;
               // console.log(profile);
-              const response = await fetch(`http://localhost:8000/edit-profile/${profile}`, {
+              const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/edit-profile/${profile}`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
