@@ -22,6 +22,12 @@ COPY --from=build-stage /usr/src/web/build/ /usr/share/nginx/html/
 
 COPY --from=build-stage /usr/src/web/build/ /var/www
 
+# Supprimez le fichier de configuration par défaut de Nginx
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copiez votre fichier de configuration personnalisé dans le conteneur
+COPY nginx.conf /etc/nginx/conf.d/
+
 COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD nginx -g 'daemon off;'
