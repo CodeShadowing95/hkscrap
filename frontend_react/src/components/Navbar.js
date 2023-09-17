@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Badge, Box, InputAdornment, TextField } from "@mui/material"
-import { ChevronLeftIcon, ChevronRightIcon, DarkModeIcon, LightModeIcon, NotificationsNoneIcon, SearchIcon } from "../utils/constants"
+import { ChevronLeftIcon, ChevronRightIcon, DarkModeIcon, LightModeIcon, MenuIcon, NotificationsNoneIcon, SearchIcon } from "../utils/constants"
 import { DropdownProfile } from ".";
 import { useTheme } from "./ThemeProvider";
 
@@ -20,16 +20,16 @@ const Navbar = ({ onMenuOnclick }) => {
   }
 
   return (
-    <Box sx={{ padding: "10px 20px 10px 5px", backgroundColor: "#F0F2F7", position: "sticky", top: 0 }}>
+    <Box sx={{ padding: "10px 20px 10px 5px", backgroundColor: theme === "light" ? "#F0F2F7" : "#253c5c", position: "sticky", top: 0 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         {/* Searchbar */}
         <Box sx={{ display: "flex", alignItems: "center", width: "40%", columnGap: 1 }}>
-          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", cursor: "pointer", transition: "0.2s", "&:hover": {backgroundColor: "#e1e1e1"} }} onClick={changeChevron}>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", cursor: "pointer", transition: "0.2s", "&:hover": {backgroundColor: theme === "light" ? "#e1e1e1" : "rgba(255, 255, 255, .1)"} }} onClick={changeChevron}>
             {onMenuOnclick && (
               currentChevron === 'left' ?
-              <ChevronLeftIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: "#2e3d52" }}  />
+              <MenuIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: theme === "light" ? "#2e3d52" : "#88a9c3" }}  />
               :
-              <ChevronRightIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: "#2e3d52" }}  />
+              <ChevronRightIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: theme === "light" ? "#2e3d52" : "#88a9c3" }}  />
             )}
           </Box>
           <Box>
@@ -43,16 +43,17 @@ const Navbar = ({ onMenuOnclick }) => {
                 "& .MuiOutlinedInput-root": {
                   height: "2.5rem",
                   fontSize: "15px",
-                  // marginRight: "5px",
-                  backgroundColor: "#FFF",
+                  backgroundColor: theme === 'light' ? "#FFF" : "rgba(0, 0, 0, 0.1)",
                   borderRadius: "15px",
+                  color: theme === "light" ? "none" : "#adadad",
+                  border: theme === "light" ? "none" : "1px solid #b3b3b3",
                 },
                 '& .MuiOutlinedInput-input': {
                   borderRadius: '0', // Reset border-radius for the inner input
                 },
               }}
               InputProps={{
-                startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>
+                startAdornment: <InputAdornment position="start" sx={{ color: theme === "light" ? "none" : "#adadad" }}><SearchIcon /></InputAdornment>
               }}
             />
           </Box>

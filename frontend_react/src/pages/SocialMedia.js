@@ -13,7 +13,7 @@ const SocialMedia = ({ userProfile }) => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", padding: "1rem 2rem" }}>
       {/* Content header */}
-      <Box sx={{ display: "flex", flexDirection: "column", marginBottom: "1.5em", rowGap: "20px" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5em", rowGap: "20px", width: "100%" }}>
         <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
           <img src={site.icon} alt={`${site.name} icon`} height={40} />
           <Typography variant="h1" sx={{ fontSize: "2.5em", fontWeight: "600", color: "#152C5B" }}>{site.name}</Typography>

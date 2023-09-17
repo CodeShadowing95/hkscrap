@@ -211,7 +211,7 @@ app.delete('/delete/:id', async (req, res) => {
 app.post('/scrape', async (req, res) => {
   try {
     const { url } = req.body;
-    console.log('Received request:', req.body);
+    // console.log('Received request:', req.body);
     
     const datas = await scrapeFromURL(url);
 
@@ -234,6 +234,27 @@ app.post('/store-scraped-data', async (req, res) => {
     })
   } catch (error) {
     console.error("Erreur lors de l'enregistrement", error);
+  }
+})
+
+app.post('/scrapes-count-by-site', async (req, res) => {
+  const sql = "SELECT COUNT(*) AS counter FROM dataoverview WHERE website = ?";
+  const { website } = req.body;
+  const values = [website];
+  try {
+    db.query(sql, values, (err, data) => {
+      if(err){
+        console.error('Error fetching data: ', err);
+        res.status(500).json({ error: 'An error occurred while fetching data' });
+        return;
+      }
+      
+      if(data) {
+        return res.status(200).json(data);
+      }
+    })
+  } catch (error) {
+    console.error("Error", error);
   }
 })
 // *******************************************************************************************************

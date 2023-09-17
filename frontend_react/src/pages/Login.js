@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchFromServer } from "../utils/fetchFromServer";
 
 import { Box, Button, Stack, Typography } from "@mui/material"
-import { BG_Login, ErrorIcon, logo, particlesBg, scene } from "../utils/constants";
+import { BG_Login, ErrorIcon, logo, particlesBg, scene, sunflowerBg } from "../utils/constants";
 import Input from "../components/Input";
 import { ErrorMessage } from "../components";
 
@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <Stack sx={{ top: 0, right: 0, display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100dvh", backgroundImage: `url('${BG_Login}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <Box sx={{ display: "flex" }}>
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundImage: `url('${particlesBg}')`, backgroundSize: "cover", backgroundPosition: "center", width: "30rem", borderRadius: "20px 0 0 20px", padding: "60px" }}>
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundImage: `url('${sunflowerBg}')`, backgroundSize: "cover", backgroundPosition: "center", width: "30rem", borderRadius: "20px 0 0 20px", padding: "60px" }}>
           <Stack justifyContent="center" alignItems="center" component="form" padding="20px" onSubmit={handleSubmit} spacing={8} width="100%">
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 5, width: "80%" }}>
               <Typography variant="h1" sx={{ fontSize: "2.5em", fontWeight: "600", color: "#152C5B" }}>Connexion</Typography>

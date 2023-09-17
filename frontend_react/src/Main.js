@@ -5,12 +5,15 @@ import { useEffect, useState } from 'react';
 import { fetchUser } from './utils/fetchUser';
 import History from './pages/History';
 import Navbar from './components/Navbar';
+import { useTheme } from './components/ThemeProvider';
 
 const Main = () => {
   const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState(null);
   const location = useLocation();
   const [sidebarVisible, setSidebarVisible] = useState(true);
+
+  const { theme, toggleDarkMode } = useTheme();
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
@@ -40,7 +43,8 @@ const Main = () => {
 
   return (
     <Box sx={{
-      display: 'flex'
+      display: 'flex',
+      backgroundColor: theme === 'light' ? '#eff2f6' : '#374962',
     }}>
       {userProfile && (sidebarVisible && <Sidebar user={userProfile} />)}
       <Stack direction="column" sx={{ top: 0, flex: 1 }}>

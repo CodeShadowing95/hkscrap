@@ -6,6 +6,8 @@ import MenuElement from "./MenuElement";
 import { DashboardIcon, EventNoteIcon, HistoryIcon, sub_logo, profileImage, StarIcon, FlashOnIcon, PeopleIcon, AddTaskIcon } from "../utils/constants";
 import ErrorMessage from "./ErrorMessage";
 
+import { useTheme } from "./ThemeProvider";
+
 
 const style = {
   position: 'absolute',
@@ -43,6 +45,8 @@ const Sidebar = ({ user }) => {
     setErrorMessage("");
     setDisable(true);
   };
+
+  const { theme, toggleDarkMode } = useTheme();
 
 
   const handleMenuItemClick = (index) => {
@@ -123,8 +127,9 @@ const Sidebar = ({ user }) => {
         top: 0,
         height: "100dvh",
         position: "sticky",
-        // backgroundColor: "#1F2937",
-        backgroundColor: "#eff2f6",
+        // backgroundColor: "#1F2937 | 2e3d52",
+        // backgroundColor: "#eff2f6",
+        backgroundColor: theme === "light" ? "#eff2f6" : "#1F2937",
         minWidth: "256px",
         display: "flex",
         justifyContent: "space-between",
@@ -232,11 +237,11 @@ const Sidebar = ({ user }) => {
           spacing={1}
           sx={{ padding: "1.25rem 0.75rem" }}
         >
-          <Stack justifyContent="center" width="200px" alignItems="center" spacing={2} sx={{ borderRadius: "5px", padding: "10px", /*backgroundColor: "#2e3d52" */backgroundColor: "#FFF",}}>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", /*backgroundColor: "#2e3d52",*/backgroundColor: "#FFF", marginTop: "-30px" }}>
+          <Stack justifyContent="center" width="200px" alignItems="center" spacing={2} sx={{ borderRadius: "5px", padding: "10px", /*backgroundColor: "#2e3d52" */backgroundColor: theme === "light" ? "#FFF" : "#2e3d52",}}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", /*backgroundColor: "#2e3d52",*/backgroundColor: theme === "light" ? "#FFF" : "#2e3d52", marginTop: "-30px" }}>
               <FlashOnIcon sx={{ fontSize: "25px", color: "#ffa500" }} />
             </div>
-            <Typography align="center" sx={{ fontSize: "13px", fontWeight: 300, /*color: "#FFF"*/color: "#2e3d52" }}>Démarrez une <span style={{ fontWeight: "500" }}>nouvelle tâche</span>. Renseignez le nom de la tâche, l'URL du site et lancez l'opération</Typography>
+            <Typography align="center" sx={{ fontSize: "13px", fontWeight: 300, color: theme === "light" ? "#2e3d52" : "#FFF" }}>Démarrez une <span style={{ fontWeight: "500" }}>nouvelle tâche</span>. Renseignez le nom de la tâche, l'URL du site et lancez l'opération</Typography>
             <Button variant="contained" color="secondary" startIcon={<AddTaskIcon />} size="large" onClick={handleOpen}>Nouvelle tâche</Button>
             <Modal
               open={open}

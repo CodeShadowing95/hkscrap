@@ -51,6 +51,7 @@ import SpinImage from '../assets/Loader.gif';
 import profileImage from '../assets/yammy.webp';
 import scene from '../assets/scene-haikei.png';
 import particlesBg from '../assets/Particles_bg.png';
+import sunflowerBg from '../assets/Sunflower_bg.png';
 import BG_Login from '../assets/bg_login.png';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
@@ -123,4 +124,5 @@ export const popular_sites = [
   scene,
   particlesBg,
   UploadIcon,
+  sunflowerBg,
  }

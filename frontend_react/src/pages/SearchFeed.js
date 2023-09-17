@@ -121,11 +121,9 @@ const SearchFeed = () => {
     try {
       const { nom, prenom } = user[0];
 
-      // const userIdResponse = await axios.post('/get-user-id', { nom, prenom });
       fetchFromServer('get-user-id', { nom, prenom })
       .then((res) => {
         if(res.data) {
-          // console.log(res.data);
           const userIdResponse = res.data;
           if(userIdResponse[0]?.user_id) {
             fetchFromServer('store-scraped-data', { userId: userIdResponse[0].user_id, label, website, startDate, execTime, lines, resultsFile })

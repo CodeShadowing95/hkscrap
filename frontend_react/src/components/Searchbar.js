@@ -38,7 +38,7 @@ const Searchbar = () => {
             fontSize: "1em",
             backgroundColor: theme === 'light' ? "#FFF" : "rgba(0, 0, 0, 0.1)",
             borderRadius: "15px",
-            color: theme === "light" ? "none" : "#FFF",
+            color: theme === "light" ? "none" : "#adadad",
             border: theme === "light" ? "none" : "1px solid #b3b3b3",
           },
           '& .MuiOutlinedInput-input': {
@@ -46,7 +46,7 @@ const Searchbar = () => {
           },
         }}
         InputProps={{
-          endAdornment: <InputAdornment position="end"><SearchIcon /></InputAdornment>
+          endAdornment: <InputAdornment position="end" sx={{ color: theme === "light" ? "none" : "#adadad" }}><SearchIcon /></InputAdornment>
         }}
       />
     </Box>
