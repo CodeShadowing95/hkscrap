@@ -73,7 +73,7 @@ const SearchFeed = () => {
 
       const startDate = new Date();
       try {
-        const response = await fetch('http://localhost:8000/scrape', {
+        const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/scrape`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

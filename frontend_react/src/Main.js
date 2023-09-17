@@ -1,11 +1,25 @@
-import { Navigate, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-import { Box, Stack } from '@mui/material';
-import { Feed, Login, Profile, ScrapersFeed, SearchFeed, Sidebar, SocialMedia, Team } from './pages';
-import { useEffect, useState } from 'react';
-import { fetchUser } from './utils/fetchUser';
-import History from './pages/History';
-import Navbar from './components/Navbar';
-import { useTheme } from './components/ThemeProvider';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import { Box, Stack } from "@mui/material";
+import {
+  Feed,
+  Login,
+  Profile,
+  ScrapersFeed,
+  SearchFeed,
+  Sidebar,
+  SocialMedia,
+  Team,
+} from "./pages";
+import { useEffect, useState } from "react";
+import { fetchUser } from "./utils/fetchUser";
+import History from "./pages/History";
+import Navbar from "./components/Navbar";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -17,7 +31,7 @@ const Main = () => {
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
-  }
+  };
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -25,12 +39,12 @@ const Main = () => {
         const userProfileData = await fetchUser();
         setUserProfile(userProfileData);
         // setUser(userProfileData);
-        if(location.pathname === "/" && userProfileData !== null){
-          navigate('/home');
+        if (location.pathname === "/" && !userProfileData) {
+          navigate("/auth");
         }
 
-        if(!userProfileData) {
-          navigate('/auth');
+        if (!userProfileData) {
+          navigate("/auth");
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des données", error);
@@ -38,21 +52,28 @@ const Main = () => {
     };
 
     fetchUserProfile();
-
   }, [navigate, location.pathname]);
 
   return (
-    <Box sx={{
-      display: 'flex',
-      backgroundColor: theme === 'light' ? '#eff2f6' : '#374962',
-    }}>
-      {userProfile && (sidebarVisible && <Sidebar user={userProfile} />)}
+    <Box
+      sx={{
+        display: "flex",
+      }}
+    >
+      {userProfile && sidebarVisible && <Sidebar user={userProfile} />}
       <Stack direction="column" sx={{ top: 0, flex: 1 }}>
         {/* Barre de navigation */}
         {userProfile && <Navbar onMenuOnclick={toggleSidebar} />}
         <Routes>
-          <Route path="/auth" element={userProfile ? <Navigate to="/home" /> : <Login />} />
-          <Route path="/home" exact element={userProfile ? <Feed /> : <Login />} />
+          <Route
+            path="/auth"
+            element={userProfile ? <Navigate to="/home" /> : <Login />}
+          />
+          <Route
+            path="/home"
+            exact
+            element={userProfile ? <Feed /> : <Login />}
+          />
           <Route path="/scrapers/" element={<ScrapersFeed />} />
           <Route path="/search/" element={<SearchFeed />} />
           <Route path="/socialMedia/:id" element={<SocialMedia />} />
@@ -62,7 +83,7 @@ const Main = () => {
         </Routes>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
 export default Main;

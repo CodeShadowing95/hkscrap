@@ -17,7 +17,7 @@ const Feed = () => {
 
   useEffect(() => {
     try {
-      fetch('http://localhost:8000/count-users', {
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/count-users`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ const Feed = () => {
     }
     
     try {
-      fetch('http://localhost:8000/count-scraped-datas', {
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/count-scraped-datas`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ const Feed = () => {
     }
 
     try {
-      fetch('http://localhost:8000/recentDatas', {
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/recentDatas`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

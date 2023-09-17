@@ -23,7 +23,7 @@ const History = () => {
 
   useEffect(() => {
     try {
-      fetch('http://localhost:8000/all', {
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/all`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
