@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import { fetchUser } from "./utils/fetchUser";
 import History from "./pages/History";
 import Navbar from "./components/Navbar";
+import { useTheme } from "./components/ThemeProvider";
 
 const Main = () => {
   const navigate = useNavigate();
