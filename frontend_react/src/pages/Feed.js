@@ -84,7 +84,7 @@ const Feed = () => {
   }, [])
 
   return (
-    <Stack>
+    <Stack sx={{ backgroundColor: "#eff2f6" }}>
       <Box sx={{ display: "flex", alignItems: "flex-start", marginBottom: "1.5em", padding: "2rem 2rem 8rem", backgroundImage: theme === 'dark' ? "linear-gradient(to bottom, #253c5c, #2c2b43, #271d2b, #1a1117, #000000)" : "linear-gradient(to bottom, #f0f2f7, #dfe3ee, #ced4e4, #bdc5db, #acb7d2)" }}>
         {/* Title & Breadcrumb */}
         <Stack rowGap="15px" width="100%">

@@ -136,7 +136,7 @@ const TableUsers = ({ datas, onDelete }) => {
               </StyledTableRow>
             ))
             :
-            <StyledTableCell colSpan={6} align="left"><Typography sx={{ fontStyle: "italic", fontWeight: 300, color: "#999" }}>(Vide)</Typography></StyledTableCell>
+            <StyledTableCell colSpan={6} align="center"><Typography sx={{ fontStyle: "italic", fontWeight: 300, color: "#999" }}>(Aucun utilisateur enregistré)</Typography></StyledTableCell>
           }
         </TableBody>
       </Table>
