@@ -17,11 +17,16 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQL_PORT,
+  // host: process.env.MYSQL_HOST,
+  host: "localhost",
+  // user: process.env.MYSQL_USER,
+  user: "root",
+  // password: process.env.MYSQL_PASSWORD,
+  password: "",
+  // database: process.env.MYSQL_DATABASE,
+  database: "stage_db",
+  // port: process.env.MYSQL_PORT,
+  port: "3306",
 });
 
 db.connect((err) => {
@@ -37,7 +42,7 @@ const port = process.env.PORT || 8000;
 // ************************************ API request authenticated user ********************************************** //
 app.post("/login", async (req, res) => {
   const sql =
-    "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE `email` = ?";
+    "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE email = ?";
   const { password } = req.body;
 
   db.query(sql, [req.body.email_username], async (err, data) => {
