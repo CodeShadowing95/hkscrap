@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { fetchFromServer } from "../utils/fetchFromServer";
 
@@ -36,6 +36,17 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if(user) {
+      navigate("/home")
+    } else {
+      navigate("/auth")
+    }
+
+  }, [navigate]);
 
   const handleShowPassword = () => setShowPassword((seePassword) => !seePassword);
 

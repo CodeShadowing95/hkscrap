@@ -12,6 +12,7 @@ import {
   Profile,
   ScrapersFeed,
   SearchFeed,
+  Showcase,
   Sidebar,
   SocialMedia,
   Team,
@@ -39,14 +40,13 @@ const Main = () => {
       try {
         const userProfileData = await fetchUser();
         setUserProfile(userProfileData);
-        // setUser(userProfileData);
-        if (location.pathname === "/" && !userProfileData) {
-          navigate("/auth");
+        if (location.pathname === "/") {
+          navigate("/showcase");
         }
 
-        if (!userProfileData) {
-          navigate("/auth");
-        }
+        // if (!userProfileData) {
+        //   navigate("/showcase");
+        // }
       } catch (error) {
         console.error("Erreur lors de la récupération des données", error);
       }
@@ -66,13 +66,13 @@ const Main = () => {
         {/* Barre de navigation */}
         {userProfile && <Navbar onMenuOnclick={toggleSidebar} />}
         <Routes>
+          <Route path="/showcase" exact element={<Showcase />} />
           <Route
             path="/auth"
             element={userProfile ? <Navigate to="/home" /> : <Login />}
           />
           <Route
             path="/home"
-            exact
             element={userProfile ? <Feed /> : <Login />}
           />
           <Route path="/scrapers/" element={<ScrapersFeed />} />

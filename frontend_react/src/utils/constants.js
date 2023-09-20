@@ -38,6 +38,7 @@ import Inventory2Icon from '@mui/icons-material/Inventory2';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
 import Linkedin from '../assets/linkedin.webp';
 import Amazon from '../assets/amazon.webp';
@@ -53,7 +54,18 @@ import scene from '../assets/scene-haikei.png';
 import particlesBg from '../assets/Particles_bg.png';
 import sunflowerBg from '../assets/Sunflower_bg.png';
 import BG_Login from '../assets/bg_login.png';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import WaveBg from '../assets/Wave_bg.png';
+import DataExtraction from '../assets/Data_report.png';
+import Usecase1 from '../assets/1.png';
+import Usecase2 from '../assets/2.png';
+import Usecase3 from '../assets/3.png';
+import Usecase4 from '../assets/4.png';
+import Usecase5 from '../assets/5.png';
+import Usecase6 from '../assets/6.png';
+import Individual_pricing from '../assets/individual.png';
+import Startup_pricing from '../assets/startup.png';
+import Business_pricing from '../assets/business.png';
+import Enterprise_pricing from '../assets/enterprise.png';
 
 import logo from "../assets/logo.png";
 import sub_logo from "../assets/logo-hkscrap.png";
@@ -71,6 +83,19 @@ export const popular_sites = [
   {name: "Pages Jaunes", icon: PagesJaunes},
   {name: "Youtube", icon: Youtube},
 ]
+
+export const loremText = {
+  1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem integer vitae justo eget.",
+  3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Blandit libero volutpat sed cras ornare.",
+  4: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc mattis enim ut tellus elementum sagittis vitae et. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Enim lobortis scelerisque fermentum dui faucibus in ornare.",
+  5: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Posuere morbi leo urna molestie at elementum eu. Tincidunt vitae semper quis lectus nulla. Mi bibendum neque egestas congue quisque egestas diam in. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.",
+  6: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus sed turpis tincidunt id aliquet risus feugiat. Purus in massa tempor nec feugiat nisl. Feugiat in ante metus dictum at tempor. Neque viverra justo nec ultrices dui. Et odio pellentesque diam volutpat commodo sed.",
+  7: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque pulvinar pellentesque habitant morbi tristique. A iaculis at erat pellentesque. Viverra suspendisse potenti nullam ac tortor vitae. Ut ornare lectus sit amet est placerat. Iaculis eu non diam phasellus vestibulum lorem sed risus. Faucibus turpis in eu mi bibendum neque egestas.",
+  8: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas fringilla phasellus faucibus scelerisque eleifend. Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Nisl purus in mollis nunc sed id semper. Amet massa vitae tortor condimentum lacinia quis vel eros. Aliquet sagittis id consectetur purus. Sem viverra aliquet eget sit. Dolor sit amet consectetur adipiscing elit ut.",
+  9: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam vulputate ut pharetra sit amet aliquam id diam. Duis at consectetur lorem donec massa sapien. Gravida neque convallis a cras semper auctor. Praesent semper feugiat nibh sed. Arcu dui vivamus arcu felis bibendum. Lorem ipsum dolor sit amet consectetur adipiscing. Quis blandit turpis cursus in hac habitasse platea. Donec massa sapien faucibus et molestie ac feugiat sed lectus.",
+  10: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper viverra nam libero justo laoreet. Duis convallis convallis tellus id interdum velit laoreet id donec. Lacus luctus accumsan tortor posuere ac ut consequat semper. Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget. Enim ut tellus elementum sagittis vitae et leo duis. Augue eget arcu dictum varius duis at consectetur. Id nibh tortor id aliquet lectus. Ac tincidunt vitae semper quis lectus. Nullam eget felis eget nunc.",
+}
 
  export {
   logo,
@@ -117,6 +142,9 @@ export const popular_sites = [
   ChevronLeftIcon,
   ChevronRightIcon,
   UploadingLoop,
+  GoogleMaps,
+  Linkedin,
+  PagesJaunes,
   BG_Login,
   NoData,
   SpinImage,
@@ -125,4 +153,16 @@ export const popular_sites = [
   particlesBg,
   UploadIcon,
   sunflowerBg,
+  WaveBg,
+  DataExtraction,
+  Usecase1,
+  Usecase2,
+  Usecase3,
+  Usecase4,
+  Usecase5,
+  Usecase6,
+  Individual_pricing,
+  Startup_pricing,
+  Business_pricing,
+  Enterprise_pricing,
  }

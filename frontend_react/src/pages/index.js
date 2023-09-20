@@ -8,3 +8,4 @@ export { default as Login } from './Login';
 export { default as History } from './History';
 export { default as Team } from './Team';
 export { default as Profile } from './Profile';
+export { default as Showcase } from './Showcase';
