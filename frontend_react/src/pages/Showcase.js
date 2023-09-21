@@ -52,7 +52,7 @@ const Showcase = () => {
       <Stack sx={{ backgroundImage: `url('${WaveBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
         <Box sx={{ display: "flex", top: 0, position: "sticky", justifyContent: "space-between", alignItems: "center", padding: "8px 16px", backgroundColor: scrolling === true ? "#FFF" : "transparent", transition: ".2s" }}>
           {/* Left side */}
-          <Box sx={{  display: "flex", justifyContent: "center", alignItems: "center", columnGap: "16px" }}>
+          <Box sx={{  display: "flex", justifyContent: "center", alignItems: "center", columnGap: "30px" }}>
             {/* Logo + Title */}
             <Box sx={{ cursor: "pointer" }} component={Link} to="/showcase">
               <img src={sub_logo} alt="hkdigitals logo" height={60} />
@@ -67,7 +67,10 @@ const Showcase = () => {
             </Box>
           </Box>
           {/* Right side */}
-          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 2 }}>
+            <Box component={Link} to="/auth" sx={{ display: "flex", justifyContent: "center", alignItems: "center", textDecoration: "none", cursor: "pointer", transition: ".2s" }} onClick={() => handleLogin()}>
+              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: scrolling ? "#000" : "#FFF", textTransform: "capitalize" }}>Inscription</Typography>
+            </Box>
             <Box component={Link} to="/auth" sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }} onClick={() => handleLogin()}>
               <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "uppercase" }}>Connexion</Typography>
             </Box>
@@ -79,7 +82,7 @@ const Showcase = () => {
             {/* Left side */}
             <Grid item xs={12} sm={12} md={4} lg={5}>
               <Stack sx={{ justifyContent: "center", alignItems: "flex-start" }}>
-                <Typography variant='h1' sx={{ fontFamily: "Montserrat", fontSize: "49px", lineHeight: "55px", fontWeight: 800, marginBottom: 0, marginTop: 0, color: "#37446f" }}>Accédez à une mine d'or d'informations avec notre service de scraping.</Typography>
+                <Typography variant="h1" sx={{ fontFamily: "Montserrat", fontSize: "49px", lineHeight: "55px", fontWeight: 800, marginBottom: 0, marginTop: 0, color: "#37446f" }}>Accédez à une mine d'or d'informations avec notre service de scraping.</Typography>
                 <Typography sx={{ fontFamily: "Montserrat", marginTop: "20px", marginBottom: "30px", color: "#969cb6", fontSize: "18px", lineHeight: "28px", fontWeight: "500" }}>Découvrez, extrayez et exploitez intelligemment les données du web pour prendre des décisions éclairées et propulser votre entreprise vers l'avenir.</Typography>
                 <Box sx={{ padding: "10px 15px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", cursor: "pointer", transition: ".2s", "&:hover":{backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)"} }}>
                   <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "capitalize" }}>Essayez gratuitement</Typography>
@@ -95,8 +98,8 @@ const Showcase = () => {
                         <Typography sx={{ fontFamily: "Montserrat", fontSize: "18px", fontWeight: 600, color: "#969cb6" }}>1000 crédits API gratuits</Typography>
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center", columnGap: 5 }}>
-                        <TaskAltIcon sx={{ color: "#0056b3" }} />
-                        <Typography sx={{ fontFamily: "Montserrat", fontSize: "18px", fontWeight: 600, color: "#969cb6" }}>Pas de cartes de crédit nécessaires</Typography>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "18px", fontWeight: 600, color: "#969cb6" }}>Pas de cartes de crédit nécessaires</Typography>
                     </Box>
                   </Stack>
                 </Stack>

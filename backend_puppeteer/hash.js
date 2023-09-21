@@ -9,6 +9,7 @@ export const generateSalt = async () => {
 };
 
 export const validatePassword = async (enteredPassword, savedPassword) => {
+  // return await bcrypt.compare(enteredPassword, savedPassword);
   const hashedPassword = await hashPassword(enteredPassword, 10);
   return await bcrypt.compare(hashedPassword, savedPassword);
 };

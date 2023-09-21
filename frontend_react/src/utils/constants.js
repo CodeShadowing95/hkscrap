@@ -72,6 +72,7 @@ import sub_logo from "../assets/logo-hkscrap.png";
 import NoData from "../assets/no_data.png"
 import UploadIcon from "../assets/upload.png"
 import UploadingLoop from './LineMdUploadingLoop';
+import GoogleAuth from '../assets/google_oauth.png';
 
 export const popular_sites = [
   {name: "LinkedIn", icon: Linkedin},
@@ -145,6 +146,7 @@ export const loremText = {
   GoogleMaps,
   Linkedin,
   PagesJaunes,
+  GoogleAuth,
   BG_Login,
   NoData,
   SpinImage,

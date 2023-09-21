@@ -42,6 +42,7 @@ const port = process.env.PORT || 8000;
 // ************************************ API request authenticated user ********************************************** //
 app.post("/login", async (req, res) => {
   const sql =
+  // "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE `email` = ?";
     "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE email = ?";
   const { password } = req.body;
 
