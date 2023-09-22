@@ -46,7 +46,7 @@ const Sidebar = ({ user }) => {
     setDisable(true);
   };
 
-  const { theme, toggleDarkMode } = useTheme();
+  const { theme } = useTheme();
 
 
   const handleMenuItemClick = (index) => {
