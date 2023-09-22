@@ -88,7 +88,7 @@ const Signup = () => {
           <TextField required type="email" size="small" placeholder="Email" name="email" sx={{ display: "flex", width: "100%", fontFamily: "Montserrat", height: "2.5rem", borderRadius: "0.375rem", fontSize: ".875rem", lineHeight: "1.25rem" }} onChange={handleChange} />
           <TextField required type="password" size="small" placeholder="Mot de passe" name="password" sx={{ display: "flex", width: "100%", fontFamily: "Montserrat", height: "2.5rem", borderRadius: "0.375rem", fontSize: ".875rem", lineHeight: "1.25rem" }} onChange={handleChange} />
           <TextField required type="password" size="small" placeholder="Confirmez le mot de passe" name="confirmPassword" sx={{ display: "flex", width: "100%", fontFamily: "Montserrat", height: "2.5rem", borderRadius: "0.375rem", fontSize: ".875rem", lineHeight: "1.25rem" }} onChange={handleChange} />
-          <Box component={Button} type="submit" sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundColor: "#0056b3", transition: ".2s" }}  onSubmit={handleSubmit}>
+          <Box component={Button} type="submit" sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundColor: "#0056b3", transition: ".2s" }} onSubmit={handleSubmit}>
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "uppercase" }}>Je m'inscris</Typography>
           </Box>
         </Stack>

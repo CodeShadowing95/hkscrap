@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useLocation  } from 'react-router-dom'
-import { Alert, Badge, Box, Breadcrumbs, Button, Link, Pagination, Snackbar, Stack, Typography } from '@mui/material'
+import { Alert, Badge, Box, Breadcrumbs, Link, Pagination, Snackbar, Stack, Typography } from '@mui/material'
 
-import { DataTable, Options, Searchbar } from '../components'
-import { LightModeIcon, NoData, NotificationsNoneIcon, PlayArrowIcon, SpinImage } from '../utils/constants'
+import { DataTable, Searchbar } from '../components'
+import { LightModeIcon, NotificationsNoneIcon, SpinImage } from '../utils/constants'
 import ExportButton from '../components/ExportButton'
-import Sidebar from '../components/Sidebar'
 import { fetchFromServer } from '../utils/fetchFromServer'
 
 function formatDate(date) {
