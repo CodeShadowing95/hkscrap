@@ -14,6 +14,7 @@ import {
   SearchFeed,
   Showcase,
   Sidebar,
+  Signup,
   SocialMedia,
   Team,
 } from "./pages";
@@ -61,10 +62,10 @@ const Main = () => {
         display: "flex",
       }}
     >
-      {userProfile && sidebarVisible && <Sidebar user={userProfile} />}
+      {location.pathname !== "/showcase" && (userProfile && sidebarVisible && <Sidebar user={userProfile} />)}
       <Stack direction="column" sx={{ top: 0, flex: 1 }}>
         {/* Barre de navigation */}
-        {userProfile && <Navbar onMenuOnclick={toggleSidebar} />}
+        {location.pathname !== "/showcase" && (userProfile && <Navbar onMenuOnclick={toggleSidebar} />)}
         <Routes>
           <Route path="/showcase" exact element={<Showcase />} />
           <Route
@@ -75,6 +76,7 @@ const Main = () => {
             path="/home"
             element={userProfile ? <Feed /> : <Login />}
           />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/scrapers/" element={<ScrapersFeed />} />
           <Route path="/search/" element={<SearchFeed />} />
           <Route path="/socialMedia/:id" element={<SocialMedia />} />

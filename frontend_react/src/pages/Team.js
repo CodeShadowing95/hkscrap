@@ -1,7 +1,6 @@
-import { Alert, Badge, Box, Breadcrumbs, Button, InputAdornment, Link, Modal, Snackbar, Stack, TextField, Typography } from '@mui/material'
+import { Alert, Box, Breadcrumbs, Button, InputAdornment, Link, Modal, Snackbar, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import Sidebar from '../components/Sidebar'
-import { LightModeIcon, NotificationsNoneIcon, PersonAddIcon, SearchIcon } from '../utils/constants'
+import {  PersonAddIcon, SearchIcon } from '../utils/constants'
 import TableUsers from '../components/TableUsers'
 import ErrorMessage from '../components/ErrorMessage'
 

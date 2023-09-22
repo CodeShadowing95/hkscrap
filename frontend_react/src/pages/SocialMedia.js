@@ -1,10 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { Box, Breadcrumbs, Link, Stack, Typography } from '@mui/material'
+import { Box, Breadcrumbs, Link, Typography } from '@mui/material'
 // import { Navbar } from '.'
-import { Options, SearchbarTerm } from '../components'
 
-import { NoData, PlayArrowIcon, popular_sites } from '../utils/constants'
-import Sidebar from '../components/Sidebar'
+import { popular_sites } from '../utils/constants'
 
 const SocialMedia = ({ userProfile }) => {
   const { id } = useParams();

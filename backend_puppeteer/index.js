@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import mysql from "mysql";
 
 import { scrapeFromURL } from "./detectURL.js";
-import { hashPassword, generateSalt, validatePassword } from "./hash.js";
+import { hashPassword, generateSalt, validatePassword, generateTempId } from "./hash.js";
 
 const app = express();
 
@@ -39,7 +39,40 @@ db.connect((err) => {
 
 const port = process.env.PORT || 8000;
 
-// ************************************ API request authenticated user ********************************************** //
+
+// ***************************************************************** API requests for the scraped datas *****************************************************************
+app.get("/all", async (req, res) => {
+  const sql = "SELECT * FROM dataoverview";
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.error("Error fetching data: ", err);
+      res.status(500).json({ error: "An error occurred while fetching data" });
+      return;
+    }
+
+    if (data.length >= 0) {
+      return res.status(200).json(data);
+    }
+  });
+});
+
+app.get("/recentDatas", async (req, res) => {
+  const sql = "SELECT * FROM dataoverview ORDER BY do_id DESC LIMIT 10";
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.error("Error fetching data: ", err);
+      res.status(500).json({ error: "An error occurred while fetching data" });
+      return;
+    }
+
+    if (data.length >= 0) {
+      return res.status(200).json(data);
+    }
+  });
+});
+// **********************************************************************************************************************************************************
+
+// ***************************************************************** API requests for users *****************************************************************
 app.post("/login", async (req, res) => {
   const sql =
   // "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE `email` = ?";
@@ -71,41 +104,31 @@ app.post("/login", async (req, res) => {
     }
   });
 });
-// *******************************************************************************************************
 
-// ************************************ API requests for the scraped datas ********************************************** //
-app.get("/all", async (req, res) => {
-  const sql = "SELECT * FROM dataoverview";
-  db.query(sql, (err, data) => {
-    if (err) {
-      console.error("Error fetching data: ", err);
-      res.status(500).json({ error: "An error occurred while fetching data" });
-      return;
-    }
+app.post("/register", async (req, res) => {
+  const sql =
+    "INSERT INTO user (prenom, email, motdepasse, role) VALUES (?, ?, ?, ?)";
+  const { email, password } = req.body;
+  const role = "Utilisateur";
+  const randomId = generateTempId();
+  const prenom = "user_" + randomId;
+  const values = [
+    prenom,
+    email,
+    password,
+    role,
+  ];
+  try {
+    db.query(sql, values, (err, data) => {
+      if (err) return res.json(err);
 
-    if (data.length >= 0) {
-      return res.status(200).json(data);
-    }
-  });
+      res.status(200).json({ message: 'Login successful' });
+    });
+  } catch (error) {
+    console.log("Error encountered: " + error);
+  }
 });
 
-app.get("/recentDatas", async (req, res) => {
-  const sql = "SELECT * FROM dataoverview ORDER BY do_id DESC LIMIT 10";
-  db.query(sql, (err, data) => {
-    if (err) {
-      console.error("Error fetching data: ", err);
-      res.status(500).json({ error: "An error occurred while fetching data" });
-      return;
-    }
-
-    if (data.length >= 0) {
-      return res.status(200).json(data);
-    }
-  });
-});
-// *******************************************************************************************************
-
-// ************************************ API requests for users ********************************************** //
 app.get("/get-users", async (req, res) => {
   const sql = `SELECT * FROM user WHERE user_id NOT LIKE ${process.env.ADMIN_ID}`;
   try {
@@ -238,9 +261,9 @@ app.delete("/delete/:id", async (req, res) => {
     res.status(204).send();
   });
 });
-// *******************************************************************************************************
+// **********************************************************************************************************************************************************
 
-// ************************************ API requests for datas ********************************************** //
+// ***************************************************************** API requests for datas *****************************************************************
 app.post("/scrape", async (req, res) => {
   try {
     const { url } = req.body;
@@ -303,7 +326,7 @@ app.post('/scrapes-count-by-site', async (req, res) => {
     console.error("Error", error);
   }
 })
-// *******************************************************************************************************
+// **********************************************************************************************************************************************************
 
 app.listen(port, () => {
   console.log("Server running on port " + port);

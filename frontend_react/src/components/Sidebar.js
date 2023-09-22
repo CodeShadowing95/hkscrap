@@ -102,7 +102,11 @@ const Sidebar = ({ user }) => {
     navigate(`/search/?q=${encodeURIComponent(formData.linkurl)}&task=${encodeURIComponent(formData.taskname)}`);
   }
 
-  let username = user[0]?.prenom + " " + user[0]?.nom;
+  
+  let username = user[0]?.prenom ;
+  if(user[0]?.nom !== null){
+    username = user[0]?.prenom + " " + user[0]?.nom;
+  }
   const len_username = username.length;
   if (len_username > 13) {
     username = username.substr(0, len_username - 2) + ".";
@@ -194,6 +198,7 @@ const Sidebar = ({ user }) => {
                   fontSize: "0.875rem",
                   fontWeight: 600,
                   lineHeight: "1.25rem",
+                  textOverflow: "ellipsis",
                 }}
               >
                 {username}

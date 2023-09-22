@@ -5,6 +5,7 @@ export { default as SocialMedia } from './SocialMedia';
 export { default as SearchFeed } from './SearchFeed';
 export { default as ScrapersFeed } from './ScrapersFeed';
 export { default as Login } from './Login';
+export { default as Signup } from './Signup';
 export { default as History } from './History';
 export { default as Team } from './Team';
 export { default as Profile } from './Profile';

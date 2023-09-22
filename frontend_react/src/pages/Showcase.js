@@ -7,13 +7,13 @@ import { CustomizedAccordion } from '../components';
 const keyframesAnimation = `
   @keyframes slideUpDown {
     0%, 100% {
-      transform: translateY(0);
+      transform: translateY(0)
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-10px)
     }
   }
-`;
+`
 
 const Showcase = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Showcase = () => {
 
   const animationCSS = `
     ${keyframesAnimation}
-    slideUpDown 5s linear infinite;
+    slideUpDown 5s linear infinite
   `;
 
   const handleLogin = () => {

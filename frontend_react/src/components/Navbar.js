@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Badge, Box, InputAdornment, TextField } from "@mui/material"
-import { ChevronLeftIcon, ChevronRightIcon, DarkModeIcon, LightModeIcon, MenuIcon, NotificationsNoneIcon, SearchIcon } from "../utils/constants"
+import { DarkModeIcon, LightModeIcon, MenuIcon, NotificationsNoneIcon, SearchIcon } from "../utils/constants"
 import { DropdownProfile } from ".";
 import { useTheme } from "./ThemeProvider";
 
 const Navbar = ({ onMenuOnclick }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentChevron, setCurrentChevron] = useState('left');
 
   const { theme, toggleDarkMode } = useTheme();
 
   const changeChevron = () => {
-    setCurrentChevron(currentChevron === 'left' ? 'right' : 'left');
     onMenuOnclick();
   }
 
@@ -25,12 +23,7 @@ const Navbar = ({ onMenuOnclick }) => {
         {/* Searchbar */}
         <Box sx={{ display: "flex", alignItems: "center", width: "40%", columnGap: 1 }}>
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", cursor: "pointer", transition: "0.2s", "&:hover": {backgroundColor: theme === "light" ? "#e1e1e1" : "rgba(255, 255, 255, .1)"} }} onClick={changeChevron}>
-            {onMenuOnclick && (
-              currentChevron === 'left' ?
-              <MenuIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: theme === "light" ? "#2e3d52" : "#88a9c3" }}  />
-              :
-              <ChevronRightIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: theme === "light" ? "#2e3d52" : "#88a9c3" }}  />
-            )}
+            {onMenuOnclick && <MenuIcon sx={{ fontSize: '20px', /*color: "#FFF"*/color: theme === "light" ? "#2e3d52" : "#88a9c3" }}  />}
           </Box>
           <Box>
             <TextField

@@ -181,7 +181,7 @@ const Feed = () => {
           </Grid>
         </Box>
 
-        <Box sx={{ marginTop: "2rem" }}>
+        <Box sx={{ margin: "2rem 0" }}>
           <Grid container spacing={2}>
             {/* First side */}
             <Grid item xs={12} sm={12} md={12} lg={3}>
