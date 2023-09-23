@@ -35,43 +35,10 @@ db.connect((err) => {
 const port = process.env.PORT || 8000;
 
 
-// ***************************************************************** API requests for the scraped datas *****************************************************************
-app.get("/all", async (req, res) => {
-  const sql = "SELECT * FROM dataoverview";
-  db.query(sql, (err, data) => {
-    if (err) {
-      console.error("Error fetching data: ", err);
-      res.status(500).json({ error: "An error occurred while fetching data" });
-      return;
-    }
-
-    if (data.length >= 0) {
-      return res.status(200).json(data);
-    }
-  });
-});
-
-app.get("/recentDatas", async (req, res) => {
-  const sql = "SELECT * FROM dataoverview ORDER BY do_id DESC LIMIT 10";
-  db.query(sql, (err, data) => {
-    if (err) {
-      console.error("Error fetching data: ", err);
-      res.status(500).json({ error: "An error occurred while fetching data" });
-      return;
-    }
-
-    if (data.length >= 0) {
-      return res.status(200).json(data);
-    }
-  });
-});
-// **********************************************************************************************************************************************************
-
 // ***************************************************************** API requests for users *****************************************************************
 app.post("/login", async (req, res) => {
   const sql =
-  // "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE `email` = ?";
-    "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE email = ?";
+  "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE `email` = ?";
   const { password } = req.body;
 
   db.query(sql, [req.body.email_username], async (err, data) => {
@@ -237,6 +204,36 @@ app.delete("/delete/:id", async (req, res) => {
 // **********************************************************************************************************************************************************
 
 // ***************************************************************** API requests for datas *****************************************************************
+app.get("/all", async (req, res) => {
+  const sql = "SELECT * FROM dataoverview";
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.error("Error fetching data: ", err);
+      res.status(500).json({ error: "An error occurred while fetching data" });
+      return;
+    }
+
+    if (data.length >= 0) {
+      return res.status(200).json(data);
+    }
+  });
+});
+
+app.get("/recentDatas", async (req, res) => {
+  const sql = "SELECT * FROM dataoverview ORDER BY do_id DESC LIMIT 10";
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.error("Error fetching data: ", err);
+      res.status(500).json({ error: "An error occurred while fetching data" });
+      return;
+    }
+
+    if (data.length >= 0) {
+      return res.status(200).json(data);
+    }
+  });
+});
+
 app.post("/scrape", async (req, res) => {
   try {
     const { url } = req.body;
