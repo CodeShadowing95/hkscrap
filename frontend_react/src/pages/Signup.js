@@ -18,31 +18,51 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log(formData);
     if(formData.password !== formData.confirmPassword) {
       setMessage('Les mots de passe ne sont pas identiques!');
       return;
     }
 
+    const email = formData.email;
     try {
-      const hashedPassword = await bcrypt.hash(formData.password, 10);
-      formData.password = hashedPassword;
-      formData.confirmPassword = '';
-    } catch (error) {
-      console.error('Error hashing password:', error);
-    }
+      await fetch(`${process.env.REACT_APP_BASE_API_URL}/unique-user`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email }),
+      })
+      .then(async (response) => {
+        if(!response.ok) throw new Error('Error when requesting some datas')
 
-    fetchFromServer('register', formData)
-    .then((res) => {
-      if(res.data) {
-        navigate('/auth?successSignup=Inscription réussie.%20Connectez-vous!');
-      } else {
-        setMessage('Erreur lors de l\'enregistrement');
-      }
-    })
-    .catch((err) => {
-      setMessage('Email ou mot de passe incorrects');
-    });
+        const result = await response.json();
+        if(result[0]?.doublons === 0) {
+          try {
+            const hashedPassword = await bcrypt.hash(formData.password, 10);
+            formData.password = hashedPassword;
+            formData.confirmPassword = '';
+          } catch (error) {
+            console.error('Error hashing password:', error);
+          }
+      
+          fetchFromServer('register', formData)
+          .then((res) => {
+            if(res.data) {
+              navigate('/auth?successSignup=Inscription effectuée.%20Connectez-vous!');
+            } else {
+              setMessage('Erreur lors de l\'enregistrement');
+            }
+          })
+          .catch((err) => {
+            setMessage('Inscription échouée. Veuillez réessayer.');
+          });
+        } else {
+          setMessage('Impossible: Utilisateur déjà inscrit!');
+        }
+      })
+    } catch (error) {
+      console.error("Erreur lors de la récupération de données", error);
+    }
   }
 
   const handleChange = (e) => {

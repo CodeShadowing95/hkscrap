@@ -63,6 +63,25 @@ app.post("/login", async (req, res) => {
   });
 });
 
+app.post("/unique-user", async (req, res) => {
+  const sql = "SELECT COUNT(email) AS doublons FROM user WHERE email = ?";
+  const { email } = req.body;
+  try {
+    db.query(sql, [email], (err, data) => {
+      if(err){
+        res.status(500).json({ error: 'An error occurred while fetching data' });
+        return;
+      }
+
+      if(data) {
+        return res.status(200).json(data);
+      }
+    })
+  } catch (error) {
+    console.error("Query is not executed: ", error);
+  }
+})
+
 app.post("/register", async (req, res) => {
   const sql =
     "INSERT INTO user (prenom, email, motdepasse, role) VALUES (?, ?, ?, ?)";
