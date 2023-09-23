@@ -129,11 +129,11 @@ const Team = () => {
   }
 
   const filterTeamsByTerm = teams.filter((item) => (
-    item?.NOM.toLowerCase().includes(filterTerm.toLowerCase()) ||
-    item?.PRENOM.toLowerCase().includes(filterTerm.toLowerCase()) ||
-    item?.EMAIL.toLowerCase().includes(filterTerm.toLowerCase()) ||
-    // item?.TELEPHONE.toLowerCase().includes(filterTerm.toLowerCase()) ||
-    item?.PAYS.toLowerCase().includes(filterTerm.toLowerCase())
+    item?.NOM?.toLowerCase().includes(filterTerm?.toLowerCase()) ||
+    item?.PRENOM?.toLowerCase().includes(filterTerm?.toLowerCase()) ||
+    item?.EMAIL?.toLowerCase().includes(filterTerm?.toLowerCase()) ||
+    // item?.TELEPHONE?.toLowerCase().includes(filterTerm?.toLowerCase()) ||
+    item?.PAYS?.toLowerCase().includes(filterTerm?.toLowerCase())
   ));
 
   useEffect(() => {
@@ -242,7 +242,9 @@ const Team = () => {
               </Box>
             </Modal>
           </Box>
-          {!filterTerm ? <TableUsers datas={teams} onDelete={onDelete} /> :
+          {!filterTerm ?
+            <TableUsers datas={teams} onDelete={onDelete} />
+            :
             filterTeamsByTerm.length > 0 && <TableUsers datas={filterTeamsByTerm} onDelete={onDelete} />
           }
         </Stack>

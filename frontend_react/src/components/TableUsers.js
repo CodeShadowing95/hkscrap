@@ -93,18 +93,32 @@ const TableUsers = ({ datas, onDelete }) => {
         </TableHead>
         <TableBody>
           {datas.length > 0 ?
-            datas.map((data, index) => (
+            datas.map((data, index) => {
+              let username = '';
+              if(data.NOM != null && data.PRENOM !== null) {
+                username = data.NOM + ' ' + data.PRENOM;
+              } else {
+                const email = data.EMAIL;
+                const indexAtSymbol = email.indexOf('@');
+                if(indexAtSymbol !== -1) {
+                  username = email.slice(0, indexAtSymbol);
+                } else {
+                  username = 'Utilisateur';
+                }
+              }
+            
+              return (
               <StyledTableRow key={`${data.USER_ID}_${index}`}>
                 <StyledTableCell align="left">{index+1}</StyledTableCell>
                 <StyledTableCell align="left">
                   <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: "10px" }}>
                     <Avatar variant="circular" src={profileImage} sx={{ width: 40, height: 40 }} />
-                    <Typography>{`${data.NOM} ${data.PRENOM}`}</Typography>
+                    <Typography>{username}</Typography>
                   </Box>
                 </StyledTableCell>
                 <StyledTableCell align="left">{data.EMAIL}</StyledTableCell>
-                <StyledTableCell align="left">{data.TELEPHONE}</StyledTableCell>
-                <StyledTableCell align="left">{data.PAYS}</StyledTableCell>
+                <StyledTableCell align="left">{data.TELEPHONE ? data.TELEPHONE : <Typography sx={{ fontStyle: "italic", fontWeight: 300, color: "#999" }}>(Vide)</Typography>}</StyledTableCell>
+                <StyledTableCell align="left">{data.PAYS ? data.PAYS : <Typography sx={{ fontStyle: "italic", fontWeight: 300, color: "#999" }}>(Vide)</Typography>}</StyledTableCell>
                 <StyledTableCell align="left">{data.ROLE}</StyledTableCell>
                 <StyledTableCell align="left">
                   <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "15px", transition: "0.2s" }}>
@@ -134,7 +148,7 @@ const TableUsers = ({ datas, onDelete }) => {
                   </Box>
                 </StyledTableCell>
               </StyledTableRow>
-            ))
+            )})
             :
             <StyledTableCell colSpan={6} align="center"><Typography sx={{ fontStyle: "italic", fontWeight: 300, color: "#999" }}>(Aucun utilisateur enregistré)</Typography></StyledTableCell>
           }

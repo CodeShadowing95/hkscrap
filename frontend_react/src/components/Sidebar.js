@@ -125,96 +125,26 @@ const Sidebar = ({ user }) => {
     elements = [...elements, { id: 7, icon: PeopleIcon, text: "Utilisateurs" }];
 
   return (
-    <Stack
-      direction="column"
-      sx={{
-        top: 0,
-        height: "100dvh",
-        position: "sticky",
-        // backgroundColor: "#1F2937 | 2e3d52",
-        // backgroundColor: "#eff2f6",
-        backgroundColor: theme === "light" ? "#eff2f6" : "#1F2937",
-        minWidth: "256px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        overflow: "auto",
-      }}
-    >
+    <Stack direction="column" sx={{ top: 0, height: "100dvh", position: "sticky", /* backgroundColor: "#1F2937 | 2e3d52", */ /* backgroundColor: "#eff2f6", */ backgroundColor: theme === "light" ? "#eff2f6" : "#1F2937", minWidth: "256px", display: "flex", justifyContent: "space-between", alignItems: "center", overflow: "auto", }}>
       {/* General Stack Top */}
       <Stack direction="column" spacing={3} sx={{ width: "100%", paddingTop: "20px" }}>
         {/* Stack logo */}
-        <Stack
-          direction="row"
-          sx={{
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            paddingLeft: "1.75rem",
-          }}
-        >
+        <Stack direction="row" sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", paddingLeft: "1.75rem", }}>
           <Link to="/home">
             <img src={sub_logo} alt="logo" height={60} />
           </Link>
         </Stack>
 
         {/* Utilisateur */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "10px",
-            backgroundColor: "#F3F7FD",
-            borderRadius: "50px",
-            width: "13.5rem",
-            alignSelf: "center"
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "10px",
-            }}
-          >
-            <Avatar
-              variant="circular"
-              src={profileImage}
-              sx={{ width: 50, height: 50 }}
-            />
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-              }}
-            >
-              <Typography
-                sx={{
-                  color: "#152C5B",
-                  fontSize: "0.875rem",
-                  fontWeight: 600,
-                  lineHeight: "1.25rem",
-                  textOverflow: "ellipsis",
-                }}
-              >
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px", backgroundColor: theme === 'light' ? "#F3F7FD" : "#253c5c", borderRadius: "50px", width: "13.5rem", alignSelf: "center" }}>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px", }}>
+            <Avatar variant="circular" src={profileImage} sx={{ width: 50, height: 50 }} />
+            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", }}>
+              <Typography sx={{ color: theme === "light" ? "#152C5B" : "#FFF", fontSize: "0.875rem", fontWeight: 600, lineHeight: "1.25rem", textOverflow: "ellipsis", }}>
                 {username}
               </Typography>
-              <Typography
-                sx={{
-                  color: "#93B0C8",
-                  fontSize: "0.7rem",
-                  fontWeight: 400,
-                  lineHeight: "1.25rem",
-                  letterSpacing: "1px",
-                }}
-              >
-                {user[0]?.role === "Modérateur"
-                  ? "CEO HKDigitals"
-                  : "Utilisateur"}
+              <Typography sx={{ color: "#93B0C8", fontSize: "0.7rem", fontWeight: 400, lineHeight: "1.25rem", letterSpacing: "1px", }}>
+                {user[0]?.role === "Modérateur" ? "CEO HKDigitals" : "Utilisateur"}
               </Typography>
             </Box>
           </Box>
