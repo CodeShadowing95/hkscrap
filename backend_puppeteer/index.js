@@ -17,16 +17,11 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  // host: process.env.MYSQL_HOST,
-  host: "localhost",
-  // user: process.env.MYSQL_USER,
-  user: "root",
-  // password: process.env.MYSQL_PASSWORD,
-  password: "",
-  // database: process.env.MYSQL_DATABASE,
-  database: "stage_db",
-  // port: process.env.MYSQL_PORT,
-  port: "3306",
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  port: process.env.MYSQL_PORT,
 });
 
 db.connect((err) => {
@@ -85,10 +80,6 @@ app.post("/login", async (req, res) => {
     }
 
     if (data.length > 0) {
-      if (data[0].role == "ModÃ©rateur" || data[0].role == "Modérateur") {
-        return res.status(200).json(data);
-      }
-
       const validPassword = await validatePassword(
         password,
         data[0].motdepasse
