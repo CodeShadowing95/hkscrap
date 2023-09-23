@@ -142,9 +142,10 @@ app.get("/get-users", async (req, res) => {
 });
 
 app.get('/count-users', async (req, res) => {
-  const sql = `SELECT COUNT(*) AS countUsers FROM user WHERE user_id <> ${process.env.ADMIN_ID}`;
+  const sql = `SELECT COUNT(*) AS countUsers FROM user WHERE user_id <> ?`;
+  const userID = process.env.ADMIN_ID;
   try {
-    db.query(sql, (err, data) => {
+    db.query(sql, [userID], (err, data) => {
       if(err){
         console.error('Error fetching data: ', err);
         res.status(500).json({ error: 'An error occurred while fetching data' });

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_API_URL;
-console.log(BASE_URL);
 
 export const fetchFromServer = async (url, values) => {
   try {

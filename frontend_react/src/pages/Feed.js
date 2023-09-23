@@ -24,7 +24,7 @@ const Feed = () => {
         },
       })
       .then(async (response) => {
-        if(!response.ok) throw new Error('Some problems encountered while processing the server')
+        if(!response.ok) throw new Error('Error when requesting some datas')
 
         const users_length = await response.json();
         setLengthUsers(users_length[0]?.countUsers);
