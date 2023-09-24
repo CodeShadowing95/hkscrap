@@ -118,14 +118,14 @@ const SearchFeed = () => {
 
   const insertNewData = async (label, website, startDate, execTime, lines, resultsFile) => {
     try {
-      const { nom, prenom } = user[0];
+      const { email } = user[0];
 
-      fetchFromServer('get-user-id', { nom, prenom })
+      fetchFromServer('get-user', { email })
       .then((res) => {
         if(res.data) {
           const userIdResponse = res.data;
-          if(userIdResponse[0]?.user_id) {
-            fetchFromServer('store-scraped-data', { userId: userIdResponse[0].user_id, label, website, startDate, execTime, lines, resultsFile })
+          if(userIdResponse[0]?.uid) {
+            fetchFromServer('store-scraped-data', { userId: userIdResponse[0].uid, label, website, startDate, execTime, lines, resultsFile })
             .then((response) => response.data)
             .catch((error) => {
               console.error("Error: " + error);
@@ -186,19 +186,6 @@ const SearchFeed = () => {
               <Typography color="#93B0C8">Résultats de recherche</Typography>
             </Breadcrumbs>
           </Box>
-
-          {/* Searchbar, Light/Dark mode, Notifications */}
-          <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", columnGap: "20px", width: "43%" }}>
-            <Searchbar />
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", backgroundColor: "#FFF" }}>
-              <LightModeIcon sx={{ fontSize: '25px', color: "#88a9c3" }} />
-            </div>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "15px", backgroundColor: "#FFF" }}>
-              <Badge color="error" variant="dot" overlap="circular">
-                <NotificationsNoneIcon sx={{ fontSize: '25px', color: "#88a9c3" }} />
-              </Badge>
-            </div>
-          </Box>
         </Box>
 
         {/* Success message */}
@@ -221,7 +208,7 @@ const SearchFeed = () => {
       </Box>
 
       {/* Content body */}
-      <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "0 4rem", rowGap: "20px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "0 2rem", rowGap: "20px", marginBottom: "20px" }}>
         {scrapedData.length === 0 ? (
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e1e1e1", backgroundColor: "#FFF", borderRadius: "10px", padding: "20px", width: "100%" }}>
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: 1, border: "2px dashed #d2d2d2", borderRadius: "5px", backgroundColor: "#F3F4F6", height: "20rem", width: "100%" }}>

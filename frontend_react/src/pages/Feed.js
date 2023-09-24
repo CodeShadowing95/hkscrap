@@ -51,17 +51,32 @@ const Feed = () => {
     }
 
     try {
-      fetch(`${process.env.REACT_APP_BASE_API_URL}/recentDatas`, {
-        method: 'GET',
+      const { email } = user[0];
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/get-user`, {
+        method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
+        body: JSON.stringify({ email: email }),
       })
       .then(async (response) => {
         if(!response.ok) throw new Error("Impossible d'accéder à la requête")
-  
-        const responseData = await response.json();
-        setDatas(responseData);
+
+        const data = await response.json();
+        const { uid } = data[0];
+        fetch(`${process.env.REACT_APP_BASE_API_URL}/recentDatas`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ uid: uid }),
+        })
+        .then(async (response) => {
+          if(!response.ok) throw new Error("Impossible d'accéder à la requête")
+    
+          const responseData = await response.json();
+          setDatas(responseData);
+        })
       })
     } catch (error) {
       console.error("Error de récupération de données", error);

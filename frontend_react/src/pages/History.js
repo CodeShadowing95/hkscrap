@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import TableScrapeDatas from '../components/TableScrapeDatas';
 
 const History = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
   const [datas, setDatas] = useState([]);
   const [page, setPage] = useState(1);
   const [filterTerm, setFilterTerm] = useState('');
@@ -32,18 +33,32 @@ const History = () => {
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_BASE_API_URL}/all`, {
-        method: 'GET',
+      const { email } = user[0];
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/get-user`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
+        body: JSON.stringify({ email: email }),
       })
       .then(async (response) => {
         if(!response.ok) throw new Error("Impossible d'accéder à la requête")
-  
-        const responseData = await response.json();
-        // console.log(responseData);
-        setDatas(responseData);
+
+        const data = await response.json();
+        const { uid } = data[0];
+        fetch(`${process.env.REACT_APP_BASE_API_URL}/all`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ uid: uid }),
+        })
+        .then(async (response) => {
+          if(!response.ok) throw new Error("Impossible d'accéder à la requête")
+    
+          const responseData = await response.json();
+          setDatas(responseData);
+        })
       })
     } catch (error) {
       console.error("Error de récupération de données", error);

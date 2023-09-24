@@ -147,10 +147,10 @@ app.get('/count-users', async (req, res) => {
   }
 })
 
-app.post('/get-user-id', async (req, res) => {
-  const sql = 'SELECT user_id from user WHERE nom = ? AND prenom = ?'
-  const { nom, prenom } = req.body;
-  const values = [nom, prenom];
+app.post('/get-user', async (req, res) => {
+  const sql = 'SELECT user_id AS uid from user WHERE email = ?'
+  const { email } = req.body;
+  const values = [email];
   db.query(sql, values, (err, data) => {
     if (err) return res.json("Error: " + err);
 
@@ -223,33 +223,35 @@ app.delete("/delete/:id", async (req, res) => {
 // **********************************************************************************************************************************************************
 
 // ***************************************************************** API requests for datas *****************************************************************
-app.get("/all", async (req, res) => {
-  const sql = "SELECT * FROM dataoverview";
-  db.query(sql, (err, data) => {
+app.post("/all", async (req, res) => {
+  const sql = "SELECT * FROM dataoverview WHERE user_id = ?";
+  const { uid } = req.body;
+  db.query(sql, [uid], (err, data) => {
     if (err) {
       console.error("Error fetching data: ", err);
       res.status(500).json({ error: "An error occurred while fetching data" });
       return;
     }
 
-    if (data.length >= 0) {
-      return res.status(200).json(data);
-    }
+    // if (data.length >= 0) {
+    return res.status(200).json(data);
+    // }
   });
 });
 
-app.get("/recentDatas", async (req, res) => {
-  const sql = "SELECT * FROM dataoverview ORDER BY do_id DESC LIMIT 10";
-  db.query(sql, (err, data) => {
+app.post("/recentDatas", async (req, res) => {
+  const sql = "SELECT * FROM dataoverview WHERE user_id = ? ORDER BY do_id DESC LIMIT 10";
+  const { uid } = req.body;
+  db.query(sql, [uid], (err, data) => {
     if (err) {
       console.error("Error fetching data: ", err);
       res.status(500).json({ error: "An error occurred while fetching data" });
       return;
     }
 
-    if (data.length >= 0) {
-      return res.status(200).json(data);
-    }
+    // if (data.length >= 0) {
+    return res.status(200).json(data);
+    // }
   });
 });
 

@@ -37,8 +37,8 @@ const Profile = () => {
 
   const editProfile = (newState) => async () => {
     try {
-      const { nom, prenom } = user[0];
-      fetchFromServer('get-user-id', { nom, prenom })
+      const { email } = user[0];
+      fetchFromServer('get-user', { email })
       .then(async (res) => {
         const result = await res?.data;
         if(result) {
