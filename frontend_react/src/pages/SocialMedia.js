@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { Box, Breadcrumbs, Grid, Link, Stack, Typography } from '@mui/material'
+import { Box, Breadcrumbs, Link, Stack, Typography } from '@mui/material'
 // import { Navbar } from '.'
 
 import { NoService, popular_sites } from '../utils/constants'

@@ -84,12 +84,14 @@ app.post("/unique-user", async (req, res) => {
 
 app.post("/register", async (req, res) => {
   const sql =
-    "INSERT INTO user (prenom, email, motdepasse, role) VALUES (?, ?, ?, ?)";
+    "INSERT INTO user (nom, prenom, email, motdepasse, role) VALUES (?, ?, ?, ?, ?)";
   const { email, password } = req.body;
   const role = "Utilisateur";
   const randomId = generateTempId();
   const prenom = "user_" + randomId;
+  const nom = "";
   const values = [
+    nom,
     prenom,
     email,
     password,

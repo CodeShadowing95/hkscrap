@@ -95,7 +95,7 @@ const TableUsers = ({ datas, onDelete }) => {
           {datas.length > 0 ?
             datas.map((data, index) => {
               let username = '';
-              if(data.NOM != null && data.PRENOM !== null) {
+              if(data.NOM !== null && data.PRENOM !== null) {
                 username = data.NOM + ' ' + data.PRENOM;
               } else {
                 const email = data.EMAIL;

@@ -167,7 +167,7 @@ const Feed = () => {
     }
 
     countAllScrapes();
-  }, [])
+  })
 
   return (
     <Stack sx={{ backgroundColor: theme === 'light' ? "#eff2f6" : "#253c5c" }}>

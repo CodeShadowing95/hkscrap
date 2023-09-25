@@ -274,7 +274,7 @@ const Showcase = () => {
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundColor: "#eef0f6" }}>
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: "0 148px" }}>
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
-              <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, width: "700px", lineHeight: "40px", color: "#37446f" }}>Cas d'utilisation Web Scraping</Typography>
+              <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, width: "700px", lineHeight: "40px", color: "#37446f" }}>Cas d'utilisation de notre solution</Typography>
               <Typography sx={{ margin: 0, color: "#8087a6", lineHeight: "26px", fontSize: "16px", fontFamily: "Montserrat", width: "800px", textAlign: "center" }}>{loremText[3]}</Typography>
             </Box>
             <Grid container spacing={3}>
@@ -384,8 +384,8 @@ const Showcase = () => {
                   </Box>
                   <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "24px", lineHeight: "32px", fontWeight: 700, marginTop: "20px", marginBottom: "10px", color: "#37446f" }}>Startup</Typography>
                   <Box sx={{ display: "flex", marginTop: "10px", marginBottom: "10px" }}>
-                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>29.99€</Typography>
-                    <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>/mois</Typography>
+                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>29.99</Typography>
+                    <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>€/mois</Typography>
                   </Box>
                   <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: "4px" }}>
                     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
@@ -405,8 +405,8 @@ const Showcase = () => {
                   </Box>
                   <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "24px", lineHeight: "32px", fontWeight: 700, marginTop: "20px", marginBottom: "10px", color: "#37446f" }}>Business</Typography>
                   <Box sx={{ display: "flex", marginTop: "10px", marginBottom: "10px" }}>
-                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>59.99€</Typography>
-                    <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>/mois</Typography>
+                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>59.99</Typography>
+                    <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>€/mois</Typography>
                   </Box>
                   <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: "4px" }}>
                     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
@@ -426,8 +426,8 @@ const Showcase = () => {
                   </Box>
                   <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "24px", lineHeight: "32px", fontWeight: 700, marginTop: "20px", marginBottom: "10px", color: "#37446f" }}>Entreprise</Typography>
                   <Box sx={{ display: "flex", marginTop: "10px", marginBottom: "10px" }}>
-                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>119.99€</Typography>
-                    <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>/mois</Typography>
+                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>119.99</Typography>
+                    <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>€/mois</Typography>
                   </Box>
                   <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: 3 }}>
                     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
