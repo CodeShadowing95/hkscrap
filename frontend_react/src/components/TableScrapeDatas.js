@@ -89,7 +89,9 @@ const TableScrapeDatas = ({ datas, simple }) => {
             )
             })
             :
-            <StyledTableCell colSpan={6} align="center"><Typography sx={{ fontStyle: "italic", fontWeight: 300, color: "#999" }}>(Aucune tâche effectuée)</Typography></StyledTableCell>
+            <StyledTableRow>
+              <StyledTableCell colSpan={6} align="center"><Typography sx={{ fontStyle: "italic", fontWeight: 300, color: "#999" }}>(Aucune tâche effectuée)</Typography></StyledTableCell>
+            </StyledTableRow>
           }
         </TableBody>
       </Table>

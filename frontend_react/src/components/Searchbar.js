@@ -32,10 +32,10 @@ const Searchbar = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         sx={{
-          width: "100%",
+          width: "70%",
           "& .MuiOutlinedInput-root": {
             height: "4rem",
-            fontSize: "1em",
+            fontSize: "1rem",
             backgroundColor: theme === 'light' ? "#FFF" : "rgba(0, 0, 0, 0.1)",
             borderRadius: "15px",
             color: theme === "light" ? "none" : "#adadad",

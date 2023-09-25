@@ -1,7 +1,6 @@
-import { Badge, Box, Breadcrumbs, Link, Stack, Typography } from "@mui/material"
-import { Searchbar, Template } from "../components"
-import { LightModeIcon, NotificationsNoneIcon, popular_sites } from "../utils/constants"
-import Sidebar from "../components/Sidebar"
+import { Box, Breadcrumbs, Link, Stack, Typography } from "@mui/material"
+import { Template } from "../components"
+import { popular_sites } from "../utils/constants"
 
 const ScrapersFeed = () => {
   const user = JSON.parse(localStorage.getItem('user'));

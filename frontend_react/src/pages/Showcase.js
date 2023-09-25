@@ -28,6 +28,10 @@ const Showcase = () => {
     navigate('/auth');
   }
 
+  const handleSignup = () => {
+    navigate('/signup');
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -68,10 +72,10 @@ const Showcase = () => {
           </Box>
           {/* Right side */}
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 2 }}>
-            <Box component={Link} to="/auth" sx={{ display: "flex", justifyContent: "center", alignItems: "center", textDecoration: "none", cursor: "pointer", transition: ".2s" }} onClick={() => handleLogin()}>
+            <Box component={Link} sx={{ display: "flex", justifyContent: "center", alignItems: "center", textDecoration: "none", cursor: "pointer", transition: ".2s" }} onClick={() => handleSignup()}>
               <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: scrolling ? "#000" : "#FFF", textTransform: "capitalize" }}>Inscription</Typography>
             </Box>
-            <Box component={Link} to="/auth" sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }} onClick={() => handleLogin()}>
+            <Box component={Link} sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }} onClick={() => handleLogin()}>
               <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "uppercase" }}>Connexion</Typography>
             </Box>
           </Box>
@@ -425,7 +429,7 @@ const Showcase = () => {
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>119.99€</Typography>
                     <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>/mois</Typography>
                   </Box>
-                  <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: 2 }}>
+                  <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: 3 }}>
                     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
                       <TaskAltIcon sx={{ color: "#0056b3" }} />
                       <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>

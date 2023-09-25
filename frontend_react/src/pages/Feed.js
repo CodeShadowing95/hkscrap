@@ -1,6 +1,6 @@
 import { Stack, Box, Typography, Grid } from '@mui/material'
 import { Chart1, Chart2, Searchbar, Template } from '../components'
-import { FlashOnIcon, HomeIcon, Inventory2Icon, PeopleIcon, TrendingUpIcon, popular_sites } from '../utils/constants';
+import { FlashOnIcon, HomeIcon, Inventory2Icon, PeopleIcon, TrendingUpIcon, TwinkleBG, popular_sites } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import TableScrapeDatas from '../components/TableScrapeDatas';
 import { useTheme } from '../components/ThemeProvider';
@@ -10,10 +10,47 @@ const Feed = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const [datas, setDatas] = useState([]);
   const [lengthUsers, setLengthUsers] = useState(0);
+  const [lengthRequests, setLengthRequests] = useState(0);
   const [lengthDatas, setLengthDatas] = useState(0);
-  const [countBySite, setCountBySite] = useState([]);
+  const [countAll, setCountAll] = useState([]);
   const { theme } = useTheme();
 
+  
+
+  function countAllScrapes() {
+    try {
+      const { email } = user[0];
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/get-user`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email }),
+      })
+      .then(async (response) => {
+        if(!response.ok) throw new Error("Impossible d'accéder à la requête")
+  
+        const data = await response.json();
+        const { uid } = data[0];
+        try {
+          const temp_datas = [];
+          for (let index = 0; index < popular_sites.length; index++) {
+            const website = popular_sites[index]?.name;
+            fetchFromServer('scrapes-count-by-site', { website, uid })
+            .then(async (res) => {
+              const result = await res?.data[0].counter;
+              temp_datas.push(result);
+            })
+          }
+          setCountAll(temp_datas);
+        } catch (error) {
+          console.error("Erreur");
+        }
+      })
+    } catch (error) {
+      console.error("Error de récupération de données", error);
+    }
+  }
 
   useEffect(() => {
     try {
@@ -34,17 +71,32 @@ const Feed = () => {
     }
     
     try {
-      fetch(`${process.env.REACT_APP_BASE_API_URL}/count-scraped-datas`, {
-        method: 'GET',
+      const { email } = user[0];
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/get-user`, {
+        method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
+        body: JSON.stringify({ email: email }),
       })
       .then(async (response) => {
-        if(!response.ok) throw new Error('Some problems encountered while processing the server')
+        if(!response.ok) throw new Error("Impossible d'accéder à la requête")
 
-        const datas_length = await response.json();
-        setLengthDatas(datas_length[0]?.totalDatas);
+        const data = await response.json();
+        const { uid } = data[0];
+        fetch(`${process.env.REACT_APP_BASE_API_URL}/count-scraped-datas`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ uid: uid }),
+        })
+        .then(async (response) => {
+          if(!response.ok) throw new Error("Impossible d'accéder à la requête")
+
+          const responseData = await response.json();
+          setLengthDatas(responseData[0]?.totalDatas);
+        })
       })
     } catch (error) {
       console.error("Error de récupération de données", error);
@@ -81,36 +133,57 @@ const Feed = () => {
     } catch (error) {
       console.error("Error de récupération de données", error);
     }
-
+    
     try {
-      let temp = [];
-      for (let index = 0; index < popular_sites.length; index++) {
-        const website = popular_sites[index]?.name;
-        fetchFromServer('scrapes-count-by-site', { website })
-        .then(async (res) => {
-          const result = await res?.data[0].counter;
-          temp = [...temp, result];
-          setCountBySite(temp);
+      const { email } = user[0];
+      fetch(`${process.env.REACT_APP_BASE_API_URL}/get-user`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email }),
+      })
+      .then(async (response) => {
+        if(!response.ok) throw new Error("Impossible d'accéder à la requête")
+
+        const data = await response.json();
+        const { uid } = data[0];
+        fetch(`${process.env.REACT_APP_BASE_API_URL}/number_requests`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ uid: uid }),
         })
-      }
+        .then(async (response) => {
+          if(!response.ok) throw new Error("Impossible d'accéder à la requête")
+
+          const responseData = await response.json();
+          setLengthRequests(responseData);
+        })
+      })
     } catch (error) {
-      console.error("Erreur");
+      console.error("Error de récupération de données", error);
     }
+
+    countAllScrapes();
   }, [])
 
   return (
-    <Stack sx={{ backgroundColor: "#eff2f6" }}>
-      <Box sx={{ display: "flex", alignItems: "flex-start", marginBottom: "1.5em", padding: "2rem 2rem 8rem", backgroundImage: theme === 'dark' ? "linear-gradient(to bottom, #253c5c, #2c2b43, #271d2b, #1a1117, #000000)" : "linear-gradient(to bottom, #f0f2f7, #dfe3ee, #ced4e4, #bdc5db, #acb7d2)" }}>
+    <Stack sx={{ backgroundColor: theme === 'light' ? "#eff2f6" : "#253c5c" }}>
+      <Box sx={{ display: "flex", alignItems: "flex-start", marginBottom: "1.5em", padding: "2rem 2rem 8rem", /*backgroundImage: theme === 'dark' ? "linear-gradient(to bottom, #253c5c, #2c2b43, #271d2b, #1a1117, #000000)" : "linear-gradient(to bottom, #f0f2f7, #dfe3ee, #ced4e4, #bdc5db, #acb7d2)"*/backgroundImage: `url('${TwinkleBG}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
         {/* Title & Breadcrumb */}
         <Stack rowGap="15px" width="100%">
-          <Box sx={{ display: "flex", alignItems: "center", columnGap: 1 }}>
-            <HomeIcon sx={{ color: theme === "dark" ? "#FFF" : "#152C5B", fontSize: "2em" }} />
-            <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: theme === "dark" ? "#FFF" : "#152C5B" }}>Welcome back, {user[0]?.prenom}</Typography>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+            <HomeIcon sx={{ color: theme === "dark" ? "#FFF" : "#FFF", fontSize: "2em" }} />
+            <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: theme === "dark" ? "#FFF" : "#FFF" }}>Welcome back, {user[0]?.prenom}</Typography>
           </Box>
           {/* Breadcrumb */}
-          <Typography sx={{ fontSize: "1em", fontWeight: 300, marginBottom: "10px", color: theme === "dark" ? "#93B0C8" : "#737373" }}>Besoin d'effectuer un scraping rapide? Renseignez juste l'URL du site</Typography>
+          <Typography sx={{ fontSize: "1em", textAlign: "center", fontWeight: 300, marginBottom: "10px", color: "#a8aebd" }}>Entrez l'URL de la page que vous souhaitez scraper dans la barre de recherche ci-dessous <br/> et obtenez des informations précieuses.</Typography>
           {/* Barre de recherche */}
-          <Searchbar />
+          <Box sx={{ textAlign: "center", width: "100%" }}>
+            <Searchbar />
+          </Box>
         </Stack>
       </Box>
 
@@ -120,25 +193,40 @@ const Feed = () => {
           {/* <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", "& > *": { flex: 1}, }}> */}
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6} lg={4}>
-              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
-                <Stack spacing={2.5}>
-                  <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Nombre d'utilisateurs</Typography>
-                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthUsers}</Typography>
-                  <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Utilisateurs enregistrés</Typography>
-                </Stack>
-                <Stack justifyContent="center" alignItems="center">
-                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", backgroundColor: "#c8d9ea", borderRadius: "50px" }}>
-                    <PeopleIcon sx={{ fontSize: "50px", color: "#417AAE" }} />
-                  </div>
-                </Stack>
-              </Box>
+              {user[0].role === "Modérateur" ?
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
+                  <Stack spacing={2.5}>
+                    <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Nombre d'utilisateurs</Typography>
+                    <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthUsers}</Typography>
+                    <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Utilisateurs enregistrés</Typography>
+                  </Stack>
+                  <Stack justifyContent="center" alignItems="center">
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", backgroundColor: "#c8d9ea", borderRadius: "50px" }}>
+                      <PeopleIcon sx={{ fontSize: "50px", color: "#417AAE" }} />
+                    </div>
+                  </Stack>
+                </Box>
+                :
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
+                  <Stack spacing={2.5}>
+                    <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Requêtes effectuées</Typography>
+                    <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthRequests}</Typography>
+                    <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Requêtes effectuées ce mois</Typography>
+                  </Stack>
+                  <Stack justifyContent="center" alignItems="center">
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", backgroundColor: "#ffe4b3", borderRadius: "50px" }}>
+                      <FlashOnIcon sx={{ fontSize: "50px", color: "#ffa500" }} />
+                    </div>
+                  </Stack>
+                </Box>
+              }
             </Grid>
 
 
             <Grid item xs={12} sm={12} md={6} lg={4}>
               <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
                 <Stack spacing={2.5}>
-                  <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Données extraites</Typography>
+                  <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Volume de données stockées</Typography>
                   <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthDatas}</Typography>
                   <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Données extraites ce mois</Typography>
                 </Stack>
@@ -153,9 +241,9 @@ const Feed = () => {
             <Grid item xs={12} sm={12} md={6} lg={4}>
               <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
                 <Stack spacing={2.5}>
-                  <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Quantité/Pourcentage</Typography>
-                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>0%</Typography>
-                  <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Opération ce mois</Typography>
+                  <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Taux de réussite</Typography>
+                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{(70 / 80) * 100}%</Typography>
+                  <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Taux de réussite par requête</Typography>
                 </Stack>
                 <Stack justifyContent="center" alignItems="center">
                   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", backgroundColor: "#fab7b9", borderRadius: "50px" }}>
@@ -219,7 +307,7 @@ const Feed = () => {
                           {/* Run image + count */}
                           <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                             <FlashOnIcon className='flash' sx={{ fontSize: "20px", color: "#9CA3AF" }} />
-                            <Typography sx={{ color: theme === "light" ? "#000" : "#FFF" }}>{countBySite[index]}</Typography>
+                            <Typography sx={{ color: theme === "light" ? "#000" : "#FFF" }}>{countAll[index]}</Typography>
                           </Box>
                         </Box>
                       ))

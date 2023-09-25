@@ -52,8 +52,8 @@ import SpinImage from '../assets/Loader.gif';
 import profileImage from '../assets/yammy.webp';
 import scene from '../assets/scene-haikei.png';
 import particlesBg from '../assets/Particles_bg.png';
-import sunflowerBg from '../assets/Sunflower_bg.png';
 import BG_Login from '../assets/bg_login.png';
+import TwinkleBG from '../assets/Twinkle_bg.png';
 import WaveBg from '../assets/Wave_bg.png';
 import DataExtraction from '../assets/Data_report.png';
 import Usecase1 from '../assets/1.png';
@@ -66,6 +66,7 @@ import Individual_pricing from '../assets/individual.png';
 import Startup_pricing from '../assets/startup.png';
 import Business_pricing from '../assets/business.png';
 import Enterprise_pricing from '../assets/enterprise.png';
+import NoService from '../assets/NoService.png';
 
 import logo from "../assets/logo.png";
 import sub_logo from "../assets/logo-hkscrap.png";
@@ -154,7 +155,6 @@ export const loremText = {
   scene,
   particlesBg,
   UploadIcon,
-  sunflowerBg,
   WaveBg,
   DataExtraction,
   Usecase1,
@@ -167,4 +167,6 @@ export const loremText = {
   Startup_pricing,
   Business_pricing,
   Enterprise_pricing,
+  TwinkleBG,
+  NoService,
  }

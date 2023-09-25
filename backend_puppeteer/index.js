@@ -255,6 +255,20 @@ app.post("/recentDatas", async (req, res) => {
   });
 });
 
+app.post('/number_requests', async (req, res) => {
+  const sql = 'SELECT * FROM dataoverview WHERE user_id = ?';
+  const { uid } = req.body;
+  db.query(sql, [uid], (err, data) => {
+    if (err) {
+      console.error("Error fetching data: ", err);
+      res.status(500).json({ error: "An error occurred while fetching data" });
+      return;
+    }
+
+    return res.status(200).json(data.length);
+  })
+});
+
 app.post("/scrape", async (req, res) => {
   try {
     const { url } = req.body;
@@ -297,19 +311,20 @@ app.post("/store-scraped-data", async (req, res) => {
   }
 })
 
-app.get('/count-scraped-datas', async (req, res) => {
-  const sql = 'SELECT SUM(LIGNES) AS totalDatas FROM dataoverview';
+app.post('/count-scraped-datas', async (req, res) => {
+  const sql = 'SELECT SUM(LIGNES) AS totalDatas FROM dataoverview WHERE user_id = ?';
+  const { uid } = req.body;
   try {
-    db.query(sql, (err, data) => {
+    db.query(sql, [uid], (err, data) => {
       if(err){
         console.error('Error fetching data: ', err);
         res.status(500).json({ error: 'An error occurred while fetching data' });
         return;
       }
 
-      if(data) {
-        return res.status(200).json(data);
-      }
+      // if(data) {
+      return res.status(200).json(data);
+      // }
     })
   } catch (error) {
     console.error("Query is not executed: ", error);
@@ -317,9 +332,9 @@ app.get('/count-scraped-datas', async (req, res) => {
 })
 
 app.post('/scrapes-count-by-site', async (req, res) => {
-  const sql = "SELECT COUNT(*) AS counter FROM dataoverview WHERE website = ?";
-  const { website } = req.body;
-  const values = [website];
+  const sql = "SELECT COUNT(*) AS counter FROM dataoverview WHERE website = ? AND user_id = ?";
+  const { website, uid } = req.body;
+  const values = [website, uid];
   try {
     db.query(sql, values, (err, data) => {
       if(err){
