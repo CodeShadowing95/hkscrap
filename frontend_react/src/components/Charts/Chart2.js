@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
+import { popular_sites } from '../../utils/constants';
 
 ChartJS.register(
   CategoryScale,
@@ -34,7 +35,16 @@ export const options = {
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const getSites = () => {
+  let temp = [];
+  popular_sites.map((site) => (
+    temp.push(site?.name)
+  ));
+
+  return temp;
+}
+
+const labels = getSites();
 
 export const data = {
   labels,

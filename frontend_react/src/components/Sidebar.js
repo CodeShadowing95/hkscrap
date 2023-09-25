@@ -125,7 +125,7 @@ const Sidebar = ({ user }) => {
     elements = [...elements, { id: 7, icon: PeopleIcon, text: "Utilisateurs" }];
 
   return (
-    <Stack direction="column" sx={{ top: 0, height: "100dvh", position: "sticky", /* backgroundColor: "#1F2937 | 2e3d52", */ /* backgroundColor: "#eff2f6", */ backgroundColor: theme === "light" ? "#eff2f6" : "#1F2937", minWidth: "256px", display: "flex", justifyContent: "space-between", alignItems: "center", overflow: "auto", }}>
+    <Stack direction="column" sx={{ top: 0, height: "100dvh", position: "sticky", /* backgroundColor: "#1F2937 | 2e3d52", */backgroundColor: theme === "light" ? "#eff2f6" : "#1F2937", minWidth: "256px", display: "flex", justifyContent: "space-between", alignItems: "center", overflow: "auto", }}>
       {/* General Stack Top */}
       <Stack direction="column" spacing={3} sx={{ width: "100%", paddingTop: "20px" }}>
         {/* Stack logo */}
