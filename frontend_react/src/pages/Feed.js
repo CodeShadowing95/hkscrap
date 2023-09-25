@@ -227,7 +227,7 @@ const Feed = () => {
               <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
                 <Stack spacing={2.5}>
                   <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Volume de données stockées</Typography>
-                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthDatas}</Typography>
+                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthDatas > 0 ? lengthDatas : 0}</Typography>
                   <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Données extraites ce mois</Typography>
                 </Stack>
                 <Stack justifyContent="center" alignItems="center">
