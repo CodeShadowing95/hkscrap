@@ -143,7 +143,7 @@ const Sidebar = ({ user }) => {
               <Typography sx={{ color: theme === "light" ? "#152C5B" : "#FFF", fontSize: "0.875rem", fontWeight: 600, lineHeight: "1.25rem", textOverflow: "ellipsis", }}>
                 {username}
               </Typography>
-              <Typography sx={{ color: "#93B0C8", fontSize: "0.7rem", fontWeight: 400, lineHeight: "1.25rem", letterSpacing: "1px", }}>
+              <Typography sx={{ color: "#93B0C8", fontSize: "0.7rem", fontWeight: 300, lineHeight: "1.25rem", letterSpacing: ".5px", }}>
                 {user[0]?.role === "Modérateur" ? "CEO HKDigitals" : "Utilisateur"}
               </Typography>
             </Box>
