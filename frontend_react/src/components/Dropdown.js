@@ -5,7 +5,7 @@ import { MenuButton } from '@mui/base/MenuButton';
 import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 import { AccountCircleIcon } from '../utils/constants';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 export default function MenuIntroduction() {
@@ -42,16 +42,16 @@ export default function MenuIntroduction() {
             </Box>
             <Menu slots={{ listbox: StyledListbox }}>
                 <StyledMenuItem onClick={createHandleMenuClick('Profil')}>
-                    Mon profil
+                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Mon profil</Typography>
                 </StyledMenuItem>
                 <StyledMenuItem onClick={createHandleMenuClick('Paramètres')}>
-                    Paramètres
+                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Paramètres</Typography>
                 </StyledMenuItem>
                 <StyledMenuItem onClick={createHandleMenuClick('Aide')}>
-                    Aide
+                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Aide</Typography>
                 </StyledMenuItem>
                 <StyledMenuItem onClick={createHandleMenuClick('Déconnexion')}>
-                    Déconnexion
+                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Déconnexion</Typography>
                 </StyledMenuItem>
             </Menu>
         </Dropdown>

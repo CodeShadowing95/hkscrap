@@ -7,16 +7,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { ErrorOutlineIcon, FileUploadIcon, TaskAltIcon, UploadIcon, UploadingLoop, popular_sites } from '../utils/constants';
+import { ErrorOutlineIcon, TaskAltIcon, UploadingLoop, popular_sites } from '../utils/constants';
 import { Box, Typography } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     color: "#88a9c3",
+    fontFamily: "Montserrat",
+    fontWeight: 600,
   },
-  // [`&.${tableCellClasses.body}`]: {
-  //   fontSize: 14,
-  // },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+    fontFamily: "Montserrat",
+  },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({

@@ -1,6 +1,6 @@
 import { Link, Stack, Typography } from "@mui/material"
 
-const MenuElement = ({ icon, text, active, onClick }) => {
+const MenuElement = ({ icon, text, active, menuVisible, onClick }) => {
   const Tag = icon;
   const id = text.trim().toLowerCase();
 
@@ -28,7 +28,7 @@ const MenuElement = ({ icon, text, active, onClick }) => {
         sx={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "flex-start",
+          justifyContent: menuVisible ? "flex-start" : "center",
           alignItems: "center",
           gap: "0.75rem",
           textDecoration: 'none',
@@ -45,8 +45,8 @@ const MenuElement = ({ icon, text, active, onClick }) => {
           transition: "0.2s"
         }}
       >
-        <Tag sx={{ fontSize: "20px", color: active === true ? '#FFF' : '#88a9c3' }} />
-        <Typography sx={{ fontSize: "17px", fontWeight: 500, color: active === true ? '#FFF' : '#88a9c3' }}>{text}</Typography>
+        <Tag sx={{ fontSize: menuVisible ? "20px" : "25px", color: active === true ? '#FFF' : '#88a9c3' }} />
+        {menuVisible && <Typography sx={{ fontFamily: "Montserrat", fontSize: "15px", fontWeight: 500, color: active === true ? '#FFF' : '#88a9c3' }}>{text}</Typography>}
       </Stack>
     </Link>
   )

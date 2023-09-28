@@ -35,7 +35,8 @@ const Navbar = ({ onMenuOnclick }) => {
                 width: "100%",
                 "& .MuiOutlinedInput-root": {
                   height: "2.5rem",
-                  fontSize: "15px",
+                  fontFamily: "Montserrat",
+                  fontSize: "13px",
                   backgroundColor: theme === 'light' ? "#FFF" : "rgba(0, 0, 0, 0.1)",
                   borderRadius: "15px",
                   color: theme === "light" ? "none" : "#adadad",

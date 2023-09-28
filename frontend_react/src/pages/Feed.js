@@ -176,10 +176,10 @@ const Feed = () => {
         <Stack rowGap="15px" width="100%">
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
             <HomeIcon sx={{ color: theme === "dark" ? "#FFF" : "#FFF", fontSize: "2em" }} />
-            <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: theme === "dark" ? "#FFF" : "#FFF" }}>Welcome back, {user[0]?.prenom}</Typography>
+            <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: theme === "dark" ? "#FFF" : "#FFF", fontFamily: "Montserrat" }}>Welcome back, {user[0]?.prenom}</Typography>
           </Box>
           {/* Breadcrumb */}
-          <Typography sx={{ fontSize: "1em", textAlign: "center", fontWeight: 300, marginBottom: "10px", color: "#a8aebd" }}>Entrez l'URL de la page que vous souhaitez scraper dans la barre de recherche ci-dessous <br/> et obtenez des informations précieuses.</Typography>
+          <Typography sx={{ fontSize: "15px", textAlign: "center", fontWeight: 400, marginBottom: "10px", color: "#a8aebd", fontFamily: "Montserrat" }}>Entrez l'URL de la page que vous souhaitez scraper dans la barre de recherche ci-dessous <br/> et obtenez des informations précieuses.</Typography>
           {/* Barre de recherche */}
           <Box sx={{ textAlign: "center", width: "100%" }}>
             <Searchbar />
@@ -196,9 +196,9 @@ const Feed = () => {
               {user[0].role === "Modérateur" ?
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
                   <Stack spacing={2.5}>
-                    <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Nombre d'utilisateurs</Typography>
-                    <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthUsers}</Typography>
-                    <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Utilisateurs enregistrés</Typography>
+                    <Typography sx={{ fontSize: "17px", fontWeight: 600, color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>Nombre d'utilisateurs</Typography>
+                    <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>{lengthUsers}</Typography>
+                    <Typography sx={{ fontSize: "14px", fontWeight: 400, fontFamily: "Montserrat" }} color="#999">Utilisateurs enregistrés</Typography>
                   </Stack>
                   <Stack justifyContent="center" alignItems="center">
                     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", backgroundColor: "#c8d9ea", borderRadius: "50px" }}>
@@ -209,9 +209,9 @@ const Feed = () => {
                 :
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
                   <Stack spacing={2.5}>
-                    <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Requêtes effectuées</Typography>
-                    <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthRequests}</Typography>
-                    <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Requêtes effectuées ce mois</Typography>
+                    <Typography sx={{ fontSize: "17px", fontWeight: 600, color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>Requêtes effectuées</Typography>
+                    <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>{lengthRequests}</Typography>
+                    <Typography sx={{ fontSize: "14px", fontWeight: 400, fontFamily: "Montserrat" }} color="#999">Requêtes effectuées ce mois</Typography>
                   </Stack>
                   <Stack justifyContent="center" alignItems="center">
                     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", backgroundColor: "#ffe4b3", borderRadius: "50px" }}>
@@ -226,9 +226,9 @@ const Feed = () => {
             <Grid item xs={12} sm={12} md={6} lg={4}>
               <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
                 <Stack spacing={2.5}>
-                  <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Volume de données stockées</Typography>
-                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthDatas > 0 ? lengthDatas : 0}</Typography>
-                  <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Données extraites ce mois</Typography>
+                  <Typography sx={{ fontSize: "17px", fontWeight: 600, color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>Volume de données stockées</Typography>
+                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>{lengthDatas > 0 ? lengthDatas : 0}</Typography>
+                  <Typography sx={{ fontSize: "14px", fontWeight: 400, fontFamily: "Montserrat" }} color="#999">Données extraites ce mois</Typography>
                 </Stack>
                 <Stack justifyContent="center" alignItems="center">
                   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", backgroundColor: "#d2e8c9", borderRadius: "50px" }}>
@@ -241,9 +241,9 @@ const Feed = () => {
             <Grid item xs={12} sm={12} md={6} lg={4}>
               <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", borderRadius: "10px", gap: 5 }}>
                 <Stack spacing={2.5}>
-                  <Typography sx={{ fontSize: "20px", fontWeight: 500, color: theme === "light" ? "#000" : "#FFF" }}>Taux de réussite</Typography>
-                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF" }}>{lengthDatas > 0 ? (70 / 80) * 100 : 0}%</Typography>
-                  <Typography sx={{ fontSize: "15px", fontWeight: 400 }} color="#999">Taux de réussite par requête</Typography>
+                  <Typography sx={{ fontSize: "17px", fontWeight: 600, color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>Taux de réussite</Typography>
+                  <Typography variant='h4' sx={{ fontWeight: 700, color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>{lengthDatas > 0 ? (70 / 80) * 100 : 0}%</Typography>
+                  <Typography sx={{ fontSize: "14px", fontWeight: 400, fontFamily: "Montserrat" }} color="#999">Taux de réussite par requête</Typography>
                 </Stack>
                 <Stack justifyContent="center" alignItems="center">
                   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "20px", backgroundColor: "#fab7b9", borderRadius: "50px" }}>
@@ -261,7 +261,7 @@ const Feed = () => {
               <Stack sx={{ transition: "0.2s", "&:hover": {boxShadow: "0px 5px 10px 1px #D5D5D5"} }}>
                 {/* Title */}
                 <Box sx={{ display: "flex", padding: "20px", borderBottom: theme === "light" ? "1px solid #e1e1e1" : "none", backgroundColor: theme === "light" ? "#F8F8F9" : "#405472" }}>
-                  <Typography sx={{ fontSize: "1.15rem", fontWeight: 500, color: theme === "light" ? "#152C5B" : "#FFF" }}>Scrapings effectués par plateforme</Typography>
+                  <Typography sx={{ fontSize: "1.15rem", fontWeight: 600, color: theme === "light" ? "#152C5B" : "#FFF", fontFamily: "Montserrat" }}>Scrapings effectués par plateforme</Typography>
                 </Box>
                 {/* Content */}
                 <Box sx={{ backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", padding: "1.35rem" }}>
@@ -273,7 +273,7 @@ const Feed = () => {
               <Stack sx={{ transition: "0.2s", "&:hover": {boxShadow: "0px 5px 10px 1px #D5D5D5"} }}>
                 {/* Title */}
                 <Box sx={{ display: "flex", padding: "20px", borderBottom: theme === "light" ? "1px solid #e1e1e1" : "none", backgroundColor: theme === "light" ? "#F8F8F9" : "#405472" }}>
-                  <Typography sx={{ fontSize: "1.15rem", fontWeight: 500, color: theme === "light" ? "#152C5B" : "#FFF" }}>Taux de réussite par source</Typography>
+                  <Typography sx={{ fontSize: "1.15rem", fontWeight: 600, color: theme === "light" ? "#152C5B" : "#FFF", fontFamily: "Montserrat" }}>Taux de réussite par source</Typography>
                 </Box>
                 {/* Content */}
                 <Box sx={{ backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937", padding: "1.35rem" }}>
@@ -290,7 +290,7 @@ const Feed = () => {
             <Grid item xs={12} sm={12} md={12} lg={3}>
               <Stack spacing={3}>
                 <Stack spacing={1}>
-                  <Typography variant="h3" sx={{ fontSize: "1.3em", fontWeight: "500", color: theme === 'light' ? "#152C5B" : "#FDFEFF" }}>Sites phares</Typography>
+                  <Typography variant="h3" sx={{ fontSize: "1.3em", fontWeight: 600, color: theme === 'light' ? "#152C5B" : "#FDFEFF", fontFamily: "Montserrat" }}>Sites phares</Typography>
                   <Stack padding="20px" border={theme === "light" ? "1px solid #e1e1e1" : "none"} borderRadius="10px" sx={{ backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937" }} spacing={1}>
                     {/* map */}
                     {popular_sites.map((site, index) => (
@@ -302,12 +302,12 @@ const Feed = () => {
                               <img src={site.icon} alt="" style={{ maxHeight: "100%", maxWidth: "100%" }} />
                             </Box>
                             {/* Title */}
-                            <Typography sx={{ fontSize: "1rem", fontWeight: 400, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: theme === "light" ? "#000" : "#FFF" }}>{site.name}</Typography>
+                            <Typography sx={{ fontSize: "1rem", fontWeight: 400, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>{site.name}</Typography>
                           </Box>
                           {/* Run image + count */}
                           <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                             <FlashOnIcon className='flash' sx={{ fontSize: "20px", color: "#9CA3AF" }} />
-                            <Typography sx={{ color: theme === "light" ? "#000" : "#FFF" }}>{countAll[index]}</Typography>
+                            <Typography sx={{ color: theme === "light" ? "#000" : "#FFF", fontFamily: "Montserrat" }}>{countAll[index]}</Typography>
                           </Box>
                         </Box>
                       ))
@@ -322,7 +322,7 @@ const Feed = () => {
             <Grid item xs={12} sm={12} md={12} lg={9}>
               <Stack spacing={3}>
                 <Stack spacing={1}>
-                  <Typography variant="h3" sx={{ fontSize: "1.3em", fontWeight: "500", color: theme === 'light' ? "#152C5B" : "#FDFEFF" }}>Scrapings récents</Typography>
+                  <Typography variant="h3" sx={{ fontSize: "1.3em", fontWeight: 600, color: theme === 'light' ? "#152C5B" : "#FDFEFF", fontFamily: "Montserrat" }}>Scrapings récents</Typography>
                   <Stack padding="20px" border={theme === 'light' ? "1px solid #e1e1e1" : "none"} borderRadius="10px" sx={{ backgroundColor: theme === "light" ? "#FDFEFF" : "#1F2937" }} spacing={1}>
                     {/* map */}
                     <TableScrapeDatas datas={datas} simple />

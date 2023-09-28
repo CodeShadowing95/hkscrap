@@ -88,7 +88,7 @@ const Showcase = () => {
               <Stack sx={{ justifyContent: "center", alignItems: "flex-start" }}>
                 <Typography variant="h1" sx={{ fontFamily: "Montserrat", fontSize: "49px", lineHeight: "55px", fontWeight: 800, marginBottom: 0, marginTop: 0, color: "#37446f" }}>Accédez à une mine d'or d'informations avec notre service de scraping.</Typography>
                 <Typography sx={{ fontFamily: "Montserrat", marginTop: "20px", marginBottom: "30px", color: "#969cb6", fontSize: "18px", lineHeight: "28px", fontWeight: "500" }}>Découvrez, extrayez et exploitez intelligemment les données du web pour prendre des décisions éclairées et propulser votre entreprise vers l'avenir.</Typography>
-                <Box sx={{ padding: "10px 15px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", cursor: "pointer", transition: ".2s", "&:hover":{backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)"} }}>
+                <Box component={Link} sx={{ padding: "10px 15px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", cursor: "pointer", transition: ".2s", "&:hover":{backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)"} }} onClick={handleLogin}>
                   <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "capitalize" }}>Essayez gratuitement</Typography>
                 </Box>
                 <Stack sx={{ margin: "30px 0 10px" }}>

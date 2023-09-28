@@ -1,9 +1,9 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchFromServer } from "../utils/fetchFromServer";
-import { Alert, Avatar, Badge, Box, Breadcrumbs, Button, Grid, Snackbar, Stack, TextField, Typography, Tab, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { Alert, Avatar, Box, Breadcrumbs, Button, Grid, Snackbar, Stack, TextField, Typography, Tab} from "@mui/material";
 import { TabContext, TabList, TabPanel  }  from '@mui/lab';
-import { LightModeIcon, NotificationsNoneIcon, profileImage } from "../utils/constants";
+import { profileImage } from "../utils/constants";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -110,13 +110,13 @@ const Profile = () => {
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "1em", width: "100%" }}>
         {/* Title & Breadcrumb */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-          <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B" }}>Informations de compte</Typography>
+          <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B", fontFamily: "Montserrat" }}>Informations de compte</Typography>
           {/* Breadcrumb */}
           <Breadcrumbs aria-label="breadcrumb">
-            <Link underline="hover" color="inherit" href="/home">
+            <Link underline="hover" color="inherit" href="/home" fontFamily="Montserrat">
               Accueil
             </Link>
-            <Typography color="#93B0C8">Profil</Typography>
+            <Typography color="#93B0C8" fontFamily="Montserrat">Profil</Typography>
           </Breadcrumbs>
         </Box>
       </Box>

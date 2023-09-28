@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar, Box, Button, Modal, Stack, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, ButtonBase, Modal, Stack, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
 import MenuElement from "./MenuElement";
@@ -28,7 +28,7 @@ const isValidURL = (url) => {
 }
 
 
-const Sidebar = ({ user }) => {
+const Sidebar = ({ user, isVisible }) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
@@ -125,30 +125,36 @@ const Sidebar = ({ user }) => {
     elements = [...elements, { id: 7, icon: PeopleIcon, text: "Utilisateurs" }];
 
   return (
-    <Stack direction="column" sx={{ top: 0, height: "100dvh", position: "sticky", /* backgroundColor: "#1F2937 | 2e3d52", */backgroundColor: theme === "light" ? "#eff2f6" : "#1F2937", minWidth: "256px", display: "flex", justifyContent: "space-between", alignItems: "center", overflow: "auto", }}>
+    <Stack direction="column" sx={{ top: 0, height: "100dvh", position: "sticky", /* backgroundColor: "#1F2937 | 2e3d52", */backgroundColor: theme === "light" ? "#dee4ed" : "#1F2937", width: isVisible ? "256px" : "90px", display: "flex", justifyContent: "space-between", alignItems: "center", overflow: "auto", '&::-webkit-scrollbar':{display: "none"/*, width: "8px"*/}, /*'&::-webkit-scrollbar-thumb':{backgroundColor: "#eff2f6", borderRadius: "4px"}*/transition: ".2s" }}>
       {/* General Stack Top */}
-      <Stack direction="column" spacing={3} sx={{ width: "100%", paddingTop: "20px" }}>
+      <Stack direction="column" spacing={3} sx={{ width: "100%", height: "100%", paddingTop: "20px" }}>
         {/* Stack logo */}
-        <Stack direction="row" sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", paddingLeft: "1.75rem", }}>
+        <Stack direction="row" sx={{ display: "flex", justifyContent: isVisible ? "flex-start" : "center", alignItems: "center", paddingLeft: isVisible ? "1.75rem" : 0 }}>
           <Link to="/home">
-            <img src={sub_logo} alt="logo" height={60} />
+            <img src={sub_logo} alt="logo" height={ isVisible ? 60 : 45} />
           </Link>
         </Stack>
 
         {/* Utilisateur */}
+        {isVisible ?
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px", backgroundColor: theme === 'light' ? "#F3F7FD" : "#253c5c", borderRadius: "50px", width: "13.5rem", alignSelf: "center" }}>
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px", }}>
             <Avatar variant="circular" src={profileImage} sx={{ width: 50, height: 50 }} />
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", }}>
-              <Typography sx={{ color: theme === "light" ? "#152C5B" : "#FFF", fontSize: "0.875rem", fontWeight: 600, lineHeight: "1.25rem", textOverflow: "ellipsis", }}>
+              <Typography sx={{ color: theme === "light" ? "#152C5B" : "#FFF", fontFamily: "Montserrat", fontSize: "0.875rem", fontWeight: 700, lineHeight: "1.25rem", textOverflow: "ellipsis", }}>
                 {username}
               </Typography>
-              <Typography sx={{ color: "#93B0C8", fontSize: "0.7rem", fontWeight: 300, lineHeight: "1.25rem", letterSpacing: ".5px", }}>
+              <Typography sx={{ color: "#93B0C8", fontFamily: "Montserrat", fontSize: "0.7rem", fontWeight: 400, lineHeight: "1.25rem", letterSpacing: ".5px", }}>
                 {user[0]?.role === "Modérateur" ? "CEO HKDigitals" : "Utilisateur"}
               </Typography>
             </Box>
           </Box>
         </Box>
+        :
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px", backgroundColor: theme === 'light' ? "#F3F7FD" : "#253c5c", borderRadius: "50px", alignSelf: "center" }}>
+            <Avatar variant="circular" src={profileImage} sx={{ width: 50, height: 50 }} />
+        </Box>
+        }
 
         {/* Stack fonctionnalités essentielles */}
         <Stack
@@ -161,6 +167,7 @@ const Sidebar = ({ user }) => {
               key={index}
               icon={element.icon}
               text={element.text}
+              menuVisible={isVisible}
               active={activeItem === index}
               onClick={() => handleMenuItemClick(index)}
             />
@@ -170,49 +177,56 @@ const Sidebar = ({ user }) => {
         <Stack
           direction="column"
           spacing={1}
-          sx={{ padding: "1.25rem 0.75rem" }}
+          sx={{ padding: "1.25rem 0.75rem", justifyContent: "center", alignItems: "center" }}
         >
-          <Stack justifyContent="center" width="200px" alignItems="center" spacing={2} sx={{ borderRadius: "5px", padding: "10px", /*backgroundColor: "#2e3d52" */backgroundColor: theme === "light" ? "#FFF" : "#2e3d52",}}>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", /*backgroundColor: "#2e3d52",*/backgroundColor: theme === "light" ? "#FFF" : "#2e3d52", marginTop: "-30px" }}>
-              <FlashOnIcon sx={{ fontSize: "25px", color: "#ffa500" }} />
-            </div>
-            <Typography align="center" sx={{ fontSize: "13px", fontWeight: 300, color: theme === "light" ? "#2e3d52" : "#FFF" }}>Démarrez une <span style={{ fontWeight: "500" }}>nouvelle tâche</span>. Renseignez le nom de la tâche, l'URL du site et lancez l'opération</Typography>
-            <Button variant="contained" color="secondary" startIcon={<AddTaskIcon />} size="large" onClick={handleOpen}>Nouvelle tâche</Button>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style} component="form" onSubmit={handleSubmit}>
-                <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ textAlign: "center", fontWeight: 600 }}>
-                  Nouvelle tâche
-                </Typography>
-                <Stack spacing={2} sx={{ margin: "30px 0" }}>
-                  <Stack spacing={1}>
-                    <Typography sx={{ fontWeight: 500 }}>Nom de la tâche</Typography>
-                    {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
-                    <TextField size="small" name="taskname" onChange={handleChange} fullWidth />
-                  </Stack>
-                  <Stack spacing={1}>
-                    <Typography sx={{ fontWeight: 500 }}>Lien du site à scraper</Typography>
-                    {/* <TextField size="small" name="linkurl" required value={searchURL} onChange={(e) => setSearchURL(e.target.value)} fullWidth /> */}
-                    <TextField size="small" name="linkurl" required onChange={handleChange} fullWidth />
-                    {errorMessage && <ErrorMessage message={errorMessage} />}
-                  </Stack>
-                  <Stack spacing={1}>
-                    <Typography sx={{ fontWeight: 500 }}>Quantité maximum de données</Typography>
-                    <TextField type="number" size="small" name="maxDatas" value={dataSize} onChange={handleChange} fullWidth />
-                  </Stack>
-                </Stack>
-                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", gap: 3 }}>
-                  <Button type="submit" disabled={disable} variant="contained" size="large" color="success" onSubmit={handleSubmit}>Démarrer</Button>
-                  <Button variant="contained" size="large" color="inherit" onClick={handleClose}>Annuler</Button>
-                </Box>
-              </Box>
-            </Modal>
-          </Stack>
+          {isVisible ?
+            <Stack justifyContent="center" width="200px" alignItems="center" spacing={2} sx={{ borderRadius: "5px", padding: "10px", /*backgroundColor: "#2e3d52" */backgroundColor: theme === "light" ? "#FFF" : "#2e3d52",}}>
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", /*backgroundColor: "#2e3d52",*/backgroundColor: theme === "light" ? "#FFF" : "#2e3d52", marginTop: "-30px" }}>
+                <FlashOnIcon sx={{ fontSize: "25px", color: "#ffa500" }} />
+              </div>
+              <Typography align="center" sx={{ fontFamily: "Montserrat", fontSize: "12px", fontWeight: 400, color: theme === "light" ? "#2e3d52" : "#FFF" }}>Démarrez une <span style={{ fontWeight: "700" }}>nouvelle tâche</span>. Renseignez le nom de la tâche, l'URL du site et lancez l'opération</Typography>
+              <Button variant="contained" color="secondary" startIcon={<AddTaskIcon />} size="large" onClick={handleOpen}>Nouvelle tâche</Button>
+            </Stack>
+            :
+            <Box component={ButtonBase} sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", backgroundColor: "#9c27b0", borderRadius: "50px", width: "50px", height: "50px" }} onClick={() => handleOpen()}>
+              <AddTaskIcon sx={{ fontSize: "25px", color: "#FFF" }} />
+            </Box>
+          }
         </Stack>
+
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style} component="form" onSubmit={handleSubmit}>
+            <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ textAlign: "center", fontWeight: 600 }}>
+              Nouvelle tâche
+            </Typography>
+            <Stack spacing={2} sx={{ margin: "30px 0" }}>
+              <Stack spacing={1}>
+                <Typography sx={{ fontWeight: 500 }}>Nom de la tâche</Typography>
+                {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
+                <TextField size="small" name="taskname" onChange={handleChange} fullWidth />
+              </Stack>
+              <Stack spacing={1}>
+                <Typography sx={{ fontWeight: 500 }}>Lien du site à scraper</Typography>
+                {/* <TextField size="small" name="linkurl" required value={searchURL} onChange={(e) => setSearchURL(e.target.value)} fullWidth /> */}
+                <TextField size="small" name="linkurl" required onChange={handleChange} fullWidth />
+                {errorMessage && <ErrorMessage message={errorMessage} />}
+              </Stack>
+              <Stack spacing={1}>
+                <Typography sx={{ fontWeight: 500 }}>Quantité maximum de données</Typography>
+                <TextField type="number" size="small" name="maxDatas" value={dataSize} onChange={handleChange} fullWidth />
+              </Stack>
+            </Stack>
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", gap: 3 }}>
+              <Button type="submit" disabled={disable} variant="contained" size="large" color="success" onSubmit={handleSubmit}>Démarrer</Button>
+              <Button variant="contained" size="large" color="inherit" onClick={handleClose}>Annuler</Button>
+            </Box>
+          </Box>
+        </Modal>
       </Stack>
     </Stack>
   );

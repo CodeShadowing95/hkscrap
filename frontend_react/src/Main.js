@@ -22,15 +22,12 @@ import { useEffect, useState } from "react";
 import { fetchUser } from "./utils/fetchUser";
 import History from "./pages/History";
 import Navbar from "./components/Navbar";
-import { useTheme } from "./components/ThemeProvider";
 
 const Main = () => {
   const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState(null);
   const location = useLocation();
   const [sidebarVisible, setSidebarVisible] = useState(true);
-
-  const { theme, toggleDarkMode } = useTheme();
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
@@ -62,7 +59,7 @@ const Main = () => {
         display: "flex",
       }}
     >
-      {location.pathname !== "/showcase" && (userProfile && sidebarVisible && <Sidebar user={userProfile} />)}
+      {location.pathname !== "/showcase" && (userProfile && /*sidebarVisible && */<Sidebar user={userProfile} isVisible={sidebarVisible} />)}
       <Stack direction="column" sx={{ top: 0, flex: 1 }}>
         {/* Barre de navigation */}
         {location.pathname !== "/showcase" && (userProfile && <Navbar onMenuOnclick={toggleSidebar} />)}
