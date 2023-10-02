@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 import { fetchFromServer } from "../utils/fetchFromServer";
 import { Box, ButtonBase, Link, Stack, TextField, Typography } from "@mui/material";
-import { BG_Login, GoogleAuth, logo } from "../utils/constants";
+import { BG_Login, GoogleAuth, sub_logo } from "../utils/constants";
 import { ErrorMessage } from "../components";
 
 
@@ -96,7 +96,7 @@ const Signup = () => {
     <Box sx={{ display: "grid", flexDirection: "column", placeContent: "center", height: "100dvh", width: "100%", backgroundImage: `url('${BG_Login}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <Stack component="form" sx={{ maxWidth: "24rem", gap: "1.75rem", borderRadius: "5px", padding: "2.5rem", textAlign: "center", /*backgroundImage: `url('${sunflowerBg}')`, backgroundSize: "cover", backgroundPosition: "center"*/backgroundColor: "#FFF" }} onSubmit={handleSubmit}>
         <Stack alignItems="center">
-          <img src={logo} alt="HKSCRAP_logo" style={{ borderStyle: "none", display: "block", verticalAlign: "middle", maxWidth: "100%" }} height={80} />
+          <img src={sub_logo} alt="HKSCRAP_logo" style={{ borderStyle: "none", display: "block", verticalAlign: "middle", maxWidth: "100%" }} height={80} />
         </Stack>
         <Stack spacing="0.5rem">
           <Typography variant="h1" sx={{ fontFamily: "Montserrat", color: "#37446f", fontSize: "1.25rem", lineHeight: "1.75rem", fontWeight: 700 }}>Rejoignez la communauté</Typography>

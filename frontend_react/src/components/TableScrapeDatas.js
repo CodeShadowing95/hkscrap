@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { ErrorOutlineIcon, TaskAltIcon, UploadingLoop, popular_sites } from '../utils/constants';
 import { Box, Typography } from '@mui/material';
+import { useTheme } from '../components/ThemeProvider';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -23,9 +24,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
+  // '&:nth-of-type(odd)': {
+  //   backgroundColor: theme.palette.action.hover,
+  // },
   // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
@@ -41,11 +42,12 @@ const getWebsite = (name, sites) => {
 }
 
 const TableScrapeDatas = ({ datas, simple }) => {
+  const { theme } = useTheme();
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
+        <TableHead sx={{ backgroundColor: theme === 'light' ? "#FFF" : "#253141" }}>
           <TableRow>
             {simple && <StyledTableCell><ErrorOutlineIcon /></StyledTableCell>}
             <StyledTableCell align="center">ID</StyledTableCell>
@@ -63,26 +65,30 @@ const TableScrapeDatas = ({ datas, simple }) => {
             let website = getWebsite(data.WEBSITE, popular_sites);
 
             return (
-              <StyledTableRow key={`${data.DO_ID}_${index}`}>
+              <StyledTableRow key={`${data.DO_ID}_${index}`} 
+                sx={{ 
+                  backgroundColor: index % 2 !== 0 ? (theme === 'light' ? "#FFF" : "#253141") : (theme === 'light' ? "#F5F5F5" : "#131920"),
+                }}
+              >
                 {simple &&
                   <StyledTableCell component="th" scope="row">
                     <TaskAltIcon sx={{ color: "#1eae53" }} />
                   </StyledTableCell>
                 }
-                <StyledTableCell align="center">{data.DO_ID}</StyledTableCell>
-                <StyledTableCell align="center">{data.LABEL}</StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.DO_ID}</StyledTableCell>
+                <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.LABEL}</StyledTableCell>
+                <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">
                   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 5 }}>
                     <img src={website.icon} alt="logo" width="30" height="30" />
                     {website.name}
                   </div>
                 </StyledTableCell>
-                <StyledTableCell align="center">{data.START_DATE}</StyledTableCell>
-                <StyledTableCell align="center">{data.EXEC_TIME}</StyledTableCell>
+                <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.START_DATE}</StyledTableCell>
+                <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.EXEC_TIME}</StyledTableCell>
                 {/* <StyledTableCell align="center">{data.LIGNES}</StyledTableCell> */}
                 {!simple &&
                   <StyledTableCell align="center">
-                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, backgroundColor: "#e1e1e1", padding: "10px", borderRadius: "5px", cursor: "pointer", "&: hover": {boxShadow: 2} }}>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, backgroundColor: theme === 'light' ? "#e1e1e1" : "#187bcd", padding: "10px", borderRadius: "5px", cursor: "pointer", "&: hover": {boxShadow: 2} }}>
                       <UploadingLoop />
                       <Typography sx={{ fontSize: "15px", fontWeight: 500 }}>Charger</Typography>
                     </Box>

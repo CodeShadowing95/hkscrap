@@ -8,4 +8,5 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Montserrat", "Roboto", sans-serif;
+  scroll-behavior: smooth;
 }

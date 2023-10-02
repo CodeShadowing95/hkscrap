@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchFromServer } from "../utils/fetchFromServer";
 
 import { Box, Button, ButtonBase, IconButton, InputAdornment, Link, Stack, TextField, Typography } from "@mui/material"
-import { BG_Login, GoogleAuth, VisibilityIcon, VisibilityOffIcon, logo } from "../utils/constants";
+import { BG_Login, GoogleAuth, VisibilityIcon, VisibilityOffIcon, sub_logo } from "../utils/constants";
 import { ErrorMessage, SucessMessage } from "../components";
 
 
@@ -80,7 +80,7 @@ const Login = () => {
       {!isResetPassword ?
         <Stack component="form" sx={{ maxWidth: "24rem", gap: "1.75rem", borderRadius: "5px", padding: "2.5rem", textAlign: "center", /*backgroundImage: `url('${sunflowerBg}')`, backgroundSize: "cover", backgroundPosition: "center"*/backgroundColor: "#FFF" }} onSubmit={handleSubmit}>
           <Stack alignItems="center">
-            <img src={logo} alt="HKSCRAP_logo" style={{ borderStyle: "none", display: "block", verticalAlign: "middle", maxWidth: "100%" }} height={80} />
+            <img src={sub_logo} alt="HKSCRAP_logo" style={{ borderStyle: "none", display: "block", verticalAlign: "middle", maxWidth: "100%" }} height={80} />
           </Stack>
           <Stack spacing="0.5rem">
             <Typography variant="h1" sx={{ fontFamily: "Montserrat", color: "#37446f", fontSize: "1.25rem", lineHeight: "1.75rem", fontWeight: 700 }}>Connectez-vous à votre compte</Typography>
