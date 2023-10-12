@@ -19,7 +19,7 @@ const Searchbar = () => {
       if(isValidURL) {
         navigate(`/search/?q=${encodeURIComponent(searchTerm)}`);
       } else {
-        alert("URL non valide!");
+        alert("Veuillez saisir une URL valide!");
       }
       setSearchTerm('');
     }

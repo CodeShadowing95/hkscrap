@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useLocation  } from 'react-router-dom'
-import { Alert, Badge, Box, Breadcrumbs, Link, Pagination, Snackbar, Stack, Typography } from '@mui/material'
+import { Alert, Box, Breadcrumbs, Link, Pagination, Snackbar, Stack, Typography } from '@mui/material'
 
-import { DataTable, Searchbar } from '../components'
-import { LightModeIcon, NotificationsNoneIcon, SpinImage } from '../utils/constants'
+import { DataTable } from '../components'
+import { SpinImage } from '../utils/constants'
 import ExportButton from '../components/ExportButton'
 import { fetchFromServer } from '../utils/fetchFromServer'
 
@@ -177,13 +177,13 @@ const SearchFeed = () => {
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "1em", width: "100%" }}>
           {/* Title & Breadcrumb */}
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-            <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B" }}>Résultats de l'opération</Typography>
+            <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B", fontFamily: "Montserrat" }}>Résultats de l'opération</Typography>
             {/* Breadcrumb */}
             <Breadcrumbs aria-label="breadcrumb">
-              <Link underline="hover" color="inherit" href="/home">
+              <Link underline="hover" color="inherit" href="/home" fontFamily="Montserrat">
                 Accueil
               </Link>
-              <Typography color="#93B0C8">Résultats de recherche</Typography>
+              <Typography color="#93B0C8" fontFamily="Montserrat">Résultats de recherche</Typography>
             </Breadcrumbs>
           </Box>
         </Box>
@@ -215,8 +215,8 @@ const SearchFeed = () => {
               <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "8rem", height: "8rem" }}>
                 <img src={SpinImage} alt="No_data" style={{ maxWidth: "100%", maxHeight: "100%" }} />
               </Box>
-              <Typography sx={{ fontSize: "30px", color: "#8e96a4", fontWeight: 500 }}>Opération en cours d'exécution...</Typography>
-              <Typography variant="body2" sx={{ color: "#8e96a4", fontSize: "15px" }}>Veuillez patienter un moment pendant que les données sont collectées</Typography>
+              <Typography sx={{ fontSize: "30px", color: "#8e96a4", fontWeight: 500, fontFamily: "Montserrat" }}>Opération en cours d'exécution...</Typography>
+              <Typography variant="body2" sx={{ color: "#8e96a4", fontSize: "15px", fontFamily: "Montserrat" }}>Veuillez patienter un moment pendant que les données sont collectées</Typography>
             </Box>
           </div>
         ) : 

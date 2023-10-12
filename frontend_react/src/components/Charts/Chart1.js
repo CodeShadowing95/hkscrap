@@ -93,7 +93,10 @@ async function fetchData() {
 }
 
 const websitesAllScrapes = await fetchData();
-
+const sites = [];
+for(let i = 0; i <= popular_sites.length; i++) {
+  sites.push(popular_sites[i]?.name)
+}
 
 const Chart1 = () => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -106,14 +109,14 @@ const Chart1 = () => {
         datasets: [
           {
             label: 'Extractions effectuées',
-            // data: labels.map((index) => (user ? websitesAllScrapes[popular_sites.indexOf(index)] : faker.number.int({ min: 0, max: 1000 }))),
-            data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
+            // data: labels.map((key) => (user ? websitesAllScrapes[sites.indexOf(key)] : faker.number.int({ min: 0, max: 1000 }))),
+            data: labels.map(() => faker.number.int({ min: 0, max: 1000 })),
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
           },
           {
             label: 'Extractions réussies',
             // data: labels.map((index) => (user ? websitesAllScrapes[popular_sites.indexOf(index)] : faker.number.int({ min: 0, max: 1000 }))),
-            data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
+            data: labels.map(() => faker.number.int({ min: 0, max: 1000 })),
             backgroundColor: 'rgba(53, 162, 235, 0.5)',
           },
         ],

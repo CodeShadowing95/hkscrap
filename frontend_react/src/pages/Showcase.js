@@ -54,7 +54,7 @@ const Showcase = () => {
     <Stack sx={{ flex: 1, backgroundColor: "#eef0f6" }}>
       {/* ++++++++++++++++++++++++++++++++++++++++++ Navbar ++++++++++++++++++++++++++++++++++++++++++ */}
       <Stack sx={{ backgroundImage: `url('${WaveBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
-        <Box sx={{ display: "flex", top: 0, position: "sticky", justifyContent: "space-between", alignItems: "center", padding: "8px 16px", backgroundColor: scrolling === true ? "#FFF" : "transparent", transition: ".2s" }}>
+        <Box sx={{ display: "flex", top: 0, position: "sticky", justifyContent: "space-between", alignItems: "center", padding: "8px 15px", margin: !scrolling ? "0 23px" : 0, backgroundColor: scrolling === true ? "#FFF" : "transparent", transition: ".2s" }}>
           {/* Left side */}
           <Box sx={{  display: "flex", justifyContent: "center", alignItems: "center", columnGap: "30px" }}>
             {/* Logo + Title */}
@@ -63,11 +63,11 @@ const Showcase = () => {
             </Box>
             {/* Links */}
             <Box sx={{ display: "flex", columnGap: 1 }}>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link}>à propos</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link}>Fonctionnalités</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link}>Tarifs</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link}>FAQ</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link}>Blog</Typography>
+              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#about'>à propos</Typography>
+              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#features'>Fonctionnalités</Typography>
+              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#pricing'>Tarifs</Typography>
+              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#faq'>FAQ</Typography>
+              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#docs'>Docs</Typography>
             </Box>
           </Box>
           {/* Right side */}
@@ -88,7 +88,7 @@ const Showcase = () => {
               <Stack sx={{ justifyContent: "center", alignItems: "flex-start" }}>
                 <Typography variant="h1" sx={{ fontFamily: "Montserrat", fontSize: "49px", lineHeight: "55px", fontWeight: 800, marginBottom: 0, marginTop: 0, color: "#37446f" }}>Accédez à une mine d'or d'informations avec notre service de scraping.</Typography>
                 <Typography sx={{ fontFamily: "Montserrat", marginTop: "20px", marginBottom: "30px", color: "#969cb6", fontSize: "18px", lineHeight: "28px", fontWeight: "500" }}>Découvrez, extrayez et exploitez intelligemment les données du web pour prendre des décisions éclairées et propulser votre entreprise vers l'avenir.</Typography>
-                <Box sx={{ padding: "10px 15px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", cursor: "pointer", transition: ".2s", "&:hover":{backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)"} }}>
+                <Box component={Link} sx={{ padding: "10px 15px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", cursor: "pointer", transition: ".2s", "&:hover":{backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)"} }} onClick={handleLogin}>
                   <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "capitalize" }}>Essayez gratuitement</Typography>
                 </Box>
                 <Stack sx={{ margin: "30px 0 10px" }}>
@@ -134,7 +134,7 @@ const Showcase = () => {
       {/* ++++++++++++++++++++++++++++++++++++++++++ Main Page ++++++++++++++++++++++++++++++++++++++++++ */}
       <Stack>
         {/* ------------------------------------------------ First section ------------------------------------------------ */}
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundColor: "#eef0f6" }}>
+        <Box id="about" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundColor: "#eef0f6" }}>
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: "0 148px" }}>
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
               <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, width: "700px", lineHeight: "40px", color: "#37446f" }}>Scrapez les données plus rapidement & efficacement</Typography>
@@ -271,7 +271,7 @@ const Showcase = () => {
 
 
         {/* ------------------------------------------------ Third section ------------------------------------------------ */}
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundColor: "#eef0f6" }}>
+        <Box id="features" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundColor: "#eef0f6" }}>
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: "0 148px" }}>
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
               <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, width: "700px", lineHeight: "40px", color: "#37446f" }}>Cas d'utilisation de notre solution</Typography>
@@ -342,7 +342,7 @@ const Showcase = () => {
 
 
         {/* ------------------------------------------------ Fourth section ------------------------------------------------ */}
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0 120px", marginBottom: 0, backgroundColor: "#e6f1ff" }}>
+        <Box id="pricing" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0 120px", marginBottom: 0, backgroundColor: "#e6f1ff" }}>
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: "0 148px" }}>
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
               <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, width: "700px", lineHeight: "40px", color: "#37446f" }}>Tarification simple et transparente</Typography>
@@ -365,12 +365,20 @@ const Showcase = () => {
                   <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#e6f1ff", borderRadius: "10px", width: "35px", padding: "8px" }}>
                     <img src={Individual_pricing} alt="pricing" style={{ width: "100%", height: "100%" }} />
                   </Box>
-                  <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "24px", lineHeight: "32px", fontWeight: 700, marginTop: "20px", marginBottom: "10px", color: "#37446f" }}>Individuel</Typography>
+                  <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "24px", lineHeight: "32px", fontWeight: 700, marginTop: "20px", marginBottom: "10px", color: "#37446f" }}>Personnel</Typography>
                   <Box sx={{ display: "flex", marginTop: "10px", marginBottom: "10px" }}>
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>Free</Typography>
                     <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}></Typography>
                   </Box>
-                  <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: 2 }}>
+                  <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: 3 }}>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
                     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
                       <TaskAltIcon sx={{ color: "#0056b3" }} />
                       <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
@@ -391,7 +399,19 @@ const Showcase = () => {
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>29.99</Typography>
                     <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>€/mois</Typography>
                   </Box>
-                  <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: "4px" }}>
+                  <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: 3 }}>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
                     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
                       <TaskAltIcon sx={{ color: "#0056b3" }} />
                       <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
@@ -412,7 +432,27 @@ const Showcase = () => {
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "40px", lineHeight: "54px", fontWeight: 500, paddingRight: "4px", color: "#37446f" }}>59.99</Typography>
                     <Typography sx={{ color: "#8087a6", fontFamily: "Montserrat", fontSize: "16px", alignSelf: "flex-end" }}>€/mois</Typography>
                   </Box>
-                  <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: "4px" }}>
+                  <Box sx={{ display: "flex", flexDirection: "column", marginTop: "20px", marginBottom: "30px", gap: 3 }}>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
+                      <TaskAltIcon sx={{ color: "#0056b3" }} />
+                      <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
+                    </Box>
                     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 1 }}>
                       <TaskAltIcon sx={{ color: "#0056b3" }} />
                       <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
@@ -478,7 +518,7 @@ const Showcase = () => {
 
 
         {/* ------------------------------------------------ Fifth section ------------------------------------------------ */}
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)" }}>
+        <Box id="docs" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)" }}>
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: "0 148px" }} spacing={2}>
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
               <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, width: "700px", lineHeight: "40px", color: "#fff" }}>Solutions de données prêtes à l'emploi</Typography>
@@ -524,7 +564,7 @@ const Showcase = () => {
 
 
         {/* ------------------------------------------------ Sixth section ------------------------------------------------ */}
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", backgroundColor: "#eef0f6" }}>
+        <Box id="faq" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", backgroundColor: "#eef0f6" }}>
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: "0 148px" }}>
             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
               <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, width: "700px", lineHeight: "40px", color: "#37446f" }}>F.A.Q.</Typography>

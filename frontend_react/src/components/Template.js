@@ -23,8 +23,8 @@ const Template = ({ logo, name, customBg }) => {
       {customBg ?
         <>
           <div style={{ fontSize: "30px" }}>🤔</div>
-          <Typography variant='h1' sx={{ fontSize: "1.875rem", fontWeight: 600, lineHeight: 1, color: "#FFF" }}>Besoin de scraper un site en particulier ?</Typography>
-          <Typography variant='body1' sx={{ fontSize: "0.875rem", fontWeight: 500, lineHeight: "1.25rem", color: "#FFF" }}>Incididunt eiusmod elit cillum aliqua officia reprehenderit. Deserunt excepteur aliquip ullamco dolore nulla ullamco consectetur consequat culpa.</Typography>
+          <Typography variant='h1' sx={{ fontSize: "1.875rem", fontWeight: 600, lineHeight: 1, color: "#FFF", fontFamily: "Montserrat" }}>Besoin de scraper un site en particulier ?</Typography>
+          <Typography variant='body1' sx={{ fontSize: "0.875rem", fontWeight: 500, lineHeight: "1.25rem", color: "#FFF", fontFamily: "Montserrat" }}>Incididunt eiusmod elit cillum aliqua officia reprehenderit. Deserunt excepteur aliquip ullamco dolore nulla ullamco consectetur consequat culpa.</Typography>
         </>
         :
         <>
@@ -35,8 +35,8 @@ const Template = ({ logo, name, customBg }) => {
           >
             <img src={Company} alt="" style={{ maxHeight: "100%", maxWidth: "100%" }} />
           </Box>
-          <Typography variant="h5" sx={{ fontSize: "1rem", lineHeight: "1.25rem", fontWeight: 700, textTransform: "capitalize", color: "#474747" }}>{name} scraper</Typography>
-          <Typography variant='body1' sx={{ fontSize: "0.875rem", lineHeight: "1.25rem", color: "#6b7280" }}>Incididunt eiusmod elit cillum aliqua officia reprehenderit. Deserunt excepteur aliquip ullamco dolore nulla ullamco consectetur consequat culpa.</Typography>
+          <Typography variant="h5" sx={{ fontSize: "1rem", lineHeight: "1.25rem", fontWeight: 700, textTransform: "capitalize", color: "#474747", fontFamily: "Montserrat" }}>{name} scraper</Typography>
+          <Typography variant='body1' sx={{ fontSize: "0.875rem", lineHeight: "1.25rem", color: "#6b7280", fontFamily: "Montserrat" }}>Incididunt eiusmod elit cillum aliqua officia reprehenderit. Deserunt excepteur aliquip ullamco dolore nulla ullamco consectetur consequat culpa.</Typography>
           <Box sx={{
             padding: "5px 10px",
             display: "flex",
@@ -57,7 +57,7 @@ const Template = ({ logo, name, customBg }) => {
           component={Link}
           to={`/socialMedia/${id}`} key={`${id}`}
           >
-            <Typography sx={{ fontSize: "1em", fontWeight: "500" }}>Accéder</Typography>
+            <Typography sx={{ fontSize: "1em", fontWeight: "500", fontFamily: "Montserrat" }}>Accéder</Typography>
             <KeyboardDoubleArrowRightIcon />
           </Box>
         </>

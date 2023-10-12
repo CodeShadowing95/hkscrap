@@ -70,13 +70,13 @@ const History = () => {
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "1em", width: "100%" }}>
         {/* Title & Breadcrumb */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-          <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B" }}>Historique des tâches</Typography>
+          <Typography variant="h1" sx={{ fontSize: "2em", fontWeight: "600", color: "#152C5B", fontFamily: "Montserrat" }}>Historique des tâches</Typography>
           {/* Breadcrumb */}
           <Breadcrumbs aria-label="breadcrumb">
-            <Link underline="hover" color="inherit" href="/home">
+            <Link underline="hover" color="inherit" href="/home" fontFamily="Montserrat">
               Accueil
             </Link>
-            <Typography color="#93B0C8">Historique</Typography>
+            <Typography color="#93B0C8" fontFamily="Montserrat">Historique</Typography>
           </Breadcrumbs>
         </Box>
       </Box>

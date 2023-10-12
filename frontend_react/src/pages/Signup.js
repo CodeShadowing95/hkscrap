@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import bcrypt from "bcryptjs";
 
 import { fetchFromServer } from "../utils/fetchFromServer";
-import { Box, Button, Link, Stack, TextField, Typography } from "@mui/material";
-import { BG_Login, GoogleAuth, logo } from "../utils/constants";
+import { Box, ButtonBase, Link, Stack, TextField, Typography } from "@mui/material";
+import { BG_Login, GoogleAuth, sub_logo } from "../utils/constants";
 import { ErrorMessage } from "../components";
 
 
@@ -96,7 +96,7 @@ const Signup = () => {
     <Box sx={{ display: "grid", flexDirection: "column", placeContent: "center", height: "100dvh", width: "100%", backgroundImage: `url('${BG_Login}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <Stack component="form" sx={{ maxWidth: "24rem", gap: "1.75rem", borderRadius: "5px", padding: "2.5rem", textAlign: "center", /*backgroundImage: `url('${sunflowerBg}')`, backgroundSize: "cover", backgroundPosition: "center"*/backgroundColor: "#FFF" }} onSubmit={handleSubmit}>
         <Stack alignItems="center">
-          <img src={logo} alt="HKSCRAP_logo" style={{ borderStyle: "none", display: "block", verticalAlign: "middle", maxWidth: "100%" }} height={80} />
+          <img src={sub_logo} alt="HKSCRAP_logo" style={{ borderStyle: "none", display: "block", verticalAlign: "middle", maxWidth: "100%" }} height={80} />
         </Stack>
         <Stack spacing="0.5rem">
           <Typography variant="h1" sx={{ fontFamily: "Montserrat", color: "#37446f", fontSize: "1.25rem", lineHeight: "1.75rem", fontWeight: 700 }}>Rejoignez la communauté</Typography>
@@ -108,7 +108,7 @@ const Signup = () => {
           <TextField required type="email" size="small" placeholder="Email" name="email" sx={{ display: "flex", width: "100%", fontFamily: "Montserrat", height: "2.5rem", borderRadius: "0.375rem", fontSize: ".875rem", lineHeight: "1.25rem" }} onChange={handleChange} />
           <TextField required type="password" size="small" placeholder="Mot de passe" name="password" sx={{ display: "flex", width: "100%", fontFamily: "Montserrat", height: "2.5rem", borderRadius: "0.375rem", fontSize: ".875rem", lineHeight: "1.25rem" }} onChange={handleChange} />
           <TextField required type="password" size="small" placeholder="Confirmez le mot de passe" name="confirmPassword" sx={{ display: "flex", width: "100%", fontFamily: "Montserrat", height: "2.5rem", borderRadius: "0.375rem", fontSize: ".875rem", lineHeight: "1.25rem" }} onChange={handleChange} />
-          <Box component={Button} type="submit" sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundColor: "#0056b3", transition: ".2s" }} onSubmit={handleSubmit}>
+          <Box component={ButtonBase} type="submit" sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundColor: "#0056b3", transition: ".2s" }} onSubmit={handleSubmit}>
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "uppercase" }}>Je m'inscris</Typography>
           </Box>
         </Stack>
