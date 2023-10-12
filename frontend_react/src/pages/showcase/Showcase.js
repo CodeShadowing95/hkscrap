@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Stack, Box, Typography, Grid, Link, Button, Fade } from '@mui/material'
-import { Business_pricing, DataExtraction, Enterprise_pricing, GoogleMaps, Individual_pricing, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, loremText, particlesBg, sub_logo } from '../utils/constants';
-import { CustomizedAccordion } from '../components';
+import { Business_pricing, DataExtraction, Enterprise_pricing, GoogleMaps, Individual_pricing, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, loremText, particlesBg, sub_logo } from '../../utils/constants';
+import { CustomizedAccordion } from '../../components';
+import UseCase from './UseCase';
 
 const keyframesAnimation = `
   @keyframes slideUpDown {
@@ -279,62 +280,22 @@ const Showcase = () => {
             </Box>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={12} md={6} lg={4}>
-                <Stack padding="20px" margin="10px 0" sx={{ backgroundColor: "#FFF", boxShadow: "0px 0px 20px 7px rgba(0, 86, 179, .1)", borderRadius: "5px", rowGap: "20px", position: "relative", overflow: "hidden", "&:hover #details": { display: "flex" } }}>
-                  <Stack justifyContent="center" alignItems="center" spacing={1}>
-                    <img src={Usecase1} alt="use case" height={200} />
-                    <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "20px", lineHeight: "30px", fontWeight: 700, color: "#37446f" }}>Extraction de données</Typography>
-                  </Stack>
-                  {/* <Typography sx={{ marginBottom: 0, color: "#8087a6", lineHeight: "26px", fontFamily: "Montserrat", textAlign: "justify" }}>{loremText[3]}</Typography> */}
-                  <Stack id="details" sx={{ display: "none", position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0, 0, 0, .8)", borderRadius: "5px", zIndex: 100, padding: "25px", justifyContent: "center", alignItems: "center" }} spacing={2}>
-                    <Typography sx={{ marginBottom: 0, color: "#FFF", lineHeight: "26px", fontFamily: "Montserrat", textAlign: "justify" }}>{loremText[3]}</Typography>
-                    <Button variant='contained' color='info' size='large' sx={{ width: "50%" }}>En savoir plus</Button>
-                  </Stack>
-                </Stack>
+                <UseCase useCaseIcon={Usecase1} title="Extraction de données" labelId="details1" description={loremText[3]} />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={4}>
-                <Stack padding="20px" margin="10px 0" sx={{ backgroundColor: "#FFF", boxShadow: "0px 0px 20px 7px rgba(0, 86, 179, .1)", borderRadius: "5px", rowGap: "20px" }}>
-                  <Stack justifyContent="center" alignItems="center" spacing={1}>
-                    <img src={Usecase2} alt="use case" height={200} />
-                    <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "20px", lineHeight: "30px", fontWeight: 700, color: "#37446f" }}>Avis des consommateurs</Typography>
-                  </Stack>
-                  {/* <Typography sx={{ marginBottom: 0, color: "#8087a6", lineHeight: "26px", fontFamily: "Montserrat", textAlign: "justify" }}>{loremText[3]}</Typography> */}
-                </Stack>
+                <UseCase useCaseIcon={Usecase2} title="Avis des consommateurs" labelId="details2" description={loremText[3]} />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={4}>
-                <Stack padding="20px" margin="10px 0" sx={{ backgroundColor: "#FFF", boxShadow: "0px 0px 20px 7px rgba(0, 86, 179, .1)", borderRadius: "5px", rowGap: "20px" }}>
-                  <Stack justifyContent="center" alignItems="center" spacing={1}>
-                    <img src={Usecase3} alt="use case" height={200} />
-                    <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "20px", lineHeight: "30px", fontWeight: 700, color: "#37446f" }}>Veille Concurrentielle</Typography>
-                  </Stack>
-                  {/* <Typography sx={{ marginBottom: 0, color: "#8087a6", lineHeight: "26px", fontFamily: "Montserrat", textAlign: "justify" }}>{loremText[3]}</Typography> */}
-                </Stack>
+                <UseCase useCaseIcon={Usecase3} title="Veille Concurrentielle" labelId="details3" description={loremText[3]} />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={4}>
-                <Stack padding="20px" margin="10px 0" sx={{ backgroundColor: "#FFF", boxShadow: "0px 0px 20px 7px rgba(0, 86, 179, .1)", borderRadius: "5px", rowGap: "20px" }}>
-                  <Stack justifyContent="center" alignItems="center" spacing={1}>
-                    <img src={Usecase4} alt="use case" height={200} />
-                    <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "20px", lineHeight: "30px", fontWeight: 700, color: "#37446f" }}>Entreprises & Particuliers</Typography>
-                  </Stack>
-                  {/* <Typography sx={{ marginBottom: 0, color: "#8087a6", lineHeight: "26px", fontFamily: "Montserrat", textAlign: "justify" }}>{loremText[3]}</Typography> */}
-                </Stack>
+                <UseCase useCaseIcon={Usecase4} title="Entreprises & Particuliers" labelId="details4" description={loremText[3]} />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={4}>
-                <Stack padding="20px" margin="10px 0" sx={{ backgroundColor: "#FFF", boxShadow: "0px 0px 20px 7px rgba(0, 86, 179, .1)", borderRadius: "5px", rowGap: "20px" }}>
-                  <Stack justifyContent="center" alignItems="center" spacing={1}>
-                    <img src={Usecase5} alt="use case" height={200} />
-                    <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "20px", lineHeight: "30px", fontWeight: 700, color: "#37446f" }}>Suivi des Médias Sociaux</Typography>
-                  </Stack>
-                  {/* <Typography sx={{ marginBottom: 0, color: "#8087a6", lineHeight: "26px", fontFamily: "Montserrat", textAlign: "justify" }}>{loremText[3]}</Typography> */}
-                </Stack>
+                <UseCase useCaseIcon={Usecase5} title="Suivi des Médias Sociaux" labelId="details5" description={loremText[3]} />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={4}>
-                <Stack padding="20px" margin="10px 0" sx={{ backgroundColor: "#FFF", boxShadow: "0px 0px 20px 7px rgba(0, 86, 179, .1)", borderRadius: "5px", rowGap: "20px" }}>
-                  <Stack justifyContent="center" alignItems="center" spacing={1}>
-                    <img src={Usecase6} alt="use case" height={200} />
-                    <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "20px", lineHeight: "30px", fontWeight: 700, color: "#37446f" }}>Analyse de Marchés</Typography>
-                  </Stack>
-                  {/* <Typography sx={{ marginBottom: 0, color: "#8087a6", lineHeight: "26px", fontFamily: "Montserrat", textAlign: "justify" }}>{loremText[3]}</Typography> */}
-                </Stack>
+                <UseCase useCaseIcon={Usecase6} title="Analyse de Marchés" labelId="details6" description={loremText[3]} />
               </Grid>
             </Grid>
           </Stack>

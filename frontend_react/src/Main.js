@@ -12,7 +12,6 @@ import {
   Profile,
   ScrapersFeed,
   SearchFeed,
-  Showcase,
   Sidebar,
   Signup,
   SocialMedia,
@@ -22,6 +21,7 @@ import { useEffect, useState } from "react";
 import { fetchUser } from "./utils/fetchUser";
 import History from "./pages/History";
 import Navbar from "./components/Navbar";
+import Showcase from "./pages/showcase/Showcase";
 
 const Main = () => {
   const navigate = useNavigate();

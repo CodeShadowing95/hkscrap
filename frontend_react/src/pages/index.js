@@ -9,4 +9,4 @@ export { default as Signup } from './Signup';
 export { default as History } from './History';
 export { default as Team } from './Team';
 export { default as Profile } from './Profile';
-export { default as Showcase } from './Showcase';
+export { default as Showcase } from '../pages/showcase/Showcase';
