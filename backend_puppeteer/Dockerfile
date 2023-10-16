@@ -17,4 +17,4 @@ COPY . /usr/src/app/
 
 EXPOSE 1000
 
-CMD ["node", "index.js"]
+CMD ["node", "src/index.js"]
