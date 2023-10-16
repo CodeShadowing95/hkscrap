@@ -1,11 +1,12 @@
-import { launch } from "puppeteer";
+const { launch } = require("puppeteer");
 
 const scrapeMaps = async (url) => {
   // const url = 'https://www.google.fr/maps/search/restaurants+%C3%A0+lyon/@45.7340231,4.7583189,12z/data=!3m1!4b1?entry=ttu';
   const browser = await launch({
     headless: false,
     defaultViewport: false,
-    executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    executablePath:
+      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   });
   const page = await browser.newPage();
   await page.goto(url);
@@ -27,7 +28,7 @@ const scrapeMaps = async (url) => {
 
   for (const place of places) {
     let id = "";
-    for(let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
       const randomIndex = Math.floor(Math.random() * text.length);
       id += text.charAt(randomIndex);
     }
@@ -115,19 +116,16 @@ const scrapeMaps = async (url) => {
     } catch (error) {}
 
     try {
-      heureOuverture = await page.evaluate(
-        (el) => {
-          let heure = el
+      heureOuverture = await page.evaluate((el) => {
+        let heure = el
           // .querySelector("div:nth-child(3) > span > span > span:nth-child(2)")
           .querySelector(
             ".m6QErb > div:nth-child(4) > div > div:nth-child(3) > div > span > span > span:nth-child(2)"
           )
-          .textContent.split(" ")[4]
-          
-          if(heure === "") return "Non défini"
-        },
-        detail
-      );
+          .textContent.split(" ")[4];
+
+        if (heure === "") return "Non défini";
+      }, detail);
     } catch (error) {}
 
     try {
@@ -249,4 +247,4 @@ async function autoScroll(page) {
   });
 }
 
-export { scrapeMaps };
+module.exports = { scrapeMaps };
