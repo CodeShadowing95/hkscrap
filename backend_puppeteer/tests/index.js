@@ -1,7 +1,7 @@
-import { scrapeMaps } from "./googleMaps.js";
+const { scrapeMaps } = require("./googleMaps.js");
 // import { scrapeYelp } from "./yelp.js";
 
-export {
+module.exports = {
   scrapeMaps,
   // scrapeYelp,
-}
+};

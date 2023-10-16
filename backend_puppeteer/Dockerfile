@@ -15,6 +15,6 @@ RUN npm install --legacy-peer-deps
 
 COPY . /usr/src/app/
 
-EXPOSE 2025
+EXPOSE 1000
 
 CMD ["node", "index.js"]

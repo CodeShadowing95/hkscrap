@@ -1,6 +1,6 @@
-import { scrapeMaps } from "../../../tests/index";
+const { scrapeMaps } = require("../../../tests/index");
 
-export const scrapeFromURL = async (url) => {
+module.exports.scrapeFromURL = async (url) => {
   let datas = [];
 
   if (/^(https?:\/\/)?(www\.)?google\.[a-z.]+\/maps\//i.test(url)) {

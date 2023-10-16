@@ -1,5 +1,3 @@
-# Stage 1
-
 FROM node:latest as build-stage
 
 RUN mkdir -p /usr/src/web
