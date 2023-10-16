@@ -26,7 +26,7 @@ services:
       - -c
       - |
         npm install
-        node index.js
+        node src/index.js
     volumes:
       - ./backend_puppeteer:/usr/src/app
       - ./backend_puppeteer/node_modules:/usr/src/app/node_modules
@@ -50,7 +50,7 @@ services:
       PROXY_ADDRESS_FORWARDING: "true" # <==== very important if you use reverse proxy
     restart: unless-stopped
     ports:
-      - "1001:80"
+      - "8080:8080"
     volumes:
       - ./frontend_react:/usr/src/web
       - ./frontend_react/node_modules:/usr/src/web/node_modules
