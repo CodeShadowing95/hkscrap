@@ -15,7 +15,7 @@ services:
     ports:
       - '3307:3306'
     volumes:
-      - ./mysql_data:/var/lib/mysql/data
+      - mysql_data:/var/lib/mysql
       - ./init:/docker-entrypoint-initdb.d
 
   backend:
