@@ -1,6 +1,23 @@
 version: "3"
 
 services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: ${MYSQL_ALLOW_EMPTY_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
+    ports:
+      - '3307:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql/data
+      - ./init:/docker-entrypoint-initdb.d
+
   backend:
     build: ./backend_puppeteer
     container_name: backend
@@ -10,12 +27,12 @@ services:
       - |
         npm install
         node index.js
-    env_file: ./backend_puppeteer/.env
     volumes:
       - ./backend_puppeteer:/usr/src/app
       - ./backend_puppeteer/node_modules:/usr/src/app/node_modules
+    restart: unless-stopped
     ports:
-      - 2025:2025
+      - 1000:1000
     links:
       - mysql
     depends_on:
@@ -24,37 +41,31 @@ services:
   frontend:
     build: ./frontend_react
     container_name: frontend
-    env_file: ./frontend_react/.env
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: ${POSTGRESQL_DB}
+      DB_USER: ${POSTGRESQL_USER}
+      DB_PASSWORD: ${POSTGRESQL_PASS}
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+      VIRTUAL_PORT: ${PORT_FRONTEND}
+      HTTPS_METHOD: redirect
+      PROXY_ADDRESS_FORWARDING: "true" # <==== very important if you use reverse proxy
+    restart: unless-stopped
     volumes:
       - ./frontend_react:/usr/src/web
       - ./frontend_react/node_modules:/usr/src/web/node_modules
-      - ./frontend_react/nginx.conf:/etc/nginx/nginx.conf
-      - ./frontend_react/nginx.conf:/etc/nginx/conf.d/nginx.conf
-    ports:
-      - "2026:80"
-    expose:
-      - 80
     depends_on:
       - backend
 
-  mysql:
-    image: mysql:5.7
-    container_name: mysql
-    restart: always
-    env_file: ./.env
-    environment:
-      MYSQL_DATABASE: '${MYSQL_DATABASE}'
-      MYSQL_USER: '${MYSQL_USER}'
-      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
-      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
-      MYSQL_ALLOW_EMPTY_PASSWORD: '${MYSQL_ALLOW_EMPTY_PASSWORD}'
-      MYSQL_RANDOM_ROOT_PASSWORD: '${MYSQL_RANDOM_ROOT_PASSWORD}'
-    ports:
-      - '3307:3306'
-    volumes:
-      - ./data:/var/lib/mysql
-      - ./init:/docker-entrypoint-initdb.d
-
 volumes:
-  data:
+  mysql_data:
   nodemodules: {}
+
+#Use this configuration in production with nginx-proxy container
+networks:
+  default:
+    external:
+      name: nginx-proxy

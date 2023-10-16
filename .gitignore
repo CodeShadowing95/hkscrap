@@ -3,3 +3,4 @@ gtp
 .vscode/
 .env
 data/
+.DS_Store
