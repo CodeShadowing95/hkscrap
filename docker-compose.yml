@@ -3,7 +3,7 @@ version: "3"
 services:
   mysql:
     image: mysql:5.7
-    container_name: mysql
+    container_name: hkscrap-mysql
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -20,7 +20,7 @@ services:
 
   backend:
     build: ./backend_puppeteer
-    container_name: backend
+    container_name: hkscrap-backend
     command: 
       - /bin/sh
       - -c
@@ -40,7 +40,7 @@ services:
 
   frontend:
     build: ./frontend_react
-    container_name: frontend
+    container_name: hkscrap-frontend
     environment:
       VIRTUAL_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
@@ -49,13 +49,15 @@ services:
       HTTPS_METHOD: redirect
       PROXY_ADDRESS_FORWARDING: "true" # <==== very important if you use reverse proxy
     restart: unless-stopped
-    ports:
-      - "8080:8080"
     volumes:
       - ./frontend_react:/usr/src/web
       - ./frontend_react/node_modules:/usr/src/web/node_modules
     depends_on:
       - backend
+    networks:
+      - nginx-proxy
+    expose:
+      - "80"
 
 volumes:
   mysql_data:
@@ -63,6 +65,5 @@ volumes:
 
 #Use this configuration in production with nginx-proxy container
 networks:
-  default:
-    external:
-      name: nginx-proxy
+  nginx-proxy:
+    external: true
