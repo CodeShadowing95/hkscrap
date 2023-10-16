@@ -60,14 +60,6 @@ const Signup = () => {
     navigate("/auth");
   };
 
-  // const handleShowPassword = () => {
-  //   if(typeInput === "text"){
-  //     setTypeInput("password");
-  //   } else {
-  //     setTypeInput("text");
-  //   }
-  // }
-
   useEffect(() => {
     if (user) {
       navigate("/home");
