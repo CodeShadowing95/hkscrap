@@ -72,7 +72,7 @@ class UserUseCase {
 
     const number = await UserDAO.countAll(db);
 
-    return number;
+    return {count : number};
   }
 
   static async getOne(inputs) {
