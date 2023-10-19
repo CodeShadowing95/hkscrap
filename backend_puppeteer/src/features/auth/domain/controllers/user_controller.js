@@ -5,7 +5,7 @@ module.exports = (app, db) => {
     try {
       const { email_username, password } = req.body;
 
-      const { data } = await UserUseCase.login({
+      const data = await UserUseCase.login({
         email_username,
         password,
         db,
@@ -24,7 +24,7 @@ module.exports = (app, db) => {
     try {
       const { email, password } = req.body;
 
-      const { data } = await UserUseCase.register({ email, password, db });
+      const data = await UserUseCase.register({ email, password, db });
 
       return res.status(201).json(data);
     } catch (err) {
@@ -37,7 +37,7 @@ module.exports = (app, db) => {
 
   app.get("/get-users", async (req, res) => {
     try {
-      const { data } = await UserUseCase.get({ db });
+      const data = await UserUseCase.get({ db });
 
       return res.status(200).json(data);
     } catch (err) {
@@ -50,7 +50,7 @@ module.exports = (app, db) => {
 
   app.get("/count-users", async (req, res) => {
     try {
-      const { data } = await UserUseCase.count({ db });
+      const data = await UserUseCase.count({ db });
 
       return res.status(200).json(data);
     } catch (err) {
@@ -65,7 +65,7 @@ module.exports = (app, db) => {
     try {
       const { email } = req.body;
 
-      const { data } = await UserUseCase.getOne({ email, db });
+      const data = await UserUseCase.getOne({ email, db });
 
       return res.status(200).json(data);
     } catch (err) {
@@ -81,7 +81,7 @@ module.exports = (app, db) => {
       const { lastname, firstname, email, password, telephone, country } =
         req.body;
 
-      const { data } = await UserUseCase.store({
+      const data = await UserUseCase.store({
         lastname,
         firstname,
         email,
@@ -105,7 +105,7 @@ module.exports = (app, db) => {
       const id = req.params.id;
       const { lastname, firstname, email, phone, country } = req.body;
 
-      const { data } = await UserUseCase.edit({
+      const data = await UserUseCase.edit({
         id,
         lastname,
         firstname,
@@ -127,7 +127,7 @@ module.exports = (app, db) => {
   app.delete("/delete/:id", async (req, res) => {
     try {
       const id = req.params.id;
-      const { data } = await UserUseCase.deleteOne({ id, db });
+      const data = await UserUseCase.deleteOne({ id, db });
 
       return res.status(204).json(data);
     } catch (err) {
