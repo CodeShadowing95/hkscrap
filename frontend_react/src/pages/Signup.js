@@ -36,6 +36,7 @@ const Signup = () => {
 
       fetchFromServer("register", formData)
         .then((res) => {
+          console.log(res);
           if (res.data !== undefined) {
             navigate(
               "/auth?successSignup=Inscription effectuée.%20Connectez-vous!"
