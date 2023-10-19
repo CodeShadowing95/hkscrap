@@ -26,7 +26,7 @@ const Login = () => {
   // console.log(formData);
     fetchFromServer('login', formData)
     .then((res) => {
-      if(res.data) {
+      if(res.data !== undefined) {
         localStorage.setItem('user', JSON.stringify(res.data));
         navigate('/home');
       } else {
