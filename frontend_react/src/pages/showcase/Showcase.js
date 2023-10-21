@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Stack, Box, Typography, Grid, Link, Button, Fade, Divider } from '@mui/material'
+import { Stack, Box, Typography, Grid, Link, Button, Fade } from '@mui/material'
 import { Business_pricing, DataExtraction, Enterprise_pricing, GitHubIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, loremText, particlesBg, sub_logo } from '../../utils/constants';
 import { CustomizedAccordion } from '../../components';
 import UseCase from './UseCase';
-import GitHub from '@mui/icons-material/GitHub';
 
 const keyframesAnimation = `
   @keyframes slideUpDown {
@@ -548,7 +547,7 @@ const Showcase = () => {
               <img src={sub_logo} alt="hkscrap_logo" style={{ height: "80px", maxWidth: "100%" }} />
             </Box>
 
-            <Grid container>
+            <Grid container spacing={3}>
               <Grid item xs={12} sm={6} md={6} lg={2}>
                 <Typography sx={{ fontFamily: "Montserrat", fontWeight: 700, marginBottom: "20px", fontSize: "1em", textTransform: "uppercase", color: "#37446f" }}>Produits</Typography>
 
