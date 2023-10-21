@@ -15,6 +15,7 @@ class UserUseCase {
 
     try {
       const user = await UserDAO.findByEmail(email_username, db);
+      
       if (user) {
         const validPassword = await validatePassword(password, user.motdepasse);
 
@@ -72,7 +73,7 @@ class UserUseCase {
 
     const number = await UserDAO.countAll(db);
 
-    return {count : number};
+    return number;
   }
 
   static async getOne(inputs) {

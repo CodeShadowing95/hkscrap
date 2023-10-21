@@ -115,9 +115,9 @@ class ScrapUseCase {
   }
 
   static async count(inputs) {
-    const { userId, db } = inputs;
+    const { uid, db } = inputs;
 
-    if (!userId)
+    if (!uid)
       throw new APIError(
         "Validation Error.",
         STATUS_CODES.BAD_REQUEST,
@@ -125,7 +125,7 @@ class ScrapUseCase {
       );
 
     try {
-      const numberOfScrap = await ScrapDAO.count(userId, db);
+      const numberOfScrap = await ScrapDAO.count(uid, db);
 
       return numberOfScrap;
     } catch (err) {

@@ -8,14 +8,14 @@ const {
 class UserDAO {
   static async findByEmail(email, db) {
     const sql =
-      "SELECT nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE `email` = ?";
+      "SELECT user_id, nom, prenom, email, avatar, role, pays, telephone, motdepasse FROM user WHERE email = ?";
 
-    db.query(sql, [email], async (err, data) => {
-      if (err) return null;
-
-      if (data.length > 0) return UserEntity.toJson(data[0]);
-      else return null;
-    });
+    try {
+      const [rows, fields] = await db.execute(sql, [email]);
+      return UserEntity.toJson(rows[0]);
+    } catch (error) {
+      return null;
+    }
   }
 
   static async create(email, password, db) {
@@ -27,16 +27,21 @@ class UserDAO {
     const prenom = "user_" + randomId;
     const nom = "";
 
-    let salt = await generateSalt();
-    const motdepasse = await hashPassword(password, salt);
+    /**
+      * Le hachage se fait côté client
+      * 
+      let salt = await generateSalt();
+      const motdepasse = await hashPassword(password, salt);
+    */
 
-    const values = [nom, prenom, email, motdepasse, role];
+    const values = [nom, prenom, email, password, role];
 
-    db.query(sql, values, (err, data) => {
-      if (err) return { message: err };
-
+    try {
+      const [result] = await db.execute(sql, values);
       return { message: "Inscription réussie" };
-    });
+    } catch (error) {
+      return { message: err };
+    }
   }
 
   static async findAll(db) {
@@ -44,31 +49,29 @@ class UserDAO {
 
     let data = [];
 
-    db.query(sql, (err, rows) => {
-      if (err) return null;
+    try {
+      const [rows, fields] = await db.execute(sql);
 
-      if (rows.length >= 0) {
-        rows.map((r) => {
-          data.push(UserEntity.toJson(r));
-        });
+      rows.map((r) => {
+        data.push(UserEntity.toJson(r));
+      });
 
-        return data;
-      }
-
+      return data;
+    } catch (error) {
       return null;
-    });
+    }
   }
 
   static async countAll(db) {
     const sql = `SELECT COUNT(*) AS countUsers FROM user WHERE user_id <> ?`;
 
-    db.query(sql, [process.env.ADMIN_ID], (err, data) => {
-      if (err) return 0;
+    try {
+      const [rows, fields] = await db.execute(sql, [process.env.ADMIN_ID]);
 
-      if (data) return data;
-
+      return rows;
+    } catch (error) {
       return 0;
-    });
+    }
   }
 
   static async createWithAllInputs(
@@ -98,11 +101,12 @@ class UserDAO {
       country,
     ];
 
-    db.query(sql, values, (err, data) => {
-      if (err) return null;
-
-      return UserEntity.toJson(data);
-    });
+    try {
+      const [result] = await db.execute(sql, values);
+      return UserEntity.toJson(result);
+    } catch (error) {
+      return null;
+    }
   }
 
   static async edit(id, lastname, firstname, email, phone, country, db) {
@@ -111,21 +115,24 @@ class UserDAO {
 
     const values = [lastname, firstname, email, phone, country, id];
 
-    db.query(sql, values, (err, data) => {
-      if (err) return null;
-
-      return UserEntity.toJson(data);
-    });
+    try {
+      const [result] = await db.execute(sql, values);
+      console.log(result);
+      return UserEntity.toJson(result);
+    } catch (error) {
+      return null;
+    }
   }
 
   static async deleteOne(id, db) {
     const sql = `DELETE FROM user WHERE user_id = ? AND user_id <> ${process.env.ADMIN_ID}`;
 
-    db.query(sql, [id], (err) => {
-      if (err) return err;
-
+    try {
+      const [result] = await db.execute(sql);
       return { message: "Supression réussie" };
-    });
+    } catch (error) {
+      return { message: error };
+    }
   }
 }
 

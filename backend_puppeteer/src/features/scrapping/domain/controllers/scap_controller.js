@@ -7,7 +7,7 @@ module.exports = (app, db) => {
     try {
       const { uid } = req.body;
 
-      const { data } = ScrapUseCase.get({ uid, db });
+      const data = await ScrapUseCase.get({ uid, db });
 
       return res.status(200).json(data);
     } catch (err) {
@@ -22,7 +22,7 @@ module.exports = (app, db) => {
     try {
       const { uid } = req.body;
 
-      const { data } = ScrapUseCase.recent({ uid, db });
+      const data = await ScrapUseCase.recent({ uid, db });
 
       return res.status(200).json(data);
     } catch (err) {
@@ -37,7 +37,7 @@ module.exports = (app, db) => {
     try {
       const { uid } = req.body;
 
-      const { data } = ScrapUseCase.requestNumber({ uid, db });
+      const data = await ScrapUseCase.requestNumber({ uid, db });
 
       return res.status(200).json(data);
     } catch (err) {
@@ -52,7 +52,7 @@ module.exports = (app, db) => {
     try {
       const { url } = req.body;
 
-      const { data } = await scrapeFromURL(url);
+      const data = await scrapeFromURL(url);
 
       return res.status(200).json(data);
     } catch (err) {
@@ -75,7 +75,7 @@ module.exports = (app, db) => {
         resultsFile,
       } = req.body;
 
-      const { data } = ScrapUseCase.store({
+      const data = await ScrapUseCase.store({
         userId,
         label,
         website,
@@ -99,7 +99,7 @@ module.exports = (app, db) => {
     try {
       const { uid } = req.body;
 
-      const { data } = await ScrapUseCase.count({ uid, db });
+      const data = await ScrapUseCase.count({ uid, db });
 
       return res.status(200).json(data);
     } catch (err) {
@@ -114,7 +114,7 @@ module.exports = (app, db) => {
     try {
       const { website, uid } = req.body;
 
-      const { data } = await ScrapUseCase.countBySite({ website, uid, db });
+      const data = await ScrapUseCase.countBySite({ website, uid, db });
 
       return res.status(200).json(data);
     } catch (err) {

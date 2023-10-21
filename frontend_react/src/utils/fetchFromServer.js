@@ -11,10 +11,8 @@ export const fetchFromServer = async (url, values) => {
       },
     });
 
-    console.log(response);
-
     return response;
   } catch (error) {
-    console.log("Erreur survenue lors de l'opération", error);
+    return error.response.data.description;
   }
 };

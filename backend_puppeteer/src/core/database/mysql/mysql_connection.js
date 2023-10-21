@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 class MysqlConnection {
   constructor(host, user, password, database, port) {
@@ -10,7 +10,7 @@ class MysqlConnection {
   }
 
   connect() {
-    return mysql.createConnection({
+    return mysql.createPool({
       host: this.host,
       user: this.user,
       password: this.password,
@@ -22,15 +22,7 @@ class MysqlConnection {
   getConnection() {
     const db = this.connect();
 
-    db.connect((err) => {
-      if (err) {
-        console.log("Error connecting to MySQL: " + err.message);
-        return false;
-      }
-      console.log("Connected to MySQL database");
-    });
-
-    return db;
+    return db.promise();
   }
 }
 

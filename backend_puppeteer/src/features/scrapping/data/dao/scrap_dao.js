@@ -2,32 +2,35 @@ class ScrapDAO {
   static async find(uid, db) {
     const sql = "SELECT * FROM dataoverview WHERE user_id = ?";
 
-    db.query(sql, [uid], (err, data) => {
-      if (err) return null;
-
-      return data;
-    });
+    try {
+      const [rows, fields] = await db.execute(sql, [uid]);
+      return rows;
+    } catch (error) {
+      return null;
+    }
   }
 
   static async findRecent(uid, db) {
     const sql =
       "SELECT * FROM dataoverview WHERE user_id = ? ORDER BY do_id DESC LIMIT 10";
 
-    db.query(sql, [uid], (err, data) => {
-      if (err) return null;
-
-      return data;
-    });
+    try {
+      const [rows, fields] = await db.execute(sql, [uid]);
+      return rows;
+    } catch (error) {
+      return null;
+    }
   }
 
   static async getRequestNumber(uid, db) {
     const sql = "SELECT * FROM dataoverview WHERE user_id = ?";
 
-    db.query(sql, [uid], (err, data) => {
-      if (err) return 0;
-
-      return data.length;
-    });
+    try {
+      const [rows, fields] = await db.execute(sql, [uid]);
+      return rows.length;
+    } catch (error) {
+      return 0;
+    }
   }
 
   static async create(
@@ -53,22 +56,24 @@ class ScrapDAO {
       resultsFile,
     ];
 
-    db.query(sql, values, (err, data) => {
-      if (err) return false;
-
+    try {
+      const [result] = await db.execute(sql, values);
       return true;
-    });
+    } catch (error) {
+      return false;
+    }
   }
 
   static async count(id, db) {
     const sql =
       "SELECT SUM(LIGNES) AS totalDatas FROM dataoverview WHERE user_id = ?";
 
-    db.query(sql, [id], (err, data) => {
-      if (err) return 0;
-
-      return data;
-    });
+    try {
+      const [rows, fields] = await db.execute(sql, [id]);
+      return rows[0].totalDatas === null ? 0 : rows[0].totalDatas;
+    } catch (error) {
+      return 0;
+    }
   }
 
   static async countBySite(website, id, db) {
@@ -77,11 +82,12 @@ class ScrapDAO {
 
     const values = [website, id];
 
-    db.query(sql, values, (err, data) => {
-      if (err) return 0;
-
-      return data;
-    });
+    try {
+      const [rows, fields] = await db.execute(sql, values);
+      return rows[0].counter;
+    } catch (error) {
+      return 0;
+    }
   }
 }
 
