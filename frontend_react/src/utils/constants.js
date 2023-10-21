@@ -39,6 +39,9 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 import Linkedin from '../assets/linkedin.webp';
 import Amazon from '../assets/amazon.webp';
@@ -169,4 +172,7 @@ export const loremText = {
   Enterprise_pricing,
   TwinkleBG,
   NoService,
+  GitHubIcon,
+  LinkedInIcon,
+  TwitterIcon
  }

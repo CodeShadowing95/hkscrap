@@ -58,6 +58,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "crypto-browserify": "^3.12.0"
+  },
+  "browser": {
+      "crypto": false
   }
 }
