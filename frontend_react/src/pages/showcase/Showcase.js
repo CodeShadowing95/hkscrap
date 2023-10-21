@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Stack, Box, Typography, Grid, Link, Button, Fade } from '@mui/material'
-import { Business_pricing, DataExtraction, Enterprise_pricing, GoogleMaps, Individual_pricing, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, loremText, particlesBg, sub_logo } from '../../utils/constants';
+import { Stack, Box, Typography, Grid, Link, Button, Fade, Divider } from '@mui/material'
+import { Business_pricing, DataExtraction, Enterprise_pricing, GitHubIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, loremText, particlesBg, sub_logo } from '../../utils/constants';
 import { CustomizedAccordion } from '../../components';
 import UseCase from './UseCase';
+import GitHub from '@mui/icons-material/GitHub';
 
 const keyframesAnimation = `
   @keyframes slideUpDown {
@@ -542,12 +543,124 @@ const Showcase = () => {
 
         {/* ------------------------------------------------ Footer ------------------------------------------------ */}
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "32px", backgroundColor: "#fff" }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px", padding: "0 16px", margin: "0 148px", width: "100%" }}>
-            <Stack>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", lineHeight: "26px", fontWeight: 400 }}>23 Rue Jules Vallès, Villeurbanne - Lyon, France</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", lineHeight: "26px", fontWeight: 400 }}>&copy; HKSCRAP. Tous droits réservés.</Typography>
-            </Stack>
-            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", lineHeight: "26px", fontWeight: 400, alignSelf: "flex-end" }}>Réalisé par VastoLorde</Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", marginTop: "20px", padding: "0 16px", margin: "0 148px", width: "100%" }}>
+            <Box sx={{ marginBottom: "3rem" }}>
+              <img src={sub_logo} alt="hkscrap_logo" style={{ height: "80px", maxWidth: "100%" }} />
+            </Box>
+
+            <Grid container>
+              <Grid item xs={12} sm={6} md={6} lg={2}>
+                <Typography sx={{ fontFamily: "Montserrat", fontWeight: 700, marginBottom: "20px", fontSize: "1em", textTransform: "uppercase", color: "#37446f" }}>Produits</Typography>
+
+                <Stack spacing={1}>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>API Web Scraping</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>API Google Maps</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>API LinkedIn</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>API Pages Jaunes</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Scrapers</Typography>
+                  </Box>
+                </Stack>
+              </Grid>
+              <Grid item xs={12} sm={6} md={6} lg={3}>
+                <Typography sx={{ fontFamily: "Montserrat", fontWeight: 700, marginBottom: "20px", fontSize: "1em", textTransform: "uppercase", color: "#37446f" }}>Utilisation</Typography>
+
+                <Stack spacing={1}>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Web Scraping pour l'immobilier</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Web Scraping pour le recrutement</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Web Scraping au service des entreprises</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Web Scraping pour E-Commerce</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Web Scraping pour Web Marketing</Typography>
+                  </Box>
+                </Stack>
+              </Grid>
+              <Grid item xs={12} sm={6} md={6} lg={3}>
+                <Typography sx={{ fontFamily: "Montserrat", fontWeight: 700, marginBottom: "20px", fontSize: "1em", textTransform: "uppercase", color: "#37446f" }}>Légal</Typography>
+
+                <Stack spacing={1}>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Termes & Conditions d'utilisation</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Politique de confidentialité</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Légalité du Web Scraping</Typography>
+                  </Box>
+                </Stack>
+              </Grid>
+              <Grid item xs={12} sm={6} md={6} lg={2}>
+                <Typography sx={{ fontFamily: "Montserrat", fontWeight: 700, marginBottom: "20px", fontSize: "1em", textTransform: "uppercase", color: "#37446f" }}>Entreprise</Typography>
+
+                <Stack spacing={1}>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>HKDigitals, c'est quoi?</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Contactez-nous</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Blog</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>HKDigitals Services</Typography>
+                  </Box>
+                </Stack>
+              </Grid>
+              <Grid item xs={12} sm={6} md={6} lg={2}>
+                <Typography sx={{ fontFamily: "Montserrat", fontWeight: 700, marginBottom: "20px", fontSize: "1em", textTransform: "uppercase", color: "#37446f" }}>Navigation</Typography>
+
+                <Stack spacing={1}>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>À propos</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Fonctionnalités</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Tarifs</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>F.A.Q</Typography>
+                  </Box>
+                  <Box component={Link} href="/" sx={{ textDecoration: "none", color: "#37446f", padding: "2px 0" }}>
+                    <Typography sx={{ fontFamily: "Montserrat", fontWeight: 300 }}>Documentation</Typography>
+                  </Box>
+                </Stack>
+              </Grid>
+            </Grid>
+            
+            <hr component="divider" style={{ border: "none", backgroundColor: "#dee2ef", height: "1px", width: "100%", margin: "3rem 0" }} />
+
+            
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+              <Stack>
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", lineHeight: "26px", fontWeight: 400 }}>23 Rue Jules Vallès, Villeurbanne - Lyon, France</Typography>
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", lineHeight: "26px", fontWeight: 400 }}>&copy; HKSCRAP. Tous droits réservés.</Typography>
+              </Stack>
+              <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "start", gap: 2 }}>
+                <Box component={Link} href="#github" sx={{ textDecoration: "none" }}><GitHubIcon sx={{ fontSize: "30px", color: "#37446f" }} /></Box>
+                <Box component={Link} href="#linkedin" sx={{ textDecoration: "none" }}><LinkedInIcon sx={{ fontSize: "30px", color: "#37446f" }} /></Box>
+                <Box component={Link} href="#twitter" sx={{ textDecoration: "none" }}><TwitterIcon sx={{ fontSize: "30px", color: "#37446f" }} /></Box>
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Stack>

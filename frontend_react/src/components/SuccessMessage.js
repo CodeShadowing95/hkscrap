@@ -6,7 +6,7 @@ const SuccessMessage = ({ message, onHide }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onHide();
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearTimeout(timer);
