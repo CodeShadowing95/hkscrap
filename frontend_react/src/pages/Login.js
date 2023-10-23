@@ -59,6 +59,7 @@ const Login = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if(message !== '') setMessage('');
   };
 
   const switchToResetPassword = () => {
@@ -113,8 +114,7 @@ const Login = () => {
             borderRadius: "5px",
             padding: "2.5rem",
             textAlign: "center",
-            /*backgroundImage: `url('${sunflowerBg}')`, backgroundSize: "cover", backgroundPosition: "center"*/ backgroundColor:
-              "#FFF",
+            /*backgroundImage: `url('${sunflowerBg}')`, backgroundSize: "cover", backgroundPosition: "center"*/ backgroundColor: "#FFF",
           }}
           onSubmit={handleSubmit}
         >

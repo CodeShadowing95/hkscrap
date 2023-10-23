@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Stack, Box, Typography, Grid, Link, Button, Fade } from '@mui/material'
-import { Business_pricing, DataExtraction, Enterprise_pricing, GitHubIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, loremText, particlesBg, sub_logo } from '../../utils/constants';
-import { CustomizedAccordion } from '../../components';
+import { Business_pricing, DataExtraction, Enterprise_pricing, FacebookIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, YouTubeIcon, loremText, particlesBg, sub_logo } from '../../utils/constants';
+import CustomizedAccordion from './CustomizedAccordion';
 import UseCase from './UseCase';
 
 const keyframesAnimation = `
@@ -52,37 +52,38 @@ const Showcase = () => {
 
   return (
     // Main page
-    <Stack sx={{ flex: 1, backgroundColor: "#eef0f6" }}>
+    <Stack sx={{ width: { xl: '100%' }, backgroundColor: "#eef0f6" }}>
       {/* ++++++++++++++++++++++++++++++++++++++++++ Navbar ++++++++++++++++++++++++++++++++++++++++++ */}
-      <Stack sx={{ backgroundImage: `url('${WaveBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
-        <Box sx={{ display: "flex", top: 0, position: "sticky", justifyContent: "space-between", alignItems: "center", padding: "8px 15px", margin: !scrolling ? "0 23px" : 0, backgroundColor: scrolling === true ? "#FFF" : "transparent", transition: ".2s" }}>
-          {/* Left side */}
-          <Box sx={{  display: "flex", justifyContent: "center", alignItems: "center", columnGap: "30px" }}>
-            {/* Logo + Title */}
-            <Box sx={{ cursor: "pointer" }} component={Link} to="/showcase">
-              <img src={sub_logo} alt="hkdigitals logo" height={60} />
-            </Box>
-            {/* Links */}
-            <Box sx={{ display: "flex", columnGap: 1 }}>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#about'>à propos</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#features'>Fonctionnalités</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#pricing'>Tarifs</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#faq'>FAQ</Typography>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#docs'>Docs</Typography>
-            </Box>
+      <Box sx={{ display: "flex", top: 0, position: "sticky", justifyContent: "space-between", alignItems: "center", padding: "5px 15px", backgroundColor: "#FFF", boxShadow: scrolling && "0 4px 6px rgba(0, 0, 0, 0.1)", transition: ".5s" }}>
+        {/* Left side */}
+        <Box sx={{  display: "flex", justifyContent: "center", alignItems: "center", columnGap: "30px" }}>
+          {/* Logo + Title */}
+          <Box sx={{ cursor: "pointer" }} component={Link} to="/">
+            <img src={sub_logo} alt="hkdigitals logo" height={60} />
           </Box>
-          {/* Right side */}
-          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 2 }}>
-            <Box component={Link} sx={{ display: "flex", justifyContent: "center", alignItems: "center", textDecoration: "none", cursor: "pointer", transition: ".2s" }} onClick={() => handleSignup()}>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: scrolling ? "#000" : "#FFF", textTransform: "capitalize" }}>Inscription</Typography>
-            </Box>
-            <Box component={Link} sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }} onClick={() => handleLogin()}>
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "uppercase" }}>Connexion</Typography>
-            </Box>
+          {/* Links */}
+          <Box sx={{ display: "flex", columnGap: 1 }}>
+            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#about'>à propos</Typography>
+            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#features'>Fonctionnalités</Typography>
+            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#pricing'>Tarifs</Typography>
+            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#faq'>FAQ</Typography>
+            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#docs'>Docs</Typography>
           </Box>
         </Box>
+        {/* Right side */}
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 2 }}>
+          <Box component={Link} sx={{ display: "flex", justifyContent: "center", alignItems: "center", textDecoration: "none", cursor: "pointer", transition: ".2s" }} onClick={() => handleSignup()}>
+            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#000", textTransform: "capitalize" }}>Inscription</Typography>
+          </Box>
+          <Box component={Link} sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", cursor: "pointer", textDecoration: "none", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }} onClick={() => handleLogin()}>
+            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textTransform: "uppercase" }}>Connexion</Typography>
+          </Box>
+        </Box>
+      </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "calc(100dvh - 66px)" }}>
+      {/* ++++++++++++++++++++++++++++++++++++++++++ Main Page ++++++++++++++++++++++++++++++++++++++++++ */}
+      <Stack>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundImage: `url('${WaveBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
           <Grid container spacing={8} padding="15px" margin="0 23px">
             {/* Left side */}
             <Grid item xs={12} sm={12} md={4} lg={5}>
@@ -130,10 +131,8 @@ const Showcase = () => {
             </Grid>
           </Grid>
         </Box>
-      </Stack>
 
-      {/* ++++++++++++++++++++++++++++++++++++++++++ Main Page ++++++++++++++++++++++++++++++++++++++++++ */}
-      <Stack>
+        
         {/* ------------------------------------------------ First section ------------------------------------------------ */}
         <Box id="about" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundColor: "#eef0f6" }}>
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: "0 148px" }}>
@@ -655,9 +654,10 @@ const Showcase = () => {
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", lineHeight: "26px", fontWeight: 400 }}>&copy; HKSCRAP. Tous droits réservés.</Typography>
               </Stack>
               <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "start", gap: 2 }}>
-                <Box component={Link} href="#github" sx={{ textDecoration: "none" }}><GitHubIcon sx={{ fontSize: "30px", color: "#37446f" }} /></Box>
                 <Box component={Link} href="#linkedin" sx={{ textDecoration: "none" }}><LinkedInIcon sx={{ fontSize: "30px", color: "#37446f" }} /></Box>
                 <Box component={Link} href="#twitter" sx={{ textDecoration: "none" }}><TwitterIcon sx={{ fontSize: "30px", color: "#37446f" }} /></Box>
+                <Box component={Link} href="#facebook" sx={{ textDecoration: "none" }}><FacebookIcon sx={{ fontSize: "30px", color: "#37446f" }} /></Box>
+                <Box component={Link} href="#youtube" sx={{ textDecoration: "none" }}><YouTubeIcon sx={{ fontSize: "30px", color: "#37446f" }} /></Box>
               </Box>
             </Box>
           </Box>

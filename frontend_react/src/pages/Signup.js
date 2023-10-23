@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs-react";
 
 import { fetchFromServer } from "../utils/fetchFromServer";
 import {

@@ -39,11 +39,11 @@ const Main = () => {
         const userProfileData = await fetchUser();
         setUserProfile(userProfileData);
         if (location.pathname === "/") {
-          navigate("/showcase");
+          navigate("/");
         }
 
         // if (!userProfileData) {
-        //   navigate("/showcase");
+        //   navigate("/");
         // }
       } catch (error) {
         console.error("Erreur lors de la récupération des données", error);
@@ -59,12 +59,12 @@ const Main = () => {
         display: "flex",
       }}
     >
-      {location.pathname !== "/showcase" && (userProfile && /*sidebarVisible && */<Sidebar user={userProfile} isVisible={sidebarVisible} />)}
+      {location.pathname !== "/" && (userProfile && /*sidebarVisible && */<Sidebar user={userProfile} isVisible={sidebarVisible} />)}
       <Stack direction="column" sx={{ top: 0, flex: 1 }}>
         {/* Barre de navigation */}
-        {location.pathname !== "/showcase" && (userProfile && <Navbar onMenuOnclick={toggleSidebar} />)}
+        {location.pathname !== "/" && (userProfile && <Navbar onMenuOnclick={toggleSidebar} />)}
         <Routes>
-          <Route path="/showcase" exact element={<Showcase />} />
+          <Route path="/" exact element={<Showcase />} />
           <Route
             path="/auth"
             element={userProfile ? <Navigate to="/home" /> : <Login />}

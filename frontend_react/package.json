@@ -16,9 +16,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
-    "bcryptjs": "^2.4.3",
+    "bcryptjs-react": "^2.4.6",
     "chart.js": "^4.4.0",
-    "crypto-browserify": "^3.12.0",
     "dotenv": "^16.3.1",
     "faker": "^6.6.6",
     "moment": "^2.29.4",
@@ -58,10 +57,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "crypto-browserify": "^3.12.0"
-  },
-  "browser": {
-      "crypto": false
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
