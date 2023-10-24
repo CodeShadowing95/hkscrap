@@ -60,7 +60,7 @@ const Main = () => {
       }}
     >
       {location.pathname !== "/" && (userProfile && /*sidebarVisible && */<Sidebar user={userProfile} isVisible={sidebarVisible} />)}
-      <Stack direction="column" sx={{ top: 0, flex: 1 }}>
+      <Stack direction="column">
         {/* Barre de navigation */}
         {location.pathname !== "/" && (userProfile && <Navbar onMenuOnclick={toggleSidebar} />)}
         <Routes>

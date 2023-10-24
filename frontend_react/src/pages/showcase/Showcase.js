@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Stack, Box, Typography, Grid, Link, Button, Fade } from '@mui/material'
+import { Stack, Box, Typography, Grid, Link, Fade } from '@mui/material'
 import { Business_pricing, DataExtraction, Enterprise_pricing, FacebookIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, YouTubeIcon, loremText, particlesBg, sub_logo } from '../../utils/constants';
 import CustomizedAccordion from './CustomizedAccordion';
 import UseCase from './UseCase';
@@ -52,9 +52,9 @@ const Showcase = () => {
 
   return (
     // Main page
-    <Stack sx={{ width: { xl: '100%' }, backgroundColor: "#eef0f6" }}>
+    <Stack sx={{ backgroundColor: "#eef0f6" }}>
       {/* ++++++++++++++++++++++++++++++++++++++++++ Navbar ++++++++++++++++++++++++++++++++++++++++++ */}
-      <Box sx={{ display: "flex", top: 0, position: "sticky", justifyContent: "space-between", alignItems: "center", padding: "5px 15px", backgroundColor: "#FFF", boxShadow: scrolling && "0 4px 6px rgba(0, 0, 0, 0.1)", transition: ".5s" }}>
+      <Box sx={{ display: "flex", top: 0, position: "sticky", justifyContent: "space-between", alignItems: "center", padding: "5px 15px", backgroundColor: "#FFF", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", transition: ".5s", zIndex: 100 }}>
         {/* Left side */}
         <Box sx={{  display: "flex", justifyContent: "center", alignItems: "center", columnGap: "30px" }}>
           {/* Logo + Title */}
@@ -66,7 +66,7 @@ const Showcase = () => {
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#about'>à propos</Typography>
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#features'>Fonctionnalités</Typography>
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#pricing'>Tarifs</Typography>
-            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#faq'>FAQ</Typography>
+            <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#faq'>F.A.Q</Typography>
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#docs'>Docs</Typography>
           </Box>
         </Box>
@@ -86,8 +86,9 @@ const Showcase = () => {
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundImage: `url('${WaveBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
           <Grid container spacing={8} padding="15px" margin="0 23px">
             {/* Left side */}
-            <Grid item xs={12} sm={12} md={4} lg={5}>
+            <Grid item xs={12} sm={12} md={12} lg={5}>
               <Stack sx={{ justifyContent: "center", alignItems: "flex-start" }}>
+
                 <Typography variant="h1" sx={{ fontFamily: "Montserrat", fontSize: "49px", lineHeight: "55px", fontWeight: 800, marginBottom: 0, marginTop: 0, color: "#37446f" }}>Accédez à une mine d'or d'informations avec notre service de scraping.</Typography>
                 <Typography sx={{ fontFamily: "Montserrat", marginTop: "20px", marginBottom: "30px", color: "#969cb6", fontSize: "18px", lineHeight: "28px", fontWeight: "500" }}>Découvrez, extrayez et exploitez intelligemment les données du web pour prendre des décisions éclairées et propulser votre entreprise vers l'avenir.</Typography>
                 <Box component={Link} sx={{ padding: "10px 15px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", cursor: "pointer", transition: ".2s", "&:hover":{backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)"} }} onClick={handleLogin}>
@@ -113,7 +114,7 @@ const Showcase = () => {
             </Grid>
 
             {/* Right side */}
-            <Grid item xs={12} sm={12} md={8} lg={7}>
+            <Grid item xs={12} sm={12} md={12} lg={7}>
               <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Fade
                   in={true}
@@ -315,7 +316,7 @@ const Showcase = () => {
                     <Typography variant='h3' sx={{ fontFamily: "Montserrat", fontSize: "24px", lineHeight: "30px", fontWeight: 700, color: "#37446f" }}>Essayez gratuitement pendant 30 jours</Typography>
                     <Typography sx={{ marginBottom: 0, color: "#8087a6", lineHeight: "26px", fontFamily: "Montserrat", fontSize: "16px" }}>{loremText[2]}</Typography>
                   </Stack>
-                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px 15px", borderRadius: "10px", width: "20%", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", cursor: "pointer", transition: ".2s", "&:hover":{backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)"} }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px 5px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", cursor: "pointer", transition: ".2s", "&:hover":{backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)"} }}>
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF", textAlign: "center" }}>Démarrez maintenant</Typography>
                   </Box>
                 </Box>
@@ -344,7 +345,7 @@ const Showcase = () => {
                       <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
                     </Box>
                   </Box>
-                  <Box component={Button} sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", marginTop: "34px", width: "100%", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 100px", marginTop: "34px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }}>
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF" }}>Choisir</Typography>
                   </Box>
                 </Box>
@@ -377,7 +378,7 @@ const Showcase = () => {
                       <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
                     </Box>
                   </Box>
-                  <Box component={Button} sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", marginTop: "34px", width: "100%", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 100px", marginTop: "34px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }}>
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF" }}>Choisir</Typography>
                   </Box>
                 </Box>
@@ -418,7 +419,7 @@ const Showcase = () => {
                       <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
                     </Box>
                   </Box>
-                  <Box component={Button} sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", marginTop: "34px", width: "100%", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 100px", marginTop: "34px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }}>
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF" }}>Choisir</Typography>
                   </Box>
                 </Box>
@@ -467,7 +468,7 @@ const Showcase = () => {
                       <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", color: "#969cb6" }}>Description example</Typography>
                     </Box>
                   </Box>
-                  <Box component={Button} sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 15px", marginTop: "34px", width: "100%", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid #e6e6e6", padding: "10px 100px", marginTop: "34px", borderRadius: "10px", backgroundImage: "linear-gradient(to left bottom, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, transition: ".2s" }}>
                     <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, color: "#FFF" }}>Choisir</Typography>
                   </Box>
                 </Box>
@@ -543,7 +544,7 @@ const Showcase = () => {
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "32px", backgroundColor: "#fff" }}>
           <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", marginTop: "20px", padding: "0 16px", margin: "0 148px", width: "100%" }}>
             <Box sx={{ marginBottom: "3rem" }}>
-              <img src={sub_logo} alt="hkscrap_logo" style={{ height: "80px", maxWidth: "100%" }} />
+              <img src={sub_logo} alt="hkscrap_logo" style={{ height: "80px" }} />
             </Box>
 
             <Grid container spacing={3}>
