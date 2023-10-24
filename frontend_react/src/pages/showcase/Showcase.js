@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Stack, Box, Typography, Grid, Link, Fade } from '@mui/material'
-import { Business_pricing, DataExtraction, Enterprise_pricing, FacebookIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, YouTubeIcon, loremText, particlesBg, sub_logo } from '../../utils/constants';
+import { Business_pricing, DataExtraction, Enterprise_pricing, FacebookIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, MenuIcon, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, YouTubeIcon, loremText, particlesBg, sub_logo } from '../../utils/constants';
 import CustomizedAccordion from './CustomizedAccordion';
 import UseCase from './UseCase';
 
@@ -57,12 +57,17 @@ const Showcase = () => {
       <Box sx={{ display: "flex", top: 0, position: "sticky", justifyContent: "space-between", alignItems: "center", padding: "5px 15px", backgroundColor: "#FFF", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", transition: ".5s", zIndex: 100 }}>
         {/* Left side */}
         <Box sx={{  display: "flex", justifyContent: "center", alignItems: "center", columnGap: "30px" }}>
-          {/* Logo + Title */}
-          <Box sx={{ cursor: "pointer" }} component={Link} to="/">
-            <img src={sub_logo} alt="hkdigitals logo" height={60} />
+          {/* Menubar + Logo + Title */}
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2 }}>
+            <Box sx={{ display: { xs: "flex", sm: "flex", md: "none", lg: "none" }, justifyContent: "center", alignItems: "center", padding: "5px", border: "1px solid #e1e1e1", borderRadius: "10px" }}>
+              <MenuIcon sx={{ fontSize: "30px" }} />
+            </Box>
+            <Box sx={{ cursor: "pointer" }} component={Link} to="/">
+              <img src={sub_logo} alt="hkdigitals logo" height={50} />
+            </Box>
           </Box>
           {/* Links */}
-          <Box sx={{ display: "flex", columnGap: 1 }}>
+          <Box sx={{ display: { xs: "none", sm: "none", md: "flex", lg: "flex" }, columnGap: 1 }}>
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#about'>à propos</Typography>
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#features'>Fonctionnalités</Typography>
             <Typography sx={{ fontFamily: "Montserrat", fontSize: "16px", fontWeight: 700, textTransform: "capitalize", padding: "10px 15px", borderRadius: "10px", "&: hover":{ backgroundColor: "rgba(0, 0, 0, .1)"}, cursor: "pointer", color: "#000", textDecoration: "none", transition: ".2s" }} component={Link} href='#pricing'>Tarifs</Typography>
@@ -83,7 +88,7 @@ const Showcase = () => {
 
       {/* ++++++++++++++++++++++++++++++++++++++++++ Main Page ++++++++++++++++++++++++++++++++++++++++++ */}
       <Stack>
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundImage: `url('${WaveBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundImage: `url('${WaveBg}')`, backgroundSize: "cover", backgroundPosition: "center", height: "calc(100dvh - 66px)" }}>
           <Grid container spacing={8} padding="15px" margin="0 23px">
             {/* Left side */}
             <Grid item xs={12} sm={12} md={12} lg={5}>
