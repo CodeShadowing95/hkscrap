@@ -54,11 +54,7 @@ const Main = () => {
   }, [navigate, location.pathname]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-      }}
-    >
+    <Box>
       {location.pathname !== "/" && (userProfile && /*sidebarVisible && */<Sidebar user={userProfile} isVisible={sidebarVisible} />)}
       <Stack direction="column">
         {/* Barre de navigation */}
