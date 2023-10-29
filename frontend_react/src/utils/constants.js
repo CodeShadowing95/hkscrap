@@ -34,6 +34,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LanguageIcon from '@mui/icons-material/Language';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -143,6 +144,7 @@ export const loremText = {
   LanguageIcon,
   HomeIcon,
   MenuIcon,
+  CloseIcon,
   Inventory2Icon,
   TrendingUpIcon,
   ChevronLeftIcon,

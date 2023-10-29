@@ -1,13 +1,15 @@
-import { useNavigate } from 'react-router-dom'
-import { Box, Grid, Link, Stack, Typography } from "@mui/material"
-import { Business_pricing, DataExtraction, Enterprise_pricing, FacebookIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, MenuIcon, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, YouTubeIcon, loremText, particlesBg, sub_logo } from "../../utils/constants"
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Box, ButtonBase, Grid, Link, Stack, Typography } from "@mui/material"
+import { Business_pricing, DataExtraction, Enterprise_pricing, FacebookIcon, GoogleMaps, Individual_pricing, LinkedInIcon, Linkedin, MenuIcon, PagesJaunes, Startup_pricing, TaskAltIcon, TwitterIcon, Usecase1, Usecase2, Usecase3, Usecase4, Usecase5, Usecase6, WaveBg, YouTubeIcon, loremText, particlesBg, sub_logo } from "../../utils/constants"
 import UseCase from './UseCase'
 import CustomizedAccordion from './CustomizedAccordion'
+import SidebarMenu from './SidebarMenu'
 
-const Test = () => {
+const Showcase = () => {
   const navigate = useNavigate()
   const [scrolling, setScrolling] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleLogin = () => {
     navigate('/auth');
@@ -35,16 +37,17 @@ const Test = () => {
 
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
+    <Box sx={{ display: "flex", flexDirection: "column", flex: 1, position: "relative" }}>
+      <SidebarMenu displaySidebar={openSidebar} xsmall="flex" small="flex" med="none" large="none" exitSidebar={() => setOpenSidebar(false)} handleSignin={() => handleLogin()} />
       <Stack sx={{ backgroundImage: `url('${WaveBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", top: 0, position: "sticky", padding: scrolling ? "5px 30px" : "5px 25px", backgroundColor: scrolling && "#FFF", boxShadow: scrolling && "0 4px 6px rgba(0, 0, 0, 0.1)", transition: ".2s" }}>
           {/* ++++++++++++++++++++++++++++++++++++++++++ Navbar ++++++++++++++++++++++++++++++++++++++++++ */}
           {/* Left side */}
           <Box sx={{  display: "flex", justifyContent: "center", alignItems: "center", columnGap: "30px" }}>
             {/* Menubar + Logo + Title */}
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2 }}>
-              <Box sx={{ display: { xs: "flex", sm: "flex", md: "none", lg: "none" }, justifyContent: "center", alignItems: "center", padding: "5px", border: "1px solid rgba(0,0,0,.7)", borderRadius: "10px" }}>
-                <MenuIcon sx={{ fontSize: "30px", color: "rgba(0,0,0,.7)" }} />
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 2 }}>
+              <Box component={ButtonBase} sx={{ display: { xs: "flex", sm: "flex", md: "none", lg: "none" }, justifyContent: "center", alignItems: "center", padding: "5px", border: "1px solid rgba(0,0,0,.7)", borderRadius: "10px" }} onClick={() => setOpenSidebar(true)}>
+                <MenuIcon sx={{ fontSize: "25px", color: "rgba(0,0,0,.7)" }} />
               </Box>
               <Box sx={{ cursor: "pointer" }} component={Link} to="/">
                 <img src={sub_logo} alt="hkdigitals logo" height={60} />
@@ -659,4 +662,4 @@ const Test = () => {
   )
 }
 
-export default Test
+export default Showcase
