@@ -68,7 +68,6 @@ const SearchFeed = () => {
 
     if (website !== "") {
       setLoading(true);
-      console.log('Sending URL:', url);
 
       const startDate = new Date();
       try {
@@ -83,8 +82,6 @@ const SearchFeed = () => {
         const executionTimeInMilliseconds = endTime - startDate;
         const executionTime = formatTime(executionTimeInMilliseconds);
         const start_date = formatDate(startDate);
-
-        // console.log(response);
 
         if (response.ok) {
           const data = await response.json();
