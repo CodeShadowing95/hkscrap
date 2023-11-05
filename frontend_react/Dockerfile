@@ -22,4 +22,4 @@ FROM nginx:1.22.0
 COPY --from=build-stage /usr/src/web/build /usr/share/nginx/html
 
 # Exposez le port 80
-EXPOSE 80
+# EXPOSE 80

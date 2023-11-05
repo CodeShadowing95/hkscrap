@@ -56,8 +56,6 @@ services:
       - backend
     networks:
       - nginx-proxy
-    expose:
-      - "80"
 
 volumes:
   mysql_data:
