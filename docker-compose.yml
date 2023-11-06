@@ -45,7 +45,7 @@ services:
       VIRTUAL_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
-      VIRTUAL_PORT: ${PORT_FRONTEND}
+      # VIRTUAL_PORT: ${PORT_FRONTEND}
       HTTPS_METHOD: redirect
       PROXY_ADDRESS_FORWARDING: "true" # <==== very important if you use reverse proxy
     restart: unless-stopped
@@ -54,8 +54,8 @@ services:
       - ./frontend_react/node_modules:/usr/src/web/node_modules
     depends_on:
       - backend
-    networks:
-      - nginx-proxy
+    ports:
+      - ${PORT_FRONTEND}:80
 
 volumes:
   mysql_data:
@@ -63,5 +63,6 @@ volumes:
 
 #Use this configuration in production with nginx-proxy container
 networks:
-  nginx-proxy:
-    external: true
+  default:
+    external:
+      name: nginx-proxy

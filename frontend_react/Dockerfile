@@ -22,8 +22,8 @@ FROM nginx:1.22.0-alpine
 COPY --from=build-stage /usr/src/web/build /usr/share/nginx/html
 
 # Exposez le port 80
-# EXPOSE 80
+EXPOSE 80
 
-COPY scrap.hkdigitals.com.conf /etc/nginx/nginx.conf
+# COPY scrap.hkdigitals.com.conf /etc/nginx/nginx.conf
 
 CMD nginx -g 'daemon off;'
