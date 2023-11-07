@@ -45,7 +45,7 @@ services:
       VIRTUAL_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
-      # VIRTUAL_PORT: ${PORT_FRONTEND}
+      VIRTUAL_PORT: ${PORT_FRONTEND}
       HTTPS_METHOD: redirect
       PROXY_ADDRESS_FORWARDING: "true" # <==== very important if you use reverse proxy
     restart: unless-stopped
@@ -63,6 +63,5 @@ volumes:
 
 #Use this configuration in production with nginx-proxy container
 networks:
-  default:
-    external:
-      name: nginx-proxy
+  nginx-proxy:
+    external: true
