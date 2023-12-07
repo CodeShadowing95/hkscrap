@@ -16,6 +16,8 @@ const MenuElement = ({ icon, text, active, menuVisible, onClick }) => {
     }
     else if(id === 'utilisateurs') {
       return '/team';
+    } else if(id === 'paramètres') {
+      return '/settings';
     } else {
       // Change path to other pages
       return '/home';
@@ -45,8 +47,8 @@ const MenuElement = ({ icon, text, active, menuVisible, onClick }) => {
           transition: "0.2s"
         }}
       >
-        <Tag sx={{ fontSize: menuVisible ? "20px" : "25px", color: active === true ? '#FFF' : '#88a9c3' }} />
-        {menuVisible && <Typography sx={{ fontFamily: "Montserrat", fontSize: "15px", fontWeight: 500, color: active === true ? '#FFF' : '#88a9c3' }}>{text}</Typography>}
+        <Tag sx={{ fontSize: menuVisible ? "20px" : "25px", color: active === true ? '#FFF' : '#5585aa' }} />
+        {menuVisible && <Typography sx={{ fontFamily: "Montserrat", fontSize: "15px", fontWeight: 500, color: active === true ? '#FFF' : '#5585aa' }}>{text}</Typography>}
       </Stack>
     </Link>
   )

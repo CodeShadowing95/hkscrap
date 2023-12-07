@@ -1,7 +1,7 @@
 // export { default as Navbar } from './Navbar';
 export { default as Sidebar } from '../components/Sidebar';
 export { default as Feed } from './Feed';
-export { default as SocialMedia } from './SocialMedia';
+export { default as MyDatas } from './MyDatas';
 export { default as SearchFeed } from './SearchFeed';
 export { default as ScrapersFeed } from './ScrapersFeed';
 export { default as Login } from './Login';
@@ -9,4 +9,5 @@ export { default as Signup } from './Signup';
 export { default as History } from './History';
 export { default as Team } from './Team';
 export { default as Profile } from './Profile';
+export { default as NotFunctional } from './NotFunctional';
 export { default as Showcase } from '../pages/showcase/Showcase';

@@ -17,19 +17,19 @@ import { useState } from 'react';
 // };
 
 const options = [
-  'Nom',
-  'Note',
-  'Avis',
-  'Abordabilité',
-  'Catégorie',
-  'Adresse',
-  'Statut',
-  'Heure d\'ouverture',
-  'Image',
-  'Services',
-  'Description',
-  'Site web',
-  'Télephone',
+  // 'Nom',
+  // 'Note',
+  // 'Avis',
+  // 'Abordabilité',
+  // 'Catégorie',
+  // 'Adresse',
+  // 'Statut',
+  // 'Heure d\'ouverture',
+  // 'Image',
+  // 'Services',
+  // 'Description',
+  // 'Site web',
+  // 'Télephone',
 ];
 
 function getStyles(name, optionName, theme) {

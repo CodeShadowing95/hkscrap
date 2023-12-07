@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,9 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { ErrorOutlineIcon, TaskAltIcon, UploadingLoop, popular_sites } from '../utils/constants';
-import { Box, Typography } from '@mui/material';
-import { useTheme } from '../components/ThemeProvider';
+import { FileDownloadIcon, InfoIcon, TaskAltIcon, UploadingLoop, popular_sites } from '../../utils/constants';
+import { Box, ButtonBase, Typography } from '@mui/material';
+import { useTheme } from '../ThemeProvider';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,19 +43,28 @@ const getWebsite = (name, sites) => {
 
 const TableScrapeDatas = ({ datas, simple }) => {
   const { theme } = useTheme();
+  const navigate = useNavigate();
+
+  const loadDatas = (datafile, taskname) => {
+    navigate(`/datas/?datasheet=${datafile}&taskname=${taskname}`);
+  }
+
+  const downloadDatas = () => {
+
+  }
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead sx={{ backgroundColor: theme === 'light' ? "#FFF" : "#253141" }}>
           <TableRow>
-            {simple && <StyledTableCell><ErrorOutlineIcon /></StyledTableCell>}
+            {simple && <StyledTableCell><InfoIcon /></StyledTableCell>}
             <StyledTableCell align="center">ID</StyledTableCell>
             <StyledTableCell align="center">NOM DE LA TÂCHE</StyledTableCell>
             <StyledTableCell align="center">PLATEFORME</StyledTableCell>
             <StyledTableCell align="center">DATE DE DÉBUT</StyledTableCell>
             <StyledTableCell align="center">TEMPS D'EXÉCUTION</StyledTableCell>
-            {/* <StyledTableCell align="center">ENREGISTREMENTS</StyledTableCell> */}
+            {!simple && <StyledTableCell align="center">EMPLACEMENT</StyledTableCell>}
             {!simple && <StyledTableCell align="center"></StyledTableCell>}
           </TableRow>
         </TableHead>
@@ -65,7 +74,7 @@ const TableScrapeDatas = ({ datas, simple }) => {
             let website = getWebsite(data.WEBSITE, popular_sites);
 
             return (
-              <StyledTableRow key={`${data.DO_ID}_${index}`} 
+              <StyledTableRow key={`${data.RESULTS}`}
                 sx={{ 
                   backgroundColor: index % 2 !== 0 ? (theme === 'light' ? "#FFF" : "#253141") : (theme === 'light' ? "#F5F5F5" : "#131920"),
                 }}
@@ -75,7 +84,7 @@ const TableScrapeDatas = ({ datas, simple }) => {
                     <TaskAltIcon sx={{ color: "#1eae53" }} />
                   </StyledTableCell>
                 }
-                <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.DO_ID}</StyledTableCell>
+                <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{index+1}</StyledTableCell>
                 <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.LABEL}</StyledTableCell>
                 <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">
                   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 5 }}>
@@ -85,12 +94,17 @@ const TableScrapeDatas = ({ datas, simple }) => {
                 </StyledTableCell>
                 <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.START_DATE}</StyledTableCell>
                 <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.EXEC_TIME}</StyledTableCell>
+                {!simple && <StyledTableCell sx={{ color: index % 2 !== 0 ? (theme === 'light' ? "#000" : "#FFF") : (theme === 'light' ? "#000" : "#FFF"), }} align="center">{data.RESULTS}</StyledTableCell>}
                 {/* <StyledTableCell align="center">{data.LIGNES}</StyledTableCell> */}
                 {!simple &&
                   <StyledTableCell align="center">
-                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, backgroundColor: theme === 'light' ? "#e1e1e1" : "#187bcd", padding: "10px", borderRadius: "5px", cursor: "pointer", "&: hover": {boxShadow: 2} }}>
-                      <UploadingLoop />
-                      <Typography sx={{ fontSize: "15px", fontWeight: 500 }}>Charger</Typography>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2 }}>
+                      <Box component={ButtonBase} sx={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: theme === 'light' ? "#fab950" : "#ae7519", padding: "10px", borderRadius: "5px", cursor: "pointer", "&: hover": {boxShadow: 2} }} onClick={() => loadDatas(data.RESULTS, data.LABEL)}>
+                        <UploadingLoop />
+                      </Box>
+                      <Box component={ButtonBase} sx={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: theme === 'light' ? "#3492ca" : "#015384", padding: "10px", borderRadius: "5px", cursor: "pointer", "&: hover": {boxShadow: 2} }} onClick={downloadDatas}>
+                        <FileDownloadIcon sx={{ fontSize: "20px" }} />
+                      </Box>
                     </Box>
                   </StyledTableCell>
                 }

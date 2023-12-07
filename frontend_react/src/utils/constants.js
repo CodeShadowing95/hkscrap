@@ -44,6 +44,11 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 import Linkedin from '../assets/linkedin.webp';
 import Amazon from '../assets/amazon.webp';
@@ -72,9 +77,11 @@ import Startup_pricing from '../assets/startup.png';
 import Business_pricing from '../assets/business.png';
 import Enterprise_pricing from '../assets/enterprise.png';
 import NoService from '../assets/NoService.png';
+import SpinnerBlock from '../assets/SpinnersBlocksShuffle.svg';
 
 import logo from "../assets/logo.png";
 import sub_logo from "../assets/logo-hkscrap.png";
+import hklogo from "../assets/hklogo.png";
 import NoData from "../assets/no_data.png"
 import UploadIcon from "../assets/upload.png"
 import UploadingLoop from './LineMdUploadingLoop';
@@ -107,6 +114,7 @@ export const loremText = {
  export {
   logo,
   sub_logo,
+  hklogo,
   AccountIcon,
   LightModeIcon,
   DarkModeIcon,
@@ -149,6 +157,11 @@ export const loremText = {
   TrendingUpIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  AddBoxIcon,
+  ClearAllIcon,
+  AccessTimeFilledIcon,
+  FileDownloadIcon,
+  ArrowOutwardIcon,
   UploadingLoop,
   GoogleMaps,
   Linkedin,
@@ -178,5 +191,6 @@ export const loremText = {
   LinkedInIcon,
   TwitterIcon,
   FacebookIcon,
-  YouTubeIcon
+  YouTubeIcon,
+  SpinnerBlock,
  }

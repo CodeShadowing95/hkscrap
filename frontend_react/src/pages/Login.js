@@ -6,13 +6,16 @@ import {
   Box,
   Button,
   ButtonBase,
+  Hidden,
   IconButton,
   InputAdornment,
   Link,
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
+import { styled } from '@mui/material/styles';
 import {
   BG_Login,
   GoogleAuth,
@@ -21,6 +24,25 @@ import {
   sub_logo,
 } from "../utils/constants";
 import { ErrorMessage, SucessMessage } from "../components";
+
+
+const GetImageHeight = () => {
+  const isXs = useMediaQuery((theme) => theme.breakpoints.down('xs'));
+  const isSm = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const isMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  
+  if (isXs) return 60; // Adjust the height for xs
+  if (isSm) return 70; // Adjust the height for sm
+  if (isMd) return 80; // Adjust the height for md
+  return 90; // Default height for lg and larger screens
+};
+
+const Img = styled('img')({
+  border: 'none',
+  display: 'block',
+  verticalAlign: 'middle',
+  maxWidth: '100%',
+});
 
 const Login = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -38,6 +60,8 @@ const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [isResetPassword, setIsResetPassword] = useState(false);
   const navigate = useNavigate();
+
+  const height = GetImageHeight();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,7 +123,7 @@ const Login = () => {
         flexDirection: "column",
         placeContent: "center",
         height: "100dvh",
-        width: "100%",
+        width: "100dvw",
         backgroundImage: `url('${BG_Login}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -113,31 +137,22 @@ const Login = () => {
             gap: "1.75rem",
             borderRadius: "5px",
             padding: "2.5rem",
+            margin: "0 2rem",
             textAlign: "center",
             /*backgroundImage: `url('${sunflowerBg}')`, backgroundSize: "cover", backgroundPosition: "center"*/ backgroundColor: "#FFF",
           }}
           onSubmit={handleSubmit}
         >
-          <Stack alignItems="center">
-            <img
-              src={sub_logo}
-              alt="HKSCRAP_logo"
-              style={{
-                borderStyle: "none",
-                display: "block",
-                verticalAlign: "middle",
-                maxWidth: "100%",
-              }}
-              height={80}
-            />
-          </Stack>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", alignSelf: "center", width: { xs: "80px", sm: "100px", md: "100px", lg: "100px" } }}>
+            <img src={sub_logo} alt="HKSCRAP_logo" style={{ width: "100%", height: "100%" }} />
+          </Box>
           <Stack spacing="0.5rem">
             <Typography
               variant="h1"
               sx={{
                 fontFamily: "Montserrat",
                 color: "#37446f",
-                fontSize: "1.25rem",
+                fontSize: { xs: ".9rem", sm: "1rem", md: "1.25rem", lg: "1.25rem" },
                 lineHeight: "1.75rem",
                 fontWeight: 700,
               }}
@@ -147,7 +162,7 @@ const Login = () => {
             <Typography
               sx={{
                 fontFamily: "Montserrat",
-                fontSize: "0.875rem",
+                fontSize: { xs: ".7rem", sm: "0.775rem", md: "0.875rem", lg: "0.875rem" },
                 fontWeight: 600,
                 color: "#969cb6",
               }}
@@ -157,7 +172,7 @@ const Login = () => {
               Veuillez saisir vos identifiants
             </Typography>
           </Stack>
-          <Stack spacing="1rem" textAlign="left" minWidth="300px">
+          <Stack spacing="1rem" textAlign="left" maxWidth="300px">
             {message !== "" && <ErrorMessage message={message} />}
             {showMessage && (
               <SucessMessage

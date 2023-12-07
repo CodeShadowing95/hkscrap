@@ -1,6 +1,6 @@
 class ScrapDAO {
   static async find(uid, db) {
-    const sql = "SELECT * FROM dataoverview WHERE user_id = ?";
+    const sql = "SELECT * FROM dataoverview WHERE user_id = ? ORDER BY do_id DESC";
 
     try {
       const [rows, fields] = await db.execute(sql, [uid]);

@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  Avatar,
-  Box,
-  Button,
-  ButtonBase,
-  Modal,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, IconButton, Stack, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
 import MenuElement from "./MenuElement";
@@ -17,51 +8,21 @@ import {
   EventNoteIcon,
   HistoryIcon,
   sub_logo,
-  profileImage,
   StarIcon,
   FlashOnIcon,
   PeopleIcon,
-  AddTaskIcon,
+  hklogo,
+  SettingsIcon,
+  AddBoxIcon,
+  profileImage,
+  LogoutIcon,
 } from "../utils/constants";
-import ErrorMessage from "./ErrorMessage";
 
 import { useTheme } from "./ThemeProvider";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  borderRadius: "10px",
-  boxShadow: 24,
-  p: 4,
-};
-
-const isValidURL = (url) => {
-  const urlRegex = /^(http|https):\/\/[a-z0-9-]+(\.[a-z0-9-]+)+/i;
-  return urlRegex.test(url);
-};
 
 const Sidebar = ({ user, isVisible }) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState(0);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [disable, setDisable] = useState(false);
-  const [dataSize, setDataSize] = useState(0);
-
-  const initialState = { taskname: "", linkurl: "" };
-  const [formData, setFormData] = useState(initialState);
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    setErrorMessage("");
-    setDisable(true);
-  };
 
   const { theme } = useTheme();
 
@@ -77,8 +38,16 @@ const Sidebar = ({ user, isVisible }) => {
       navigate("/scrapers");
     } else if (index === 2) {
       navigate("/history");
+    } else if (index === 3) {
+      navigate("/notyet");
+    } else if (index === 4) {
+      navigate("/notyet");
     } else if (index === 5) {
-      navigate("/team");
+      navigate("/notyet");
+    } else if (index === 6) {
+      navigate("/notyet");
+    } else if (index === 8) {
+      navigate("/notyet");
     } else {
       // Change path to other pages
       navigate("/home");
@@ -86,42 +55,15 @@ const Sidebar = ({ user, isVisible }) => {
     setActiveItem(index);
   };
 
-  const handleChange = (e) => {
-    if (e.target.name === "linkurl") {
-      const validURL = isValidURL(e.target.value);
-      if (!validURL) {
-        setErrorMessage("L'URL du site web à scraper est invalide");
-        setDisable(true);
-        return;
-      }
-    }
+  const searchPage = () => {
+    navigate("/search");
+  }
 
-    if (e.target.name === "maxDatas") {
-      const value = e.target.value;
-      // Check if the input is not empty and is a valid positive number
-      if (
-        value === "" ||
-        (parseFloat(value) >= 0 && !isNaN(value)) ||
-        parseFloat(value) < 0
-      ) {
-        setDataSize(value);
-      }
-    }
-    setDisable(false);
-    setErrorMessage("");
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    handleClose();
-    navigate(
-      `/search/?q=${encodeURIComponent(
-        formData.linkurl
-      )}&task=${encodeURIComponent(formData.taskname)}`
-    );
-  };
+  const logoutPage = () => {
+    localStorage.removeItem('user');
+    navigate("/auth");
+    localStorage.clear();
+  }
 
   let username = user?.prenom;
   if (user?.nom !== null) {
@@ -136,13 +78,14 @@ const Sidebar = ({ user, isVisible }) => {
     { id: 1, icon: DashboardIcon, text: "Dashboard" },
     { id: 2, icon: FlashOnIcon, text: "Scrapers" },
     { id: 3, icon: HistoryIcon, text: "Historique" },
-    // { id: 4, icon: ImportExportIcon, text: "Exportation" },
-    { id: 5, icon: EventNoteIcon, text: "Planification" },
-    { id: 6, icon: StarIcon, text: "Favoris" },
+    { id: 4, icon: EventNoteIcon, text: "Planification" },
+    { id: 5, icon: StarIcon, text: "Favoris" },
+    { id: 7, icon: SettingsIcon, text: "Paramètres" },
   ];
 
   if (user?.role === "Modérateur")
-    elements = [...elements, { id: 7, icon: PeopleIcon, text: "Utilisateurs" }];
+    elements = [...elements, { id: 6, icon: PeopleIcon, text: "Utilisateurs" }];
+
 
   return (
     <Stack
@@ -151,307 +94,85 @@ const Sidebar = ({ user, isVisible }) => {
         top: 0,
         height: "100dvh",
         position: "sticky",
-        /* backgroundColor: "#1F2937 | 2e3d52", */ backgroundColor:
-          theme === "light" ? "#dee4ed" : "#1F2937",
-        width: isVisible ? "256px" : "90px",
-        display: "flex",
+        /* backgroundColor: "#1F2937 | 2e3d52", */ backgroundColor: theme === "light" ? "#dee4ed" : "#1F2937",
+        width: isVisible ? "300px" : "90px",
+        display: { xs: "none", sm: "none", md: "none", lg: "flex" },
         justifyContent: "space-between",
         alignItems: "center",
         overflow: "auto",
         "&::-webkit-scrollbar": { display: "none" /*, width: "8px"*/ },
-        /*'&::-webkit-scrollbar-thumb':{backgroundColor: "#eff2f6", borderRadius: "4px"}*/ transition:
-          ".2s",
+        /*'&::-webkit-scrollbar-thumb':{backgroundColor: "#eff2f6", borderRadius: "4px"}*/
+        transition: ".2s",
       }}
     >
       {/* General Stack Top */}
       <Stack
-        direction="column"
-        spacing={3}
-        sx={{ width: "100%", height: "100%", paddingTop: "20px" }}
+        sx={{ width: "100%", height: "100%", paddingTop: "20px", justifyContent: "space-between" }}
       >
-        {/* Stack logo */}
-        <Stack
-          direction="row"
-          sx={{
-            display: "flex",
-            justifyContent: isVisible ? "flex-start" : "center",
-            alignItems: "center",
-            paddingLeft: isVisible ? "1.75rem" : 0,
-          }}
-        >
-          <Link to="/home">
-            <img src={sub_logo} alt="logo" height={isVisible ? 60 : 45} />
-          </Link>
-        </Stack>
-
-        {/* Utilisateur */}
-        {isVisible ? (
-          <Box
+        <Stack spacing={3}>
+          {/* Stack logo */}
+          <Stack
+            direction="row"
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: isVisible ? "flex-start" : "center",
               alignItems: "center",
-              padding: "10px",
-              backgroundColor: theme === "light" ? "#F3F7FD" : "#253c5c",
-              borderRadius: "50px",
-              width: "13.5rem",
-              alignSelf: "center",
+              paddingLeft: isVisible ? "1.75rem" : 0,
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "10px",
-              }}
-            >
-              <Avatar
-                variant="circular"
-                src={profileImage}
-                sx={{ width: 50, height: 50 }}
+            <Link to="/home">
+              {isVisible ?
+                <img src={sub_logo} alt="logo" height={60} />
+                :
+                <img src={hklogo} alt="logo" height={45} />
+              }
+            </Link>
+          </Stack>
+
+          {/* Stack fonctionnalités essentielles */}
+          <Stack
+            direction="column"
+            spacing={1}
+            sx={{ padding: "1.25rem 0.75rem" }}
+          >
+            {elements.map((element, index) => (
+              <MenuElement
+                key={index}
+                icon={element.icon}
+                text={element.text}
+                menuVisible={isVisible}
+                active={activeItem === index}
+                onClick={() => handleMenuItemClick(index)}
               />
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: theme === "light" ? "#152C5B" : "#FFF",
-                    fontFamily: "Montserrat",
-                    fontSize: "0.875rem",
-                    fontWeight: 700,
-                    lineHeight: "1.25rem",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {username}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: "#93B0C8",
-                    fontFamily: "Montserrat",
-                    fontSize: "0.7rem",
-                    fontWeight: 400,
-                    lineHeight: "1.25rem",
-                    letterSpacing: ".5px",
-                  }}
-                >
-                  {user?.role === "Modérateur"
-                    ? "CEO HKDigitals"
-                    : "Utilisateur"}
-                </Typography>
-              </Box>
+            ))}
+            <hr component="divider" style={{ border: "none", backgroundColor: "rgba(0,0,0,.1)", height: ".5px", width: "100%", margin: "35px 0 15px 0" }} />
+            <Box sx={{ display: "flex", alignSelf: "center", justifyContent: "center", alignItems: "center", padding: "15px", borderRadius: "10px", backgroundImage: "linear-gradient(to right, #4338ca, #3a57db, #3a73e9, #488cf3, #60a5fa)", gap: 1, cursor: "pointer", transition: ".2s", "&: hover": {boxShadow: 4} }} onClick={searchPage}>
+              <AddBoxIcon sx={{ fontSize: '25px', color: "#fff" }} />
+              {isVisible && <Typography sx={{ fontFamily: "Montserrat", fontSize: "15px", fontWeight: 600, color: "#FFF" }}>Nouvelle tâche</Typography>}
             </Box>
-          </Box>
-        ) : (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "5px",
-              backgroundColor: theme === "light" ? "#F3F7FD" : "#253c5c",
-              borderRadius: "50px",
-              alignSelf: "center",
-            }}
-          >
-            <Avatar
-              variant="circular"
-              src={profileImage}
-              sx={{ width: 50, height: 50 }}
-            />
-          </Box>
-        )}
-
-        {/* Stack fonctionnalités essentielles */}
-        <Stack
-          direction="column"
-          spacing={1}
-          sx={{ padding: "1.25rem 0.75rem" }}
-        >
-          {elements.map((element, index) => (
-            <MenuElement
-              key={index}
-              icon={element.icon}
-              text={element.text}
-              menuVisible={isVisible}
-              active={activeItem === index}
-              onClick={() => handleMenuItemClick(index)}
-            />
-          ))}
+          </Stack>
         </Stack>
 
-        <Stack
-          direction="column"
-          spacing={1}
-          sx={{
-            padding: "1.25rem 0.75rem",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+        <Box
+          sx={{ padding: "1.25rem 0", borderTop: "1px solid #d2d2d2", gap: 1 }}
         >
-          {isVisible ? (
-            <Stack
-              justifyContent="center"
-              width="200px"
-              alignItems="center"
-              spacing={2}
-              sx={{
-                borderRadius: "5px",
-                padding: "10px",
-                /*backgroundColor: "#2e3d52" */ backgroundColor:
-                  theme === "light" ? "#FFF" : "#2e3d52",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "10px",
-                  borderRadius: "50px",
-                  /*backgroundColor: "#2e3d52",*/ backgroundColor:
-                    theme === "light" ? "#FFF" : "#2e3d52",
-                  marginTop: "-30px",
-                }}
-              >
-                <FlashOnIcon sx={{ fontSize: "25px", color: "#ffa500" }} />
-              </div>
-              <Typography
-                align="center"
-                sx={{
-                  fontFamily: "Montserrat",
-                  fontSize: "12px",
-                  fontWeight: 400,
-                  color: theme === "light" ? "#2e3d52" : "#FFF",
-                }}
-              >
-                Démarrez une{" "}
-                <span style={{ fontWeight: "700" }}>nouvelle tâche</span>.
-                Renseignez le nom de la tâche, l'URL du site et lancez
-                l'opération
-              </Typography>
-              <Button
-                variant="contained"
-                color="secondary"
-                startIcon={<AddTaskIcon />}
-                size="large"
-                onClick={handleOpen}
-              >
-                Nouvelle tâche
-              </Button>
-            </Stack>
-          ) : (
-            <Box
-              component={ButtonBase}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "10px",
-                backgroundColor: "#9c27b0",
-                borderRadius: "50px",
-                width: "50px",
-                height: "50px",
-              }}
-              onClick={() => handleOpen()}
-            >
-              <AddTaskIcon sx={{ fontSize: "25px", color: "#FFF" }} />
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 20px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <Avatar variant="circular" src={profileImage} sx={{ width: 40, height: 40 }} />
+              {isVisible &&
+              <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <Typography sx={{ color: "#6690b2", fontFamily: "Montserrat", fontSize: "0.7rem", fontWeight: 400, lineHeight: "1.25rem", letterSpacing: ".5px", }}>
+                  Bienvenue,
+                </Typography>
+                <Typography sx={{ color: theme === "light" ? "#152C5B" : "#FFF", fontFamily: "Montserrat", fontSize: "0.875rem", fontWeight: 700, lineHeight: "1.25rem", textOverflow: "ellipsis", }}>{username}</Typography>
+              </Box>}
             </Box>
-          )}
-        </Stack>
-
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style} component="form" onSubmit={handleSubmit}>
-            <Typography
-              id="modal-modal-title"
-              variant="h5"
-              component="h2"
-              sx={{ textAlign: "center", fontWeight: 600 }}
-            >
-              Nouvelle tâche
-            </Typography>
-            <Stack spacing={2} sx={{ margin: "30px 0" }}>
-              <Stack spacing={1}>
-                <Typography sx={{ fontWeight: 500 }}>
-                  Nom de la tâche
-                </Typography>
-                {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
-                <TextField
-                  size="small"
-                  name="taskname"
-                  onChange={handleChange}
-                  fullWidth
-                />
-              </Stack>
-              <Stack spacing={1}>
-                <Typography sx={{ fontWeight: 500 }}>
-                  Lien du site à scraper
-                </Typography>
-                {/* <TextField size="small" name="linkurl" required value={searchURL} onChange={(e) => setSearchURL(e.target.value)} fullWidth /> */}
-                <TextField
-                  size="small"
-                  name="linkurl"
-                  required
-                  onChange={handleChange}
-                  fullWidth
-                />
-                {errorMessage && <ErrorMessage message={errorMessage} />}
-              </Stack>
-              <Stack spacing={1}>
-                <Typography sx={{ fontWeight: 500 }}>
-                  Quantité maximum de données
-                </Typography>
-                <TextField
-                  type="number"
-                  size="small"
-                  name="maxDatas"
-                  value={dataSize}
-                  onChange={handleChange}
-                  fullWidth
-                />
-              </Stack>
-            </Stack>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                gap: 3,
-              }}
-            >
-              <Button
-                type="submit"
-                disabled={disable}
-                variant="contained"
-                size="large"
-                color="success"
-                onSubmit={handleSubmit}
-              >
-                Démarrer
-              </Button>
-              <Button
-                variant="contained"
-                size="large"
-                color="inherit"
-                onClick={handleClose}
-              >
-                Annuler
-              </Button>
-            </Box>
+            {isVisible &&
+            <IconButton aria-label="logout" onClick={logoutPage}>
+              <LogoutIcon sx={{ fontSize: "20px", color: "#88a9c3" }} />
+            </IconButton>}
           </Box>
-        </Modal>
+        </Box>
       </Stack>
     </Stack>
   );

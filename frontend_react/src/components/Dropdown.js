@@ -8,54 +8,58 @@ import { AccountCircleIcon } from '../utils/constants';
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-export default function MenuIntroduction() {
-    const navigate = useNavigate();
-    const createHandleMenuClick = (menuItem) => {
-        switch (menuItem) {
-            case "Profil":
-                return () => {
-                    navigate("/profil");
-                }
-            case "Paramètres":
-                return () => {
-                    // navigate("/");
-                }
-            case "Aide":
-                return () => {
-                    // navigate("/");
-                }
-            case "Déconnexion":
-                return () => {
-                    localStorage.removeItem('user');
-                    navigate("/auth");
-                    localStorage.clear();
-                }
-            default:
-                break;
-        }
-    };
+// import { useTheme } from "./ThemeProvider";
 
-    return (
-        <Dropdown>
-            <Box component={MenuButton} style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", background: "none", cursor: "pointer" }}>
-                <AccountCircleIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
-            </Box>
-            <Menu slots={{ listbox: StyledListbox }}>
-                <StyledMenuItem onClick={createHandleMenuClick('Profil')}>
-                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Mon profil</Typography>
-                </StyledMenuItem>
-                <StyledMenuItem onClick={createHandleMenuClick('Paramètres')}>
-                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Paramètres</Typography>
-                </StyledMenuItem>
-                <StyledMenuItem onClick={createHandleMenuClick('Aide')}>
-                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Aide</Typography>
-                </StyledMenuItem>
-                <StyledMenuItem onClick={createHandleMenuClick('Déconnexion')}>
-                    <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Déconnexion</Typography>
-                </StyledMenuItem>
-            </Menu>
-        </Dropdown>
-    );
+export default function MenuIntroduction() {
+  const navigate = useNavigate();
+  // const { theme } = useTheme();
+
+  const createHandleMenuClick = (menuItem) => {
+    switch (menuItem) {
+      case "Profil":
+        return () => {
+            navigate("/profil");
+        }
+      case "Paramètres":
+        return () => {
+            // navigate("/");
+        }
+      case "Aide":
+        return () => {
+            // navigate("/");
+        }
+      case "Déconnexion":
+        return () => {
+            localStorage.removeItem('user');
+            navigate("/auth");
+            localStorage.clear();
+        }
+      default:
+        break;
+    }
+  };
+
+  return (
+    <Dropdown>
+      <Box component={MenuButton} style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "8px", borderRadius: "15px", border: "1px solid #93B0C8", background: "none", cursor: "pointer" }}>
+          <AccountCircleIcon sx={{ fontSize: '20px', color: "#88a9c3" }} />
+      </Box>
+      <Menu slots={{ listbox: StyledListbox }}>
+        <StyledMenuItem onClick={createHandleMenuClick('Profil')}>
+          <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Mon profil</Typography>
+        </StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('Paramètres')}>
+          <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Paramètres</Typography>
+        </StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('Aide')}>
+          <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Aide</Typography>
+        </StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('Déconnexion')}>
+          <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>Déconnexion</Typography>
+        </StyledMenuItem>
+      </Menu>
+    </Dropdown>
+  );
 }
 
 const blue = {

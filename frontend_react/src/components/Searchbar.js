@@ -46,7 +46,7 @@ const Searchbar = () => {
           },
         }}
         InputProps={{
-          endAdornment: <InputAdornment position="end" sx={{ color: theme === "light" ? "none" : "#adadad" }}><SearchIcon /></InputAdornment>
+          startAdornment: <InputAdornment position="start" sx={{ color: theme === "light" ? "none" : "#adadad" }}><SearchIcon /></InputAdornment>
         }}
       />
     </Box>

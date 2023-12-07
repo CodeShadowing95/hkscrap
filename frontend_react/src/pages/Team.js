@@ -1,7 +1,7 @@
 import { Alert, Box, Breadcrumbs, Button, InputAdornment, Link, Modal, Snackbar, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import {  PersonAddIcon, SearchIcon } from '../utils/constants'
-import TableUsers from '../components/TableUsers'
+import TableUsers from '../components/Datatables/TableUsers'
 import ErrorMessage from '../components/ErrorMessage'
 
 

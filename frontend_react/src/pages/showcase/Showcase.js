@@ -111,7 +111,19 @@ const Showcase = () => {
             {/* Right side */}
             <Grid item xs={12} sm={12} md={12} lg={6}>
               <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <img src={DataExtraction} alt="data_extraction" style={{ maxWidth: "90%", height: "auto" }} />
+                <img
+                  src={DataExtraction}
+                  alt="data_extraction"
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                    verticalAlign: "middle",
+                    fontStyle: "italic",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    shapeMargin: "1rem"
+                  }}
+                />
               </Box>
             </Grid>
           </Grid>
@@ -120,7 +132,7 @@ const Showcase = () => {
 
 
       {/* ------------------------------------------------ First section ------------------------------------------------ */}
-      <Box id="about" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundColor: "#eef0f6" }}>
+      <Box id="about" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", backgroundColor: "#eef0f6" }}>
         <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: { xs: "0", sm: "0", md: "0", lg: "0 148px" } }}>
           <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
             <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", maxWidth: "700px", fontWeight: 700, color: "#37446f" }}>
@@ -203,7 +215,7 @@ const Showcase = () => {
 
 
       {/* ------------------------------------------------ Second section ------------------------------------------------ */}
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", /*backgroundColor: "#e6f1ff"*/backgroundImage: `url('${particlesBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", /*backgroundColor: "#e6f1ff"*/backgroundImage: `url('${particlesBg}')`, backgroundSize: "cover", backgroundPosition: "center" }}>
         <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: { xs: "0", sm: "0", md: "0 148px", lg: "0 148px" } }} spacing={2}>
           <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
             <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, maxWidth: "700px", lineHeight: "40px", color: "#37446f" }}>Comment ça fonctionne ?</Typography>
@@ -261,7 +273,7 @@ const Showcase = () => {
 
 
       {/* ------------------------------------------------ Third section ------------------------------------------------ */}
-      <Box id="features" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundColor: "#eef0f6" }}>
+      <Box id="features" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", backgroundColor: "#eef0f6" }}>
         <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: { xs: "0", sm: "0", md: "0 148px", lg: "0 148px" } }}>
           <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
             <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, maxWidth: "700px", lineHeight: "40px", color: "#37446f" }}>Cas d'utilisation de notre solution</Typography>
@@ -474,7 +486,7 @@ const Showcase = () => {
 
 
       {/* ------------------------------------------------ Fifth section ------------------------------------------------ */}
-      <Box id="docs" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", marginBottom: "60px", backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)" }}>
+      <Box id="docs" sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "60px 0", backgroundImage: "linear-gradient(to right top, #02407e, #0d539c, #1667bb, #1e7cdb, #2491fc)" }}>
         <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "0 16px", margin: { xs: "0", sm: "0", md: "0 148px", lg: "0 148px" } }} spacing={2}>
           <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", rowGap: "10px", marginBottom: "60px" }}>
             <Typography variant='h2' sx={{ fontFamily: "Montserrat", marginTop: 0, fontSize: "32px", textAlign: "center", fontWeight: 700, maxWidth: "700px", lineHeight: "40px", color: "#fff" }}>Solutions de données prêtes à l'emploi</Typography>

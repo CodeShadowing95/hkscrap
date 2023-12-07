@@ -5,7 +5,7 @@ import { popular_sites } from "../utils/constants"
 const ScrapersFeed = () => {
   
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', padding: "1rem 2rem" }}>
+    <Stack sx={{ padding: "1rem 2rem" }}>
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "1em", width: "100%" }}>
         {/* Title & Breadcrumb */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
@@ -15,7 +15,7 @@ const ScrapersFeed = () => {
             <Link underline="hover" color="inherit" href="/home" fontFamily="Montserrat">
               Accueil
             </Link>
-            <Typography color="#93B0C8" fontFamily="Montserrat">Scrapeurs</Typography>
+            <Typography color="#93B0C8" fontFamily="Montserrat">Scrapers</Typography>
           </Breadcrumbs>
         </Box>
       </Box>
@@ -35,7 +35,7 @@ const ScrapersFeed = () => {
           </Box>
         </Box>
       </Stack>
-    </Box>
+    </Stack>
   )
 }
 

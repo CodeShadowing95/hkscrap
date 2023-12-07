@@ -10,7 +10,7 @@ import {
   popular_sites,
 } from "../utils/constants";
 import { useEffect, useState } from "react";
-import TableScrapeDatas from "../components/TableScrapeDatas";
+import TableScrapeDatas from "../components/Datatables/TableScrapeDatas";
 import { useTheme } from "../components/ThemeProvider";
 import { fetchFromServer } from "../utils/fetchFromServer";
 import { useNavigate } from "react-router-dom";
@@ -136,7 +136,8 @@ const Feed = () => {
           alignItems: "flex-start",
           marginBottom: "1.5em",
           padding: "2rem 2rem 8rem",
-          /*backgroundImage: theme === 'dark' ? "linear-gradient(to bottom, #253c5c, #2c2b43, #271d2b, #1a1117, #000000)" : "linear-gradient(to bottom, #f0f2f7, #dfe3ee, #ced4e4, #bdc5db, #acb7d2)"*/ backgroundImage: `url('${TwinkleBG}')`,
+          /*backgroundImage: theme === 'dark' ? "linear-gradient(to bottom, #253c5c, #2c2b43, #271d2b, #1a1117, #000000)" : "linear-gradient(to bottom, #f0f2f7, #dfe3ee, #ced4e4, #bdc5db, #acb7d2)"*/
+          backgroundImage: `url('${TwinkleBG}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -169,7 +170,6 @@ const Feed = () => {
               Welcome back, {user?.prenom}
             </Typography>
           </Box>
-          {/* Breadcrumb */}
           <Typography
             sx={{
               fontSize: "15px",
@@ -180,13 +180,12 @@ const Feed = () => {
               fontFamily: "Montserrat",
             }}
           >
-            Entrez l'URL de la page que vous souhaitez scraper dans la barre de
-            recherche ci-dessous <br /> et obtenez des informations précieuses.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br />
+            Dictum at tempor commodo ullamcorper a lacus.
           </Typography>
-          {/* Barre de recherche */}
-          <Box sx={{ textAlign: "center", width: "100%" }}>
+          {/* <Box sx={{ textAlign: "center", width: "100%" }}>
             <Searchbar />
-          </Box>
+          </Box> */}
         </Stack>
       </Box>
 
@@ -641,7 +640,7 @@ const Feed = () => {
                     ))}
                   </Stack>
                 </Stack>
-                <Template customBg />
+                <Template customBg customEmoji customTitle customText />
               </Stack>
             </Grid>
 

@@ -1,6 +1,8 @@
 const ScrapUseCase = require("../usecases/scrap_usecase.js");
 
 const { scrapeFromURL } = require("../../../../core/utils/detect_url.js");
+const { saveFileToSheets, getDatasFromSheet } = require("../../../../core/utils/sheetManagement.js");
+const { createCSVFile } = require("../../../../core/utils/createFile.js");
 
 module.exports = (app, db) => {
   app.post("/all", async (req, res) => {
@@ -50,11 +52,22 @@ module.exports = (app, db) => {
 
   app.post("/scrape", async (req, res) => {
     try {
-      const { url } = req.body;
+      const { url, limit } = req.body;
 
-      const data = await scrapeFromURL(url);
+      const data = await scrapeFromURL(url, limit);
 
-      return res.status(200).json(data);
+      // Create csv file
+      const csv_file = createCSVFile();
+
+      try {
+        // Save datas in Google Sheets
+        saveFileToSheets(data, csv_file);
+
+        // return res.status(200).json(data);
+        return res.status(200).json({ filename: csv_file, dataLength: data.length });
+      } catch (error) {
+        console.log("Échec: Annulation de l'enregistrement");
+      }
     } catch (err) {
       res.status(500).json({
         name: "An error occurred while scraping data",
@@ -62,6 +75,21 @@ module.exports = (app, db) => {
       });
     }
   });
+
+  app.post("/getdatas", async (req, res) => {
+    try {
+      const { datasheet } = req.body;
+
+      const data = await getDatasFromSheet(datasheet);
+
+      return res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({
+        name: "An error occurred while retrieving data from Google Sheets",
+        description: err.message,
+      });
+    }
+  })
 
   app.post("/store-scraped-data", async (req, res) => {
     try {

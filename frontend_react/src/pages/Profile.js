@@ -187,7 +187,6 @@ const Profile = () => {
         </Box>
       )}
 
-      {/*  */}
       <Box sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -285,13 +284,13 @@ const Profile = () => {
                         </Grid> */}
                         <Grid item xs={12} sm={12} md={6} lg={6}>
                           <Typography
-                            sx={{ fontWeight: 400, color: "#69707A" }}
+                            sx={{ fontWeight: 400, color: "#69707A", marginBottom: "5px" }}
                           >
                             Nom(s)
                           </Typography>
                           {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
                           <TextField
-                            size="medium"
+                            size="small"
                             name="lastname"
                             fullWidth
                             value={formData.lastname}
@@ -300,13 +299,13 @@ const Profile = () => {
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
                           <Typography
-                            sx={{ fontWeight: 400, color: "#69707A" }}
+                            sx={{ fontWeight: 400, color: "#69707A", marginBottom: "5px" }}
                           >
                             Prénom(s)
                           </Typography>
                           {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
                           <TextField
-                            size="medium"
+                            size="small"
                             name="firstname"
                             fullWidth
                             value={formData.firstname}
@@ -315,13 +314,13 @@ const Profile = () => {
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
                           <Typography
-                            sx={{ fontWeight: 400, color: "#69707A" }}
+                            sx={{ fontWeight: 400, color: "#69707A", marginBottom: "5px" }}
                           >
                             Téléphone
                           </Typography>
                           {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
                           <TextField
-                            size="medium"
+                            size="small"
                             name="phone"
                             fullWidth
                             value={formData.phone}
@@ -330,13 +329,13 @@ const Profile = () => {
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
                           <Typography
-                            sx={{ fontWeight: 400, color: "#69707A" }}
+                            sx={{ fontWeight: 400, color: "#69707A", marginBottom: "5px" }}
                           >
                             Pays
                           </Typography>
                           {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
                           <TextField
-                            size="medium"
+                            size="small"
                             name="country"
                             fullWidth
                             value={formData.country}
@@ -345,13 +344,13 @@ const Profile = () => {
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={12}>
                           <Typography
-                            sx={{ fontWeight: 400, color: "#69707A" }}
+                            sx={{ fontWeight: 400, color: "#69707A", marginBottom: "5px" }}
                           >
                             Adresse mail
                           </Typography>
                           {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
                           <TextField
-                            size="medium"
+                            size="small"
                             name="email"
                             fullWidth
                             value={formData.email}
@@ -412,7 +411,7 @@ const Profile = () => {
                             sx={{
                               fontSize: "1.05em",
                               fontWeight: 400,
-                              color: "#69707A",
+                              color: "#69707A", marginBottom: "5px",
                             }}
                           >
                             Mot de passe actuel
@@ -420,7 +419,7 @@ const Profile = () => {
                           {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
                           <TextField
                             type="password"
-                            size="medium"
+                            size="small"
                             name="oldpassword"
                             fullWidth
                             value={formData.lastname}
@@ -432,7 +431,7 @@ const Profile = () => {
                             sx={{
                               fontSize: "1.05em",
                               fontWeight: 400,
-                              color: "#69707A",
+                              color: "#69707A", marginBottom: "5px",
                             }}
                           >
                             Nouveau mot de passe
@@ -440,7 +439,7 @@ const Profile = () => {
                           {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
                           <TextField
                             type="password"
-                            size="medium"
+                            size="small"
                             name="newpassword"
                             fullWidth
                             value={formData.firstname}
@@ -452,7 +451,7 @@ const Profile = () => {
                             sx={{
                               fontSize: "1.05em",
                               fontWeight: 400,
-                              color: "#69707A",
+                              color: "#69707A", marginBottom: "5px",
                             }}
                           >
                             Confirmez le mot de passe
@@ -460,7 +459,7 @@ const Profile = () => {
                           {/* <TextField size="small" name="taskname" value={taskName} onChange={(e) => setTaskName(e.target.value)} fullWidth /> */}
                           <TextField
                             type="password"
-                            size="medium"
+                            size="small"
                             name="confirmpassword"
                             fullWidth
                             value={formData.phone}
@@ -514,7 +513,7 @@ const Profile = () => {
                         sx={{
                           fontSize: "1.1rem",
                           fontWeight: 300,
-                          color: "#69707A",
+                          color: "#69707A", marginBottom: "5px",
                         }}
                       >
                         Ajoutez un niveau de sécurité supplémentaire à votre
@@ -527,7 +526,7 @@ const Profile = () => {
                         <Grid container>
                           <Grid item xs={12} sm={12} md={12} lg={12}>
                             <Typography
-                              sx={{ fontWeight: 400, color: "#69707A" }}
+                              sx={{ fontWeight: 400, color: "#69707A", marginBottom: "5px" }}
                             >
                               Numéro de téléphone
                             </Typography>
