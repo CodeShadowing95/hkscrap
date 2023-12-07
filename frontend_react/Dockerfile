@@ -16,10 +16,14 @@ RUN npm run build
 # depuis le répertoire /app/build
 
 # Utilisez une image Nginx comme image parent
-FROM nginx:1.22.0
+FROM nginx:1.22.0-alpine
 
 # Copiez les fichiers de build de l'application React dans le répertoire de travail de Nginx
 COPY --from=build-stage /usr/src/web/build /usr/share/nginx/html
 
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Exposez le port 80
 EXPOSE 80
+
+CMD nginx -g 'daemon off;'

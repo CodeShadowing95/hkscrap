@@ -66,7 +66,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log(formData);
     fetchFromServer("login", formData)
       .then((res) => {
         if (res.data !== undefined) {

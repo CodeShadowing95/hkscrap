@@ -54,10 +54,8 @@ services:
       - ./frontend_react/node_modules:/usr/src/web/node_modules
     depends_on:
       - backend
-    networks:
-      - nginx-proxy
-    expose:
-      - "80"
+    ports:
+      - ${PORT_FRONTEND}:80
 
 volumes:
   mysql_data:

@@ -77,7 +77,6 @@ const Team = () => {
       }
   
       const data = await response.json();
-      // console.log(data);
       setMessage('Nouveau membre ajouté à l\'équipe!');
       setState({ ...newState, isOpen: true });
       return data; // The response data from the server
@@ -95,7 +94,6 @@ const Team = () => {
     createMember()
     .then((data) => {
       if(data){
-        // console.log(data);
         setTeams([...teams, {NOM: data?.lastname, PRENOM: data?.firstname, PAYS: data?.country, EMAIL: data?.email, TELEPHONE: data?.telephone, ROLE: data?.role}]);
       }
     })
