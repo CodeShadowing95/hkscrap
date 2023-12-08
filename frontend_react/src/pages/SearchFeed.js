@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Box, Button, ButtonBase, Grid, Pagination, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, ButtonBase, Grid, MenuItem, Pagination, Select, Stack, TextField, Typography } from '@mui/material'
 
 import { ErrorMessage, TempDatatable } from '../components'
-import { AccessTimeFilledIcon, ChevronLeftIcon, ClearAllIcon, FlashOnIcon } from '../utils/constants'
+import { AccessTimeFilledIcon, ChevronLeftIcon, ClearAllIcon, CloudIcon, DeleteIcon, FlashOnIcon, KeyboardDoubleArrowRightIcon, SecurityIcon, ThumbUpIcon, hklogo, loremText } from '../utils/constants'
 import { fetchFromServer } from '../utils/fetchFromServer'
 
 function formatDate(date) {
@@ -52,8 +52,8 @@ const SearchFeed = () => {
   const [datas, setDatas] = useState([]);
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [dataSize, setDataSize] = useState(0);
-  const initialState = { taskname: "", linkurl: "", datalimit: 0 };
+  const [dataSize, setDataSize] = useState(10);
+  const initialState = { taskname: "", linkurl: "", datalimit: 10 };
   const [formData, setFormData] = useState(initialState);
 
   const [scrapedData, setScrapedData] = useState([]);
@@ -79,8 +79,7 @@ const SearchFeed = () => {
 
     if (e.target.name === "datalimit") {
       const value = e.target.value;
-      // Check if the input is not empty and is a valid positive number
-      setDataSize(value === "" || (parseFloat(value) >= 0 && !isNaN(value)) || parseFloat(value) < 0 ? value : dataSize);
+      setDataSize(value);
     }
 
     setDisable(false);
@@ -114,9 +113,9 @@ const SearchFeed = () => {
     setFormData({
       taskname: "",
       linkurl: "",
-      datalimit: 0,
+      datalimit: 10,
     });
-    setDataSize(0);
+    setDataSize(10);
     setErrorMessage("");
 
     const tasknameTextField = document.getElementById('taskname');
@@ -137,7 +136,7 @@ const SearchFeed = () => {
 
     let website = detect_url(url);
     if (website === "") {
-      alert("No specific URL found!");
+      setErrorMessage("Aucune URL trouvée");
       return;
     }
 
@@ -261,7 +260,7 @@ const SearchFeed = () => {
       {/* Content body */}
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={12} lg={6}>
-          <Stack sx={{ border: "1px solid #e1e1e1", borderRadius: "10px", padding: "15px" }}>
+          <Stack sx={{ border: "1px solid #e1e1e1", borderRadius: "10px", padding: "15px" }} spacing={3}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #e1e1e1", padding: "0 0 10px 0" }}>
               <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2 }}>
                 {/* Button Back */}
@@ -269,29 +268,58 @@ const SearchFeed = () => {
                   <ChevronLeftIcon sx={{ fontSize: "20px", color: "#555555" }} />
                   <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>Retour</Typography>
                 </Box>
-                {/* <div>Text</div>
-                <div>Text</div> */}
               </Box>
               {/* Some other features to add */}
               <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2 }}>
-                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px", borderRadius: "5px", gap: 1 }}>
-                  <AccessTimeFilledIcon sx={{ fontSize: "20px", color: "#555555" }} />
-                  <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>{currentDate}</Typography>
+                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1 }}>
+                  <Box sx={{ display: "inline-block", maxWidth: "20px", backgroundColor: "#f3f3f3", borderRadius: "5px", padding: "5px" }}>
+                    <img src={hklogo} alt="loading" style={{ maxWidth: "100%", height: "auto", verticalAlign: "middle", fontStyle: "italic", backgroundRepeat: "no-repeat", backgroundSize: "cover", shapeMargin: "1rem" }} />
+                  </Box>
+                  <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>HK-Scrap</Typography>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px", borderRadius: "5px" }}>
-                  <FlashOnIcon sx={{ fontSize: "20px", color: "#555555" }} />
+                  <FlashOnIcon sx={{ fontSize: "18px", color: "#555555" }} />
                   <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>0</Typography>
                 </Box>
-                <Box component={ButtonBase} sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px", borderRadius: "5px", border: "1px solid #e1e1e1", gap: 1, "&:hover": { backgroundColor: "#f3f3f3" } }} onClick={clearForm}>
-                  <ClearAllIcon sx={{ fontSize: "20px", color: "#555555" }} />
-                  <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>Effacer</Typography>
+                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "5px", borderRadius: "5px", gap: 1 }}>
+                  <AccessTimeFilledIcon sx={{ fontSize: "18px", color: "#555555" }} />
+                  <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>{currentDate}</Typography>
                 </Box>
               </Box>
             </Box>
 
+            <Stack spacing={2}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Box sx={{ display: "flex", alignItems: "center", padding: "5px", border: "1px solid #e1e1e1", borderRadius: "5px", gap: 2 }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", maxWidth: "30px", maxHeight: "30px", backgroundColor: "#f3f3f3", borderRadius: "5px", padding: "5px" }}>
+                    <SecurityIcon sx={{ fontSize: "15px", color: "#4338ca" }} />
+                  </Box>
+                  <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>Sécurité assurée</Typography>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", padding: "5px", border: "1px solid #e1e1e1", borderRadius: "5px", gap: 2 }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", maxWidth: "30px", maxHeight: "30px", backgroundColor: "#f3f3f3", borderRadius: "5px", padding: "5px" }}>
+                    <CloudIcon sx={{ fontSize: "15px", color: "#4338ca" }} />
+                  </Box>
+                  <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>Web scraping</Typography>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", padding: "5px", border: "1px solid #e1e1e1", borderRadius: "5px", gap: 2 }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", maxWidth: "30px", maxHeight: "30px", backgroundColor: "#f3f3f3", borderRadius: "5px", padding: "5px" }}>
+                    <ThumbUpIcon sx={{ fontSize: "15px", color: "#4338ca" }} />
+                  </Box>
+                  <Typography sx={{ fontFamily: "Montserrat", fontSize: "12px", lineHeight: "16px", fontWeight: 600, color: "#555555" }}>100% fiable</Typography>
+                </Box>
+              </Box>
+
+              <Box sx={{ position: "relative", padding: "15px", borderRadius: "10px", backgroundImage: "linear-gradient(to right, #4338ca, #3a57db, #3a73e9, #488cf3, #60a5fa)", overflow: "hidden" }}>
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: "1rem", fontWeight: 700, lineHeight: "1.25rem", color: "#FFF", marginBottom: "5px" }}>Abonnement Individuel - €29.99/mois</Typography>
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: ".95rem", fontWeight: 500, lineHeight: "1.25rem", color: "rgba(255, 255, 255, .7)" }}>Plus de <span style={{ fontWeight: "700", color: "#FFF" }}>500</span> données à extraire, selon vos besoins et vos poches.</Typography>
+                <FlashOnIcon sx={{ position: "absolute", top: "-30px", right: "-20px", width: "150px", height: "150px", color: "rgba(67, 56, 202, .6)", transform: "rotate(30deg)" }} />
+              </Box>
+            </Stack>
+
             {/* Form */}
             <Box component="form" onSubmit={handleSubmit}>
-              <Stack spacing={4} sx={{ margin: "30px 0" }}>
+              <Stack spacing={4} marginBottom="25px">
                 <Stack spacing={1}>
                   <Typography sx={{ fontFamily: "Montserrat", fontWeight: 600, lineHeight: "20px" }}>
                     Tâche
@@ -304,6 +332,7 @@ const SearchFeed = () => {
                     placeholder='Saisir le nom de la tâche (Optionnel)'
                     fullWidth
                     disabled={disable}
+                    sx={{ backgroundColor: "#fafafa" }}
                   />
                 </Stack>
                 <Stack spacing={1}>
@@ -320,37 +349,47 @@ const SearchFeed = () => {
                     multiline
                     rows={3}
                     disabled={disable}
+                    sx={{ backgroundColor: "#fafafa" }}
                   />
                   {errorMessage !== "" ? <ErrorMessage message={errorMessage} /> : ""}
                 </Stack>
                 <Stack spacing={1}>
                   <Typography sx={{ fontFamily: "Montserrat", fontWeight: 600, lineHeight: "20px" }}>
-                    Limite de données (0 - illimité)
+                    Limite
                   </Typography>
-                  <TextField
-                    size="small"
-                    type="number"
-                    name="datalimit"
+                  <Select
                     id="datalimit"
-                    value={dataSize}
-                    onChange={handleChange}
+                    name="datalimit"
+                    size="small"
                     fullWidth
+                    value={dataSize}
                     disabled={disable}
-                  />
+                    sx={{ backgroundColor: "#fafafa" }}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={10}>10</MenuItem>
+                    <MenuItem value={20}>20</MenuItem>
+                    <MenuItem value={30}>30</MenuItem>
+                    <MenuItem value={50}>50</MenuItem>
+                  </Select>
                 </Stack>
               </Stack>
-              <Button
-                type="submit"
-                disabled={disable}
-                variant="contained"
-                size="large"
-                color="info"
-                endIcon={<FlashOnIcon />}
-                sx={{ width: "100%" }}
-                onSubmit={handleSubmit}
-              >
-                Démarrer l'extraction
-              </Button>
+              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderRadius: "10px" }}>
+                <Button
+                  disabled={disable}
+                  variant="outlined"
+                  size="small"
+                  color="error"
+                  startIcon={<DeleteIcon />}
+                  onClick={clearForm}
+                >
+                  Effacer
+                </Button>
+                <Box component={ButtonBase} sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px", borderRadius: "50px", backgroundColor: "#3A72EC", gap: 1, cursor: "pointer", transition: ".2s", "&: hover": {boxShadow: 4, backgroundColor: "#4338ca"} }} onClick={handleSubmit}>
+                  <Typography sx={{ fontFamily: "Montserrat", fontSize: "15px", fontWeight: 600, color: "#FFF" }}>Exécuter</Typography>
+                  <KeyboardDoubleArrowRightIcon sx={{ fontSize: '25px', color: "#fff" }} />
+                </Box>
+              </Box>
             </Box>
           </Stack>
         </Grid>
@@ -361,7 +400,6 @@ const SearchFeed = () => {
           </Box>
         </Grid>
       </Grid>
-      
     </Stack>
   )
 }

@@ -49,6 +49,9 @@ import ClearAllIcon from '@mui/icons-material/ClearAll';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import SecurityIcon from '@mui/icons-material/VerifiedUser';
+import CloudIcon from '@mui/icons-material/CloudDone';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 import Linkedin from '../assets/linkedin.webp';
 import Amazon from '../assets/amazon.webp';
@@ -162,6 +165,9 @@ export const loremText = {
   AccessTimeFilledIcon,
   FileDownloadIcon,
   ArrowOutwardIcon,
+  SecurityIcon,
+  CloudIcon,
+  ThumbUpIcon,
   UploadingLoop,
   GoogleMaps,
   Linkedin,
