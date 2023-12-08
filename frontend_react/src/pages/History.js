@@ -1,4 +1,4 @@
-import { Stack, Box, Typography, Breadcrumbs, Link, Pagination, TextField, InputAdornment, ButtonBase, Modal, Grid, Button, IconButton } from '@mui/material'
+import { Stack, Box, Typography, Breadcrumbs, Link, Pagination, TextField, InputAdornment, ButtonBase, Modal, Grid, Button, IconButton, Select, MenuItem } from '@mui/material'
 import { AddTaskIcon, CloseIcon, DeleteIcon, FlashOnIcon, SearchIcon, SpinImage, SpinnerBlock } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import TableScrapeDatas from '../components/Datatables/TableScrapeDatas';
@@ -49,7 +49,7 @@ const History = () => {
   const [formData, setFormData] = useState(initialState);
 
   const [listDatas, setListDatas] = useState([]);
-  const [dataSize, setDataSize] = useState(0);
+  const [dataSize, setDataSize] = useState(10);
   const [scrapedData, setScrapedData] = useState([]);
 
   const [page, setPage] = useState(1);
@@ -83,8 +83,8 @@ const History = () => {
 
     if (e.target.name === "datalimit") {
       const value = e.target.value;
-      // Check if the input is not empty and is a valid positive number
-      setDataSize(value === "" || (parseFloat(value) >= 0 && !isNaN(value)) || parseFloat(value) < 0 ? value : dataSize);
+      // setDataSize((parseFloat(value) >= 0 && !isNaN(value)) || parseFloat(value) < 0 ? value : dataSize);
+      setDataSize(value);
     }
 
     setDisable(false);
@@ -121,9 +121,9 @@ const History = () => {
     setFormData({
       taskname: "",
       linkurl: "",
-      datalimit: 0,
+      datalimit: 10,
     });
-    setDataSize(0);
+    setDataSize(10);
     setErrorMessage("");
 
     const tasknameTextField = document.getElementById('taskname');
@@ -385,17 +385,21 @@ const History = () => {
                   <Typography sx={{ fontFamily: "Montserrat", fontWeight: 600, lineHeight: "20px" }}>
                     Limite
                   </Typography>
-                  <TextField
-                    size="small"
-                    type="number"
-                    name="datalimit"
+                  <Select
                     id="datalimit"
-                    placeholder='Limite (0 - illimité)'
-                    value={dataSize}
-                    onChange={handleChange}
+                    name="datalimit"
+                    size="small"
                     fullWidth
+                    value={dataSize}
+                    label="Sélectionner une limite"
                     disabled={disable}
-                  />
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={10}>10</MenuItem>
+                    <MenuItem value={20}>20</MenuItem>
+                    <MenuItem value={30}>30</MenuItem>
+                    <MenuItem value={50}>50</MenuItem>
+                  </Select>
                 </Stack>
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={12}>
